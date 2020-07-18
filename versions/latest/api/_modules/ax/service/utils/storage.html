@@ -41,6 +41,8 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.modelbridge.generation_strategy</span> <span class="kn">import</span> <span class="n">GenerationStrategy</span>
 <span class="kn">from</span> <span class="nn">ax.storage.sqa_store.db</span> <span class="kn">import</span> <span class="n">init_engine_and_session_factory</span>
 <span class="kn">from</span> <span class="nn">ax.storage.sqa_store.load</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_get_experiment_id</span><span class="p">,</span>
+    <span class="n">_get_generation_strategy_id</span><span class="p">,</span>
     <span class="n">_load_experiment</span><span class="p">,</span>
     <span class="n">_load_generation_strategy_by_experiment_name</span><span class="p">,</span>
 <span class="p">)</span>
@@ -59,6 +61,40 @@ src="/js/documentation_options.js">
 
 
 <span class="sd">"""Utilities for storing experiment to the database via `DBSettings`."""</span>
+
+
+<div class="viewcode-block" id="get_experiment_id"><a class="viewcode-back" href="../../../../service.html#ax.service.utils.storage.get_experiment_id">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_id</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">db_settings</span><span class="p">:</span> <span class="n">DBSettings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Load experiment from the db. Service API only supports `Experiment`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name: Experiment name.</span>
+<span class="sd">        db_settings: Defines behavior for loading/saving experiment to/from db.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ax.core.Experiment: Loaded experiment.</span>
+<span class="sd">    """</span>
+    <span class="n">init_engine_and_session_factory</span><span class="p">(</span><span class="n">creator</span><span class="o">=</span><span class="n">db_settings</span><span class="o">.</span><span class="n">creator</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">db_settings</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_get_experiment_id</span><span class="p">(</span><span class="n">experiment_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">decoder</span><span class="o">=</span><span class="n">db_settings</span><span class="o">.</span><span class="n">decoder</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_generation_strategy_id"><a class="viewcode-back" href="../../../../service.html#ax.service.utils.storage.get_generation_strategy_id">[docs]</a><span class="k">def</span> <span class="nf">get_generation_strategy_id</span><span class="p">(</span>
+    <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">db_settings</span><span class="p">:</span> <span class="n">DBSettings</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Load generation strategy associated with experiment by the given name</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name: Experiment name.</span>
+<span class="sd">        db_settings: Defines behavior for loading/saving experiment to/from db.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ax.core.Experiment: Loaded experiment.</span>
+<span class="sd">    """</span>
+    <span class="n">init_engine_and_session_factory</span><span class="p">(</span><span class="n">creator</span><span class="o">=</span><span class="n">db_settings</span><span class="o">.</span><span class="n">creator</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">db_settings</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_get_generation_strategy_id</span><span class="p">(</span>
+        <span class="n">experiment_name</span><span class="o">=</span><span class="n">experiment_name</span><span class="p">,</span> <span class="n">decoder</span><span class="o">=</span><span class="n">db_settings</span><span class="o">.</span><span class="n">decoder</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_experiment"><a class="viewcode-back" href="../../../../service.html#ax.service.utils.storage.load_experiment">[docs]</a><span class="k">def</span> <span class="nf">load_experiment</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">db_settings</span><span class="p">:</span> <span class="n">DBSettings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>

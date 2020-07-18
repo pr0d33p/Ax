@@ -1359,6 +1359,22 @@ defined on the experiment.</p></li>
 </dl>
 </dd></dl>
 <dl class="method">
+<dt id="ax.core.experiment.Experiment.immutable_search_space_and_opt_config">
+<em class="property">property </em><code class="sig-name descname">immutable_search_space_and_opt_config</code><a class="headerlink" href="#ax.core.experiment.Experiment.immutable_search_space_and_opt_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean representing whether search space and metrics on this experiment
+are mutable (by default they are).</p>
+<p>NOTE: For experiments with immutable search spaces and metrics, generator
+runs will not store copies of search space and metrics, which improves
+storage layer performance. Not keeping copies of those on generator runs
+also disables keeping track of changes to search space and metrics,
+thereby necessitating that those attributes be immutable on experiment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
 <dt id="ax.core.experiment.Experiment.is_simple_experiment">
 <em class="property">property </em><code class="sig-name descname">is_simple_experiment</code><a class="headerlink" href="#ax.core.experiment.Experiment.is_simple_experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether this experiment is a regular Experiment or the subclassing

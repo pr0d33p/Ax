@@ -773,6 +773,44 @@ to a TFidelityTrialEvaluation.</p>
 <div class="section" id="module-ax.service.utils.storage">
 <span id="storage"></span><h2>Storage<a class="headerlink" href="#module-ax.service.utils.storage" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
+<dt id="ax.service.utils.storage.get_experiment_id">
+<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">get_experiment_id</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#get_experiment_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.get_experiment_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load experiment from the db. Service API only supports <cite>Experiment</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Experiment name.</p></li>
+<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Loaded experiment.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ax.core.Experiment</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.service.utils.storage.get_generation_strategy_id">
+<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">get_generation_strategy_id</code><span class="sig-paren">(</span><em class="sig-param">experiment_name</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#get_generation_strategy_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.get_generation_strategy_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load generation strategy associated with experiment by the given name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Experiment name.</p></li>
+<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Loaded experiment.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ax.core.Experiment</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
 <dt id="ax.service.utils.storage.load_experiment">
 <code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">load_experiment</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#load_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.load_experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load experiment from the db. Service API only supports <cite>Experiment</cite>.</p>
