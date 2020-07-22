@@ -180,7 +180,6 @@ src="/js/documentation_options.js">
                 <span class="s2">"trial_index"</span><span class="p">:</span> <span class="n">trial_index</span><span class="p">,</span>
             <span class="p">}</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">evaluation</span> <span class="ow">in</span> <span class="n">evaluations</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="c1"># pyre-fixme[10]: Name `evaluation` is used but not defined.</span>
             <span class="k">for</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="n">evaluation</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="p">]</span>
         <span class="k">if</span> <span class="n">start_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">end_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -226,7 +225,6 @@ src="/js/documentation_options.js">
                 <span class="s2">"fidelities"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">fidelity</span><span class="p">),</span>
             <span class="p">}</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">fidelity_and_metrics_list</span> <span class="ow">in</span> <span class="n">evaluations</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="c1"># pyre-fixme[10]: Name `fidelity_and_metrics_list` is used but not defined.</span>
             <span class="k">for</span> <span class="n">fidelity</span><span class="p">,</span> <span class="n">evaluation</span> <span class="ow">in</span> <span class="n">fidelity_and_metrics_list</span>
             <span class="k">for</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="n">evaluation</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="p">]</span>

@@ -156,6 +156,9 @@ src="/js/documentation_options.js">
                 <span class="bp">self</span><span class="o">.</span><span class="n">generated_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">generated_points</span><span class="p">,</span> <span class="n">points</span><span class="p">])</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)))</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Expected `Model` for 1st param but got</span>
+    <span class="c1">#  `(self: RandomModel) -&gt; Dict[str, typing.Any]`.</span>
     <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">_get_state</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">state</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_state</span><span class="p">()</span>

@@ -104,7 +104,6 @@ src="/js/documentation_options.js">
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l1</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">l2</span><span class="p">:</span>
-                <span class="c1"># pyre-fixme[16]: `Dict` has no attribute `__ne__`.</span>
                 <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
                     <span class="n">equal</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">SQABase</span><span class="p">):</span>
@@ -429,7 +428,6 @@ src="/js/documentation_options.js">
         <span class="ow">and</span> <span class="n">engine</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">default_schema_name</span> <span class="o">==</span> <span class="s2">"adaptive_experiment"</span>
     <span class="p">):</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"Cannot mutate tables in XDB. Use AOSC."</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
-    <span class="c1"># pyre-fixme[16]: `Base` has no attribute `metadata`.</span>
     <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span></div>
 
 

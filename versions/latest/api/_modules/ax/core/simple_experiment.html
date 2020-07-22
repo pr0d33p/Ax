@@ -221,6 +221,7 @@ src="/js/documentation_options.js">
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">evaluation</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="c1"># pyre-fixme[16]: `Optional` has no attribute `objective`.</span>
             <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">optimization_config</span><span class="o">.</span><span class="n">objective</span><span class="o">.</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">evaluation</span><span class="p">}</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
             <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">optimization_config</span><span class="o">.</span><span class="n">objective</span><span class="o">.</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)}</span>
@@ -237,6 +238,10 @@ src="/js/documentation_options.js">
             <span class="s2">"or a single mean, sem tuple, or a single mean."</span>
         <span class="p">)</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Expected `Experiment` for 1st param</span>
+    <span class="c1">#  but got `(self: SimpleExperiment, metrics: Optional[List[ax.core.metric.Metric]]</span>
+    <span class="c1">#  = ..., **(Any)) -&gt; Data`.</span>
 <div class="viewcode-block" id="SimpleExperiment.fetch_data"><a class="viewcode-back" href="../../../core.html#ax.SimpleExperiment.fetch_data">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Experiment</span><span class="o">.</span><span class="n">fetch_data</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">fetch_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Metric</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Data</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span></div>
@@ -247,10 +252,14 @@ src="/js/documentation_options.js">
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Data</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval_trial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trials</span><span class="p">[</span><span class="n">trial_index</span><span class="p">])</span>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `metric` expected.</span>
 <div class="viewcode-block" id="SimpleExperiment.add_tracking_metric"><a class="viewcode-back" href="../../../core.html#ax.SimpleExperiment.add_tracking_metric">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Experiment</span><span class="o">.</span><span class="n">add_tracking_metric</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">add_tracking_metric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"SimpleExperiment"</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"SimpleExperiment does not support metric addition."</span><span class="p">)</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `metric` expected.</span>
 <div class="viewcode-block" id="SimpleExperiment.update_tracking_metric"><a class="viewcode-back" href="../../../core.html#ax.SimpleExperiment.update_tracking_metric">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Experiment</span><span class="o">.</span><span class="n">update_tracking_metric</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">update_tracking_metric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"SimpleExperiment"</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"SimpleExperiment does not support metric updates."</span><span class="p">)</span></div></div>

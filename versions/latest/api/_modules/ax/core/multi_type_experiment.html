@@ -195,6 +195,8 @@ src="/js/documentation_options.js">
             <span class="bp">self</span><span class="o">.</span><span class="n">_metric_to_canonical_name</span><span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">canonical_name</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `metric_name` expected.</span>
 <div class="viewcode-block" id="MultiTypeExperiment.remove_tracking_metric"><a class="viewcode-back" href="../../../core.html#ax.core.multi_type_experiment.MultiTypeExperiment.remove_tracking_metric">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Experiment</span><span class="o">.</span><span class="n">remove_tracking_metric</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">remove_tracking_metric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MultiTypeExperiment"</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">metric_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tracking_metrics</span><span class="p">:</span>
@@ -209,6 +211,10 @@ src="/js/documentation_options.js">
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric_to_canonical_name</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Expected `Experiment` for 1st param</span>
+    <span class="c1">#  but got `(self: MultiTypeExperiment, metrics:</span>
+    <span class="c1">#  Optional[List[ax.core.metric.Metric]] = ..., **(Any)) -&gt; Data`.</span>
 <div class="viewcode-block" id="MultiTypeExperiment.fetch_data"><a class="viewcode-back" href="../../../core.html#ax.core.multi_type_experiment.MultiTypeExperiment.fetch_data">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Experiment</span><span class="o">.</span><span class="n">fetch_data</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">fetch_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Metric</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Data</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Data</span><span class="o">.</span><span class="n">from_multiple_data</span><span class="p">(</span>
@@ -250,6 +256,7 @@ src="/js/documentation_options.js">
 <span class="sd">        """</span>
         <span class="n">opt_config_types</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">metric_name</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_trial_type</span>
+            <span class="c1"># pyre-fixme[16]: `Optional` has no attribute `metrics`.</span>
             <span class="k">for</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimization_config</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">opt_config_types</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_metric_to_trial_type</span><span class="p">}</span>

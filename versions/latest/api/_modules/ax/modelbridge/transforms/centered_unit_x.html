@@ -68,6 +68,9 @@ src="/js/documentation_options.js">
             <span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="n">p_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">upper</span><span class="p">)</span>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `observation_features`</span>
+    <span class="c1">#  expected.</span>
 <div class="viewcode-block" id="CenteredUnitX.transform_observation_features"><a class="viewcode-back" href="../../../../modelbridge.html#ax.modelbridge.transforms.centered_unit_x.CenteredUnitX.transform_observation_features">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Transform</span><span class="o">.</span><span class="n">transform_observation_features</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">transform_observation_features</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">observation_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ObservationFeatures</span><span class="p">]</span>
@@ -81,6 +84,8 @@ src="/js/documentation_options.js">
                     <span class="n">obsf</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">p_name</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">param</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">observation_features</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `search_space` expected.</span>
 <div class="viewcode-block" id="CenteredUnitX.transform_search_space"><a class="viewcode-back" href="../../../../modelbridge.html#ax.modelbridge.transforms.centered_unit_x.CenteredUnitX.transform_search_space">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Transform</span><span class="o">.</span><span class="n">transform_search_space</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">transform_search_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_space</span><span class="p">:</span> <span class="n">SearchSpace</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SearchSpace</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">p_name</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">search_space</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -96,6 +101,9 @@ src="/js/documentation_options.js">
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Does not support parameter constraints"</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">search_space</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `observation_features`</span>
+    <span class="c1">#  expected.</span>
 <div class="viewcode-block" id="CenteredUnitX.untransform_observation_features"><a class="viewcode-back" href="../../../../modelbridge.html#ax.modelbridge.transforms.centered_unit_x.CenteredUnitX.untransform_observation_features">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Transform</span><span class="o">.</span><span class="n">untransform_observation_features</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">untransform_observation_features</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">observation_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ObservationFeatures</span><span class="p">]</span>

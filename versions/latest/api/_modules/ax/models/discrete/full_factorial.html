@@ -73,6 +73,8 @@ src="/js/documentation_options.js">
         <span class="bp">self</span><span class="o">.</span><span class="n">max_cardinality</span> <span class="o">=</span> <span class="n">max_cardinality</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_cardinality</span> <span class="o">=</span> <span class="n">check_cardinality</span>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `n` expected.</span>
 <div class="viewcode-block" id="FullFactorialGenerator.gen"><a class="viewcode-back" href="../../../../models.html#ax.models.discrete.full_factorial.FullFactorialGenerator.gen">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">DiscreteModel</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">gen</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

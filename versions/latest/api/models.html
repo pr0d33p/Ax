@@ -1725,6 +1725,8 @@ the order corresponding to the Xs.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>) – The underlying model which the acqusition function uses
+to estimate acquisition values of candidates.</p></li>
 <li><p><strong>objective_weights</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>) – The objective is to maximize a weighted sum of
 the columns of f(x). These are the weights.</p></li>
 <li><p><strong>outcome_constraints</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]]) – A tuple of (A, b). For k outcome constraints
@@ -1740,6 +1742,7 @@ there are any).</p></li>
 <li><p><strong>mc_samples</strong> – The number of MC samples to use (default: 512).</p></li>
 <li><p><strong>qmc</strong> – If True, use qMC instead of MC (default: True).</p></li>
 <li><p><strong>prune_baseline</strong> – If True, prune the baseline points for NEI (default: True).</p></li>
+<li><p><strong>chebyshev_scalarization</strong> – Use augmented Chebyshev scalarization.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1753,7 +1756,7 @@ there are any).</p></li>
 <dl class="function">
 <dt id="ax.models.torch.botorch_defaults.get_and_fit_model">
 <code class="sig-prename descclassname">ax.models.torch.botorch_defaults.</code><code class="sig-name descname">get_and_fit_model</code><span class="sig-paren">(</span><em class="sig-param">Xs</em>, <em class="sig-param">Ys</em>, <em class="sig-param">Yvars</em>, <em class="sig-param">task_features</em>, <em class="sig-param">fidelity_features</em>, <em class="sig-param">metric_names</em>, <em class="sig-param">state_dict=None</em>, <em class="sig-param">refit_model=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/botorch_defaults.html#get_and_fit_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.botorch_defaults.get_and_fit_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Instantiates and fits a botorch ModelListGP using the given data.</p>
+<dd><p>Instantiates and fits a botorch GPyTorchModel using the given data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

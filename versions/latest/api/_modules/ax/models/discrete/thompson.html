@@ -76,6 +76,8 @@ src="/js/documentation_options.js">
         <span class="bp">self</span><span class="o">.</span><span class="n">Yvars</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_to_Ys_and_Yvars</span> <span class="o">=</span> <span class="kc">None</span>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `Xs` expected.</span>
 <div class="viewcode-block" id="ThompsonSampler.fit"><a class="viewcode-back" href="../../../../models.html#ax.models.discrete.thompson.ThompsonSampler.fit">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">DiscreteModel</span><span class="o">.</span><span class="n">fit</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -93,6 +95,8 @@ src="/js/documentation_options.js">
             <span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">Ys</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Ys</span><span class="p">,</span> <span class="n">Yvars</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Yvars</span>
         <span class="p">)</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `n` expected.</span>
 <div class="viewcode-block" id="ThompsonSampler.gen"><a class="viewcode-back" href="../../../../models.html#ax.models.discrete.thompson.ThompsonSampler.gen">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">DiscreteModel</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">gen</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -140,6 +144,8 @@ src="/js/documentation_options.js">
 
         <span class="k">return</span> <span class="n">top_arms</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">top_weights</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">top_weights</span><span class="p">],</span> <span class="p">{}</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `X` expected.</span>
 <div class="viewcode-block" id="ThompsonSampler.predict"><a class="viewcode-back" href="../../../../models.html#ax.models.discrete.thompson.ThompsonSampler.predict">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">DiscreteModel</span><span class="o">.</span><span class="n">predict</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TParamValueList</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># number of parameterizations at which to make predictions</span>

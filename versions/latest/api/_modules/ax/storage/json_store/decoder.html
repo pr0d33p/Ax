@@ -390,7 +390,6 @@ src="/js/documentation_options.js">
         <span class="c1"># If model in the current step was not directly from the `Models` enum,</span>
         <span class="c1"># pass its type to `restore_model_from_generator_run`, which will then</span>
         <span class="c1"># attempt to use this type to recreate the model.</span>
-        <span class="c1"># pyre-fixme[16]: Anonymous callable has no attribute `__ne__`.</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">_curr</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Models</span><span class="p">:</span>
             <span class="n">models_enum</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">_curr</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="k">assert</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">models_enum</span><span class="p">,</span> <span class="n">Models</span><span class="p">)</span>

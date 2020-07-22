@@ -201,11 +201,14 @@ src="/js/documentation_options.js">
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="s2">"Cannot obtain true best objectives since an ad-hoc function was used."</span>
         <span class="p">)</span>
+        <span class="c1"># pyre-fixme[16]: `Optional` has no attribute `outcome_constraints`.</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span><span class="o">.</span><span class="n">outcome_constraints</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
         <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span><span class="n">checked_cast</span><span class="p">(</span><span class="n">Trial</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span><span class="o">.</span><span class="n">objective_mean</span> <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">experiment</span><span class="o">.</span><span class="n">trials</span><span class="p">]</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">best_feasible_objective</span><span class="p">(</span>
+            <span class="c1"># pyre-fixme[6]: Expected `OptimizationConfig` for 1st param but got</span>
+            <span class="c1">#  `Optional[ax.core.optimization_config.OptimizationConfig]`.</span>
             <span class="n">optimization_config</span><span class="o">=</span><span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span><span class="p">,</span>
             <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="n">problem</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">values</span><span class="p">},</span>
         <span class="p">)</span>
@@ -231,7 +234,10 @@ src="/js/documentation_options.js">
         <span class="n">df_b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">iters_df</span><span class="p">,</span> <span class="n">df_m</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"arm_name"</span><span class="p">)</span>
         <span class="n">true_values</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_b</span><span class="p">[</span><span class="s2">"mean"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
     <span class="k">return</span> <span class="n">best_feasible_objective</span><span class="p">(</span>
-        <span class="n">optimization_config</span><span class="o">=</span><span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">true_values</span>
+        <span class="c1"># pyre-fixme[6]: Expected `OptimizationConfig` for 1st param but got</span>
+        <span class="c1">#  `Optional[ax.core.optimization_config.OptimizationConfig]`.</span>
+        <span class="n">optimization_config</span><span class="o">=</span><span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span><span class="p">,</span>
+        <span class="n">values</span><span class="o">=</span><span class="n">true_values</span><span class="p">,</span>
     <span class="p">)</span>
 
 
@@ -247,6 +253,8 @@ src="/js/documentation_options.js">
         <span class="n">value</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>  <span class="c1"># pyre-ignore[6]</span>
         <span class="n">true_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">best_feasible_objective</span><span class="p">(</span>
+        <span class="c1"># pyre-fixme[6]: Expected `OptimizationConfig` for 1st param but got</span>
+        <span class="c1">#  `Optional[ax.core.optimization_config.OptimizationConfig]`.</span>
         <span class="n">optimization_config</span><span class="o">=</span><span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span><span class="p">,</span>
         <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="n">problem</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">true_values</span><span class="p">},</span>
     <span class="p">)</span>

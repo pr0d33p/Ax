@@ -83,6 +83,8 @@ src="/js/documentation_options.js">
         <span class="c1"># Extract and fix parameters from initial search space.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">search_space</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `experiment` expected.</span>
 <div class="viewcode-block" id="RandomModelBridge.update"><a class="viewcode-back" href="../../../modelbridge.html#ax.modelbridge.random.RandomModelBridge.update">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">ModelBridge</span><span class="o">.</span><span class="n">update</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_data</span><span class="p">:</span> <span class="n">Data</span><span class="p">,</span> <span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">pass</span>  <span class="c1"># pragma: no cover</span></div>

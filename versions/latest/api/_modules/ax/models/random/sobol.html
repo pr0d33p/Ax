@@ -149,12 +149,17 @@ src="/js/documentation_options.js">
             <span class="bp">self</span><span class="o">.</span><span class="n">init_position</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span><span class="o">.</span><span class="n">num_generated</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Expected `Model` for 1st param but got</span>
+    <span class="c1">#  `(self: SobolGenerator) -&gt; Dict[str, typing.Any]`.</span>
     <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">_get_state</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">state</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_state</span><span class="p">()</span>
         <span class="n">state</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"init_position"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_position</span><span class="p">})</span>
         <span class="k">return</span> <span class="n">state</span>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `d` expected.</span>
     <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">RandomModel</span><span class="o">.</span><span class="n">_gen_unconstrained</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_gen_unconstrained</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

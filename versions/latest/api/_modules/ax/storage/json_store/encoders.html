@@ -344,7 +344,6 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="generation_step_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.generation_step_to_dict">[docs]</a><span class="k">def</span> <span class="nf">generation_step_to_dict</span><span class="p">(</span><span class="n">generation_step</span><span class="p">:</span> <span class="n">GenerationStep</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">"""Converts Ax generation step to a dictionary."""</span>
     <span class="k">return</span> <span class="p">{</span>
-        <span class="c1"># pyre-fixme[16]: `GenerationStep` has no attribute `__name__`.</span>
         <span class="s2">"__type"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
         <span class="s2">"model"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
         <span class="s2">"num_trials"</span><span class="p">:</span> <span class="n">generation_step</span><span class="o">.</span><span class="n">num_trials</span><span class="p">,</span>

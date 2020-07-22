@@ -305,6 +305,8 @@ src="/js/documentation_options.js">
         <span class="bp">self</span><span class="o">.</span><span class="n">fidelity_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metric_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `Xs` expected.</span>
 <div class="viewcode-block" id="BotorchModel.fit"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.botorch.BotorchModel.fit">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">TorchModel</span><span class="o">.</span><span class="n">fit</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -337,10 +339,14 @@ src="/js/documentation_options.js">
             <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `X` expected.</span>
 <div class="viewcode-block" id="BotorchModel.predict"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.botorch.BotorchModel.predict">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">TorchModel</span><span class="o">.</span><span class="n">predict</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_predictor</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># pyre-ignore [28]</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `bounds` expected.</span>
 <div class="viewcode-block" id="BotorchModel.gen"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.botorch.BotorchModel.gen">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">TorchModel</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">gen</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -386,17 +392,11 @@ src="/js/documentation_options.js">
 
         <span class="n">bounds_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
         <span class="n">bounds_</span> <span class="o">=</span> <span class="n">bounds_</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">acquisition_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acqf_constructor</span><span class="p">(</span>  <span class="c1"># pyre-ignore: [28]</span>
-            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-            <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
-            <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
-            <span class="n">X_observed</span><span class="o">=</span><span class="n">X_observed</span><span class="p">,</span>
-            <span class="n">X_pending</span><span class="o">=</span><span class="n">X_pending</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">acf_options</span><span class="p">,</span>
-        <span class="p">)</span>
 
         <span class="n">botorch_rounding_func</span> <span class="o">=</span> <span class="n">get_rounding_func</span><span class="p">(</span><span class="n">rounding_func</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">acf_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"random_scalarization"</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">acf_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"random_scalarization"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">or</span> <span class="n">acf_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">"chebyshev_scalarization"</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="p">):</span>
             <span class="c1"># TODO (jej): Move into MultiObjectiveBotorch</span>
             <span class="c1"># If using a list of acquisition functions, the algorithm to generate</span>
             <span class="c1"># that list is configured by acquisition_function_kwargs.</span>
@@ -411,6 +411,7 @@ src="/js/documentation_options.js">
                     <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
                     <span class="n">X_observed</span><span class="o">=</span><span class="n">X_observed</span><span class="p">,</span>
                     <span class="n">X_pending</span><span class="o">=</span><span class="n">X_pending</span><span class="p">,</span>
+                    <span class="n">Ys</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Ys</span><span class="p">,</span>  <span class="c1"># Required for chebyshev scalarization calculations.</span>
                     <span class="o">**</span><span class="n">acf_options</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="k">for</span> <span class="n">objective_weights</span> <span class="ow">in</span> <span class="n">objective_weights_list</span>
@@ -463,6 +464,8 @@ src="/js/documentation_options.js">
             <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `bounds` expected.</span>
 <div class="viewcode-block" id="BotorchModel.best_point"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.botorch.BotorchModel.best_point">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">TorchModel</span><span class="o">.</span><span class="n">best_point</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">best_point</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -486,6 +489,8 @@ src="/js/documentation_options.js">
             <span class="n">target_fidelities</span><span class="o">=</span><span class="n">target_fidelities</span><span class="p">,</span>
         <span class="p">)</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `X_test` expected.</span>
 <div class="viewcode-block" id="BotorchModel.cross_validate"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.botorch.BotorchModel.cross_validate">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">TorchModel</span><span class="o">.</span><span class="n">cross_validate</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">cross_validate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -512,6 +517,8 @@ src="/js/documentation_options.js">
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_predictor</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>  <span class="c1"># pyre-ignore: [28]</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `Xs` expected.</span>
 <div class="viewcode-block" id="BotorchModel.update"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.botorch.BotorchModel.update">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">TorchModel</span><span class="o">.</span><span class="n">update</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

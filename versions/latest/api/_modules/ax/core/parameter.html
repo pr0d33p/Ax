@@ -181,12 +181,12 @@ src="/js/documentation_options.js">
             <span class="n">ParameterType</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"RangeParameter type must be int or float."</span><span class="p">)</span>
-        <span class="c1"># pyre-fixme[16]: `None` has no attribute `__ge__`.</span>
-        <span class="c1"># pyre-fixme[16]: `None` has no attribute `__lt__`.</span>
+        <span class="c1"># pyre-fixme[6]: `&gt;=` is not supported for operand types `Union[None, bool,</span>
+        <span class="c1">#  float, int, str]` and `Union[None, bool, float, int, str]`.</span>
         <span class="k">if</span> <span class="n">lower</span> <span class="o">&gt;=</span> <span class="n">upper</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"max must be strictly larger than min."</span><span class="p">)</span>
-        <span class="c1"># pyre-fixme[16]: `None` has no attribute `__gt__`.</span>
-        <span class="c1"># pyre-fixme[16]: `None` has no attribute `__le__`.</span>
+        <span class="c1"># pyre-fixme[6]: `&lt;=` is not supported for operand types `Union[None, bool,</span>
+        <span class="c1">#  float, int, str]` and `int`.</span>
         <span class="k">if</span> <span class="n">log_scale</span> <span class="ow">and</span> <span class="n">lower</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cannot take log when min &lt;= 0."</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_valid_type</span><span class="p">(</span><span class="n">lower</span><span class="p">))</span> <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_valid_type</span><span class="p">(</span><span class="n">upper</span><span class="p">)):</span>
@@ -264,8 +264,8 @@ src="/js/documentation_options.js">
         <span class="c1"># Re-scale min and max to new digits definition</span>
         <span class="n">cast_lower</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lower</span><span class="p">)</span>
         <span class="n">cast_upper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_upper</span><span class="p">)</span>
-        <span class="c1"># pyre-fixme[16]: `None` has no attribute `__ge__`.</span>
-        <span class="c1"># pyre-fixme[16]: `None` has no attribute `__lt__`.</span>
+        <span class="c1"># pyre-fixme[6]: `&gt;=` is not supported for operand types `Union[None, bool,</span>
+        <span class="c1">#  float, int, str]` and `Union[None, bool, float, int, str]`.</span>
         <span class="k">if</span> <span class="n">cast_lower</span> <span class="o">&gt;=</span> <span class="n">cast_upper</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">"Lower bound </span><span class="si">{</span><span class="n">cast_lower</span><span class="si">}</span><span class="s2"> is &gt;= upper bound </span><span class="si">{</span><span class="n">cast_upper</span><span class="si">}</span><span class="s2">."</span>

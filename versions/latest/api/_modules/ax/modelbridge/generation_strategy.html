@@ -328,7 +328,6 @@ src="/js/documentation_options.js">
                 <span class="p">},</span>
             <span class="p">}</span>
             <span class="k">for</span> <span class="n">step_idx</span><span class="p">,</span> <span class="n">trials</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trial_indices_by_step</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="c1"># pyre-fixme[10]: Name `trials` is used but not defined.</span>
             <span class="k">for</span> <span class="n">trial_idx</span> <span class="ow">in</span> <span class="n">trials</span>
         <span class="p">]</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>

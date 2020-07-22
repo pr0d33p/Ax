@@ -105,6 +105,8 @@ src="/js/documentation_options.js">
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">reverse_metric_name_map</span><span class="p">[</span><span class="n">trial_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">trans_name</span><span class="p">:</span> <span class="n">orig_name</span><span class="p">}</span>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `observation_data` expected.</span>
 <div class="viewcode-block" id="ConvertMetricNames.transform_observation_data"><a class="viewcode-back" href="../../../../modelbridge.html#ax.modelbridge.transforms.convert_metric_names.ConvertMetricNames.transform_observation_data">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Transform</span><span class="o">.</span><span class="n">transform_observation_data</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">transform_observation_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -117,6 +119,8 @@ src="/js/documentation_options.js">
                     <span class="n">obsd</span><span class="o">.</span><span class="n">metric_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_name_map</span><span class="p">[</span><span class="n">obsd</span><span class="o">.</span><span class="n">metric_names</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
         <span class="k">return</span> <span class="n">observation_data</span></div>
 
+    <span class="c1"># pyre-fixme[56]: While applying decorator</span>
+    <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Argument `observation_data` expected.</span>
 <div class="viewcode-block" id="ConvertMetricNames.untransform_observation_data"><a class="viewcode-back" href="../../../../modelbridge.html#ax.modelbridge.transforms.convert_metric_names.ConvertMetricNames.untransform_observation_data">[docs]</a>    <span class="nd">@copy_doc</span><span class="p">(</span><span class="n">Transform</span><span class="o">.</span><span class="n">untransform_observation_data</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">untransform_observation_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
