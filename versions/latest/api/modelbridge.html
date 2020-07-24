@@ -524,6 +524,31 @@ optimization model for subsequent trials).</p>
 </dl>
 </dd></dl>
 <dl class="function">
+<dt id="ax.modelbridge.factory.get_MOO_PAREGO">
+<code class="sig-prename descclassname">ax.modelbridge.factory.</code><code class="sig-name descname">get_MOO_PAREGO</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">data</em>, <em class="sig-param">ref_point=None</em>, <em class="sig-param">search_space=None</em>, <em class="sig-param">dtype=torch.float64</em>, <em class="sig-param">device=device(type='cpu')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/factory.html#get_MOO_PAREGO"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.factory.get_MOO_PAREGO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a multi-objective model that generates points with ParEGO.</p>
+<p>qParEGO optimizes random augmented chebyshev scalarizations of the multiple
+objectives. This allows it to explore non-convex pareto frontiers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ax.modelbridge.torch.TorchModelBridge" title="ax.modelbridge.torch.TorchModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">TorchModelBridge</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.modelbridge.factory.get_MOO_RS">
+<code class="sig-prename descclassname">ax.modelbridge.factory.</code><code class="sig-name descname">get_MOO_RS</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">data</em>, <em class="sig-param">ref_point=None</em>, <em class="sig-param">search_space=None</em>, <em class="sig-param">dtype=torch.float64</em>, <em class="sig-param">device=device(type='cpu')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/factory.html#get_MOO_RS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.factory.get_MOO_RS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a Linear Random Scalarization multi-objective model.</p>
+<p>Chooses a different random linear scalarization of the objectives
+for generating each new candidate arm. This will only explore the
+convex hull of the pareto frontier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ax.modelbridge.torch.TorchModelBridge" title="ax.modelbridge.torch.TorchModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">TorchModelBridge</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
 <dt id="ax.modelbridge.factory.get_MTGP">
 <code class="sig-prename descclassname">ax.modelbridge.factory.</code><code class="sig-name descname">get_MTGP</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">data</em>, <em class="sig-param">search_space=None</em>, <em class="sig-param">trial_index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/factory.html#get_MTGP"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.factory.get_MTGP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instantiates a Multi-task Gaussian Process (MTGP) model that generates
@@ -1055,7 +1080,7 @@ or last update) to be passed in, not all data in the experiment.</p>
 <span id="torch-model-bridge"></span><h3>Torch Model Bridge<a class="headerlink" href="#module-ax.modelbridge.torch" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="ax.modelbridge.torch.TorchModelBridge">
-<em class="property">class </em><code class="sig-prename descclassname">ax.modelbridge.torch.</code><code class="sig-name descname">TorchModelBridge</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">search_space</em>, <em class="sig-param">data</em>, <em class="sig-param">model</em>, <em class="sig-param">transforms</em>, <em class="sig-param">transform_configs=None</em>, <em class="sig-param">torch_dtype=None</em>, <em class="sig-param">torch_device=None</em>, <em class="sig-param">status_quo_name=None</em>, <em class="sig-param">status_quo_features=None</em>, <em class="sig-param">optimization_config=None</em>, <em class="sig-param">fit_out_of_design=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/torch.html#TorchModelBridge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.torch.TorchModelBridge" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ax.modelbridge.torch.</code><code class="sig-name descname">TorchModelBridge</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">search_space</em>, <em class="sig-param">data</em>, <em class="sig-param">model</em>, <em class="sig-param">transforms</em>, <em class="sig-param">transform_configs=None</em>, <em class="sig-param">torch_dtype=None</em>, <em class="sig-param">torch_device=None</em>, <em class="sig-param">status_quo_name=None</em>, <em class="sig-param">status_quo_features=None</em>, <em class="sig-param">optimization_config=None</em>, <em class="sig-param">fit_out_of_design=False</em>, <em class="sig-param">default_model_gen_options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/torch.html#TorchModelBridge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.torch.TorchModelBridge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#ax.modelbridge.array.ArrayModelBridge" title="ax.modelbridge.array.ArrayModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.modelbridge.array.ArrayModelBridge</span></code></a></p>
 <p>A model bridge for using torch-based models.</p>
 <p>Specifies an interface that is implemented by TorchModel. In particular,

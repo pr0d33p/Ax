@@ -36,14 +36,13 @@ src="/js/documentation_options.js">
 <span class="kn">import</span> <span class="nn">enum</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">isclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">ax.exceptions.storage</span> <span class="kn">import</span> <span class="n">JSONEncodeError</span>
-<span class="kn">from</span> <span class="nn">ax.modelbridge.transforms.base</span> <span class="kn">import</span> <span class="n">Transform</span>
-<span class="kn">from</span> <span class="nn">ax.storage.json_store.registry</span> <span class="kn">import</span> <span class="n">ENCODER_REGISTRY</span>
+<span class="kn">from</span> <span class="nn">ax.storage.json_store.registry</span> <span class="kn">import</span> <span class="n">CLASS_ENCODER_REGISTRY</span><span class="p">,</span> <span class="n">ENCODER_REGISTRY</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.serialization</span> <span class="kn">import</span> <span class="n">_is_named_tuple</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="n">numpy_type_to_python_type</span><span class="p">,</span> <span class="n">torch_type_to_str</span>
 
@@ -66,10 +65,17 @@ src="/js/documentation_options.js">
     <span class="n">obj</span> <span class="o">=</span> <span class="n">numpy_type_to_python_type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
     <span class="n">_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 
-    <span class="c1"># Ax types</span>
-    <span class="k">if</span> <span class="n">isclass</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Transform</span><span class="p">):</span>
-        <span class="c1"># There is no other way to check is obj is of type Type[Transform].</span>
-        <span class="n">_type</span> <span class="o">=</span> <span class="n">Type</span><span class="p">[</span><span class="n">Transform</span><span class="p">]</span>
+    <span class="c1"># Type[MyClass] encoding (encoding of classes, not instances)</span>
+    <span class="k">if</span> <span class="n">isclass</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">class_type</span> <span class="ow">in</span> <span class="n">CLASS_ENCODER_REGISTRY</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">class_type</span><span class="p">):</span>
+                <span class="n">_type</span> <span class="o">=</span> <span class="n">class_type</span>
+                <span class="n">obj_dict</span> <span class="o">=</span> <span class="n">CLASS_ENCODER_REGISTRY</span><span class="p">[</span><span class="n">_type</span><span class="p">](</span><span class="n">obj</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">object_to_json</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">obj</span><span class="si">}</span><span class="s2"> is a class. Add it to the CLASS_ENCODER_REGISTRY "</span>
+            <span class="s2">"(and remove it from the ENCODER_REGISTRY if needed)."</span>
+        <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">_type</span> <span class="ow">in</span> <span class="n">ENCODER_REGISTRY</span><span class="p">:</span>
         <span class="n">obj_dict</span> <span class="o">=</span> <span class="n">ENCODER_REGISTRY</span><span class="p">[</span><span class="n">_type</span><span class="p">](</span><span class="n">obj</span><span class="p">)</span>
@@ -86,7 +92,6 @@ src="/js/documentation_options.js">
         <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">object_to_json</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="k">elif</span> <span class="n">_is_named_tuple</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="c1"># pyre-fixme[16]: `object` has no attribute `__name__`.</span>
             <span class="s2">"__type"</span><span class="p">:</span> <span class="n">_type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
             <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">object_to_json</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
         <span class="p">}</span>
@@ -104,10 +109,8 @@ src="/js/documentation_options.js">
         <span class="p">}</span>
     <span class="k">elif</span> <span class="n">_type</span> <span class="ow">is</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">"__type"</span><span class="p">:</span> <span class="n">_type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">to_json</span><span class="p">()}</span>
-    <span class="c1"># pyre-fixme[6]: Expected `Type[typing.Any]` for 1st param but got `object`.</span>
     <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">"__type"</span><span class="p">:</span> <span class="n">_type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
-    <span class="c1"># pyre-fixme[6]: Expected `Type[typing.Any]` for 1st param but got `object`.</span>
     <span class="k">elif</span> <span class="n">_type</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="ow">or</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">"__type"</span><span class="p">:</span> <span class="n">_type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
     <span class="k">elif</span> <span class="n">_type</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>

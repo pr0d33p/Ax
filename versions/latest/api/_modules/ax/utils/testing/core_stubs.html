@@ -250,15 +250,49 @@ src="/js/documentation_options.js">
     <span class="n">optimization_config</span> <span class="o">=</span> <span class="n">OptimizationConfig</span><span class="p">(</span>
         <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="n">Experiment</span><span class="p">(</span>
+
+    <span class="n">exp</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">"test_experiment_multi_objective"</span><span class="p">,</span>
-        <span class="n">search_space</span><span class="o">=</span><span class="n">get_search_space</span><span class="p">(),</span>
+        <span class="n">search_space</span><span class="o">=</span><span class="n">get_branin_search_space</span><span class="p">(),</span>
         <span class="n">optimization_config</span><span class="o">=</span><span class="n">optimization_config</span><span class="p">,</span>
-        <span class="n">status_quo</span><span class="o">=</span><span class="n">get_status_quo</span><span class="p">(),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">"test experiment with scalarized objective"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"test experiment with multi objective"</span><span class="p">,</span>
+        <span class="n">runner</span><span class="o">=</span><span class="n">SyntheticRunner</span><span class="p">(),</span>
         <span class="n">tracking_metrics</span><span class="o">=</span><span class="p">[</span><span class="n">Metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"tracking"</span><span class="p">)],</span>
         <span class="n">is_test</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span></div>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">exp</span></div>
+
+
+<div class="viewcode-block" id="get_branin_experiment_with_multi_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_experiment_with_multi_objective">[docs]</a><span class="k">def</span> <span class="nf">get_branin_experiment_with_multi_objective</span><span class="p">(</span>
+    <span class="n">has_optimization_config</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">with_batch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">with_status_quo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">with_fidelity_parameter</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>
+    <span class="n">exp</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"branin_test_experiment"</span><span class="p">,</span>
+        <span class="n">search_space</span><span class="o">=</span><span class="n">get_branin_search_space</span><span class="p">(</span>
+            <span class="n">with_fidelity_parameter</span><span class="o">=</span><span class="n">with_fidelity_parameter</span>
+        <span class="p">),</span>
+        <span class="n">optimization_config</span><span class="o">=</span><span class="n">get_branin_multi_objective_optimization_config</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">has_optimization_config</span>
+        <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">runner</span><span class="o">=</span><span class="n">SyntheticRunner</span><span class="p">(),</span>
+        <span class="n">is_test</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">with_status_quo</span><span class="p">:</span>
+        <span class="n">exp</span><span class="o">.</span><span class="n">status_quo</span> <span class="o">=</span> <span class="n">Arm</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">"x1"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">})</span>
+
+    <span class="k">if</span> <span class="n">with_batch</span><span class="p">:</span>
+        <span class="n">sobol_generator</span> <span class="o">=</span> <span class="n">get_sobol</span><span class="p">(</span><span class="n">search_space</span><span class="o">=</span><span class="n">exp</span><span class="o">.</span><span class="n">search_space</span><span class="p">)</span>
+        <span class="n">sobol_run</span> <span class="o">=</span> <span class="n">sobol_generator</span><span class="o">.</span><span class="n">gen</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="n">exp</span><span class="o">.</span><span class="n">new_batch_trial</span><span class="p">(</span><span class="n">optimize_for_power</span><span class="o">=</span><span class="n">with_status_quo</span><span class="p">)</span><span class="o">.</span><span class="n">add_generator_run</span><span class="p">(</span>
+            <span class="n">sobol_run</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">exp</span></div>
 
 
 <div class="viewcode-block" id="get_experiment_with_scalarized_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_experiment_with_scalarized_objective">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_with_scalarized_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>
@@ -591,6 +625,12 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_branin_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="get_branin_multi_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_multi_objective">[docs]</a><span class="k">def</span> <span class="nf">get_branin_multi_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">MultiObjective</span><span class="p">(</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">get_branin_metric</span><span class="p">(),</span> <span class="n">get_branin_metric</span><span class="p">()],</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="get_branin_outcome_constraint"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_outcome_constraint">[docs]</a><span class="k">def</span> <span class="nf">get_branin_outcome_constraint</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OutcomeConstraint</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">OutcomeConstraint</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_branin_metric</span><span class="p">(),</span> <span class="n">op</span><span class="o">=</span><span class="n">ComparisonOp</span><span class="o">.</span><span class="n">LEQ</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
 
@@ -601,6 +641,10 @@ src="/js/documentation_options.js">
 
 <div class="viewcode-block" id="get_branin_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_branin_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_branin_objective</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="get_branin_multi_objective_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_multi_objective_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_branin_multi_objective_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_branin_multi_objective</span><span class="p">())</span></div>
 
 
 <span class="c1"># Arms</span>
