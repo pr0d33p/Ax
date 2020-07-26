@@ -378,7 +378,7 @@ function slice_config_to_trace(
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:04:04] ipy_plotting: Injecting Plotly library into cell. Do not overwrite or delete cell.
+<pre>[INFO 07-26 05:05:13] ipy_plotting: Injecting Plotly library into cell. Do not overwrite or delete cell.
 </pre>
 </div>
 </div>
@@ -486,7 +486,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:04:04] ax.service.ax_client: Starting optimization with verbose logging. To disable logging, set the `verbose_logging` argument to `False`. Note that float values in the logs are rounded to 2 decimal points.
+<pre>[INFO 07-26 05:05:13] ax.service.ax_client: Starting optimization with verbose logging. To disable logging, set the `verbose_logging` argument to `False`. Note that float values in the logs are rounded to 2 decimal points.
 </pre>
 </div>
 </div>
@@ -522,7 +522,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:04:04] ax.modelbridge.dispatch_utils: Using Bayesian Optimization generation strategy: GenerationStrategy(name='Sobol+GPEI', steps=[Sobol for 5 trials, GPEI for subsequent trials]). Iterations after 5 will take longer to generate due to  model-fitting.
+<pre>[INFO 07-26 05:05:13] ax.modelbridge.dispatch_utils: Using Bayesian Optimization generation strategy: GenerationStrategy(name='Sobol+GPEI', steps=[Sobol for 5 trials, GPEI for subsequent trials]). Iterations after 5 will take longer to generate due to  model-fitting.
 </pre>
 </div>
 </div>
@@ -586,583 +586,606 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>2020-07-25 05:04:04,495	INFO resource_spec.py:212 -- Starting Ray with 4.35 GiB memory available for workers and up to 2.18 GiB for objects. You can adjust these settings with ray.init(memory=&lt;bytes&gt;, object_store_memory=&lt;bytes&gt;).
-2020-07-25 05:04:04,718	WARNING services.py:923 -- Redis failed to start, retrying now.
-2020-07-25 05:04:04,981	INFO services.py:1165 -- View the Ray dashboard at <span class="ansi-green-intense-fg ansi-bold">localhost:8265</span>
-[INFO 07-25 05:04:05] ax.service.ax_client: Generated new trial 0 with parameters {'lr': 0.0, 'momentum': 0.93}.
-[INFO 07-25 05:04:05] ax.service.ax_client: Generated new trial 1 with parameters {'lr': 0.0, 'momentum': 0.25}.
-[INFO 07-25 05:04:05] ax.service.ax_client: Generated new trial 2 with parameters {'lr': 0.01, 'momentum': 0.09}.
-[INFO 07-25 05:04:05] ax.service.ax_client: Generated new trial 3 with parameters {'lr': 0.0, 'momentum': 0.58}.
-[INFO 07-25 05:04:05] ax.service.ax_client: Generated new trial 4 with parameters {'lr': 0.17, 'momentum': 0.34}.
-[INFO 07-25 05:04:06] ax.service.ax_client: Generated new trial 5 with parameters {'lr': 0.0, 'momentum': 0.9}.
-[INFO 07-25 05:04:06] ax.service.ax_client: Generated new trial 6 with parameters {'lr': 0.0, 'momentum': 0.37}.
-[INFO 07-25 05:04:06] ax.service.ax_client: Generated new trial 7 with parameters {'lr': 0.02, 'momentum': 0.83}.
-[INFO 07-25 05:04:06] ax.service.ax_client: Generated new trial 8 with parameters {'lr': 0.0, 'momentum': 0.71}.
-[INFO 07-25 05:04:07] ax.service.ax_client: Generated new trial 9 with parameters {'lr': 0.0, 'momentum': 0.56}.
-[INFO 07-25 05:04:07] ax.service.ax_client: Generated new trial 10 with parameters {'lr': 0.0, 'momentum': 0.29}.
-[INFO 07-25 05:04:07] ax.service.ax_client: Generated new trial 11 with parameters {'lr': 0.0, 'momentum': 0.89}.
-[INFO 07-25 05:04:07] ax.service.ax_client: Generated new trial 12 with parameters {'lr': 0.0, 'momentum': 0.05}.
-[INFO 07-25 05:04:07] ax.service.ax_client: Generated new trial 13 with parameters {'lr': 0.0, 'momentum': 0.21}.
-[INFO 07-25 05:04:07] ax.service.ax_client: Generated new trial 14 with parameters {'lr': 0.0, 'momentum': 0.52}.
-[INFO 07-25 05:04:07] ax.service.ax_client: Generated new trial 15 with parameters {'lr': 0.06, 'momentum': 0.15}.
-[INFO 07-25 05:04:07] ax.service.ax_client: Generated new trial 16 with parameters {'lr': 0.0, 'momentum': 0.71}.
-[INFO 07-25 05:04:08] ax.service.ax_client: Generated new trial 17 with parameters {'lr': 0.01, 'momentum': 0.51}.
-[INFO 07-25 05:04:08] ax.service.ax_client: Generated new trial 18 with parameters {'lr': 0.01, 'momentum': 0.67}.
-[INFO 07-25 05:04:08] ax.service.ax_client: Generated new trial 19 with parameters {'lr': 0.16, 'momentum': 0.85}.
-[INFO 07-25 05:04:08] ax.service.ax_client: Generated new trial 20 with parameters {'lr': 0.0, 'momentum': 0.79}.
-[INFO 07-25 05:04:08] ax.service.ax_client: Generated new trial 21 with parameters {'lr': 0.0, 'momentum': 0.36}.
-[INFO 07-25 05:04:08] ax.service.ax_client: Generated new trial 22 with parameters {'lr': 0.0, 'momentum': 0.2}.
-[INFO 07-25 05:04:08] ax.service.ax_client: Generated new trial 23 with parameters {'lr': 0.04, 'momentum': 0.22}.
-[INFO 07-25 05:04:08] ax.service.ax_client: Generated new trial 24 with parameters {'lr': 0.02, 'momentum': 0.98}.
-[INFO 07-25 05:04:09] ax.service.ax_client: Generated new trial 25 with parameters {'lr': 0.0, 'momentum': 0.43}.
-[INFO 07-25 05:04:09] ax.service.ax_client: Generated new trial 26 with parameters {'lr': 0.0, 'momentum': 0.1}.
-[INFO 07-25 05:04:09] ax.service.ax_client: Generated new trial 27 with parameters {'lr': 0.0, 'momentum': 0.76}.
-[INFO 07-25 05:04:09] ax.service.ax_client: Generated new trial 28 with parameters {'lr': 0.0, 'momentum': 0.05}.
-[INFO 07-25 05:04:09] ax.service.ax_client: Generated new trial 29 with parameters {'lr': 0.0, 'momentum': 0.08}.
+<pre>2020-07-26 05:05:13,250	INFO resource_spec.py:212 -- Starting Ray with 4.35 GiB memory available for workers and up to 2.18 GiB for objects. You can adjust these settings with ray.init(memory=&lt;bytes&gt;, object_store_memory=&lt;bytes&gt;).
+2020-07-26 05:05:13,473	WARNING services.py:923 -- Redis failed to start, retrying now.
+2020-07-26 05:05:13,728	INFO services.py:1165 -- View the Ray dashboard at <span class="ansi-green-intense-fg ansi-bold">localhost:8265</span>
+[INFO 07-26 05:05:14] ax.service.ax_client: Generated new trial 0 with parameters {'lr': 0.05, 'momentum': 0.48}.
+[INFO 07-26 05:05:14] ax.service.ax_client: Generated new trial 1 with parameters {'lr': 0.0, 'momentum': 0.41}.
+[INFO 07-26 05:05:14] ax.service.ax_client: Generated new trial 2 with parameters {'lr': 0.01, 'momentum': 0.01}.
+[INFO 07-26 05:05:14] ax.service.ax_client: Generated new trial 3 with parameters {'lr': 0.0, 'momentum': 0.88}.
+[INFO 07-26 05:05:14] ax.service.ax_client: Generated new trial 4 with parameters {'lr': 0.0, 'momentum': 0.52}.
+[INFO 07-26 05:05:14] ax.service.ax_client: Generated new trial 5 with parameters {'lr': 0.02, 'momentum': 0.15}.
+[INFO 07-26 05:05:15] ax.service.ax_client: Generated new trial 6 with parameters {'lr': 0.0, 'momentum': 0.57}.
+[INFO 07-26 05:05:15] ax.service.ax_client: Generated new trial 7 with parameters {'lr': 0.0, 'momentum': 0.82}.
+[INFO 07-26 05:05:15] ax.service.ax_client: Generated new trial 8 with parameters {'lr': 0.15, 'momentum': 0.93}.
+[INFO 07-26 05:05:15] ax.service.ax_client: Generated new trial 9 with parameters {'lr': 0.0, 'momentum': 0.74}.
+[INFO 07-26 05:05:15] ax.service.ax_client: Generated new trial 10 with parameters {'lr': 0.05, 'momentum': 0.77}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 11 with parameters {'lr': 0.0, 'momentum': 0.37}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 12 with parameters {'lr': 0.0, 'momentum': 0.31}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 13 with parameters {'lr': 0.0, 'momentum': 0.34}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 14 with parameters {'lr': 0.0, 'momentum': 0.59}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 15 with parameters {'lr': 0.0, 'momentum': 0.24}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 16 with parameters {'lr': 0.0, 'momentum': 0.74}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 17 with parameters {'lr': 0.0, 'momentum': 0.77}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 18 with parameters {'lr': 0.0, 'momentum': 0.97}.
+[INFO 07-26 05:05:16] ax.service.ax_client: Generated new trial 19 with parameters {'lr': 0.01, 'momentum': 0.65}.
+[INFO 07-26 05:05:17] ax.service.ax_client: Generated new trial 20 with parameters {'lr': 0.04, 'momentum': 0.18}.
+[INFO 07-26 05:05:17] ax.service.ax_client: Generated new trial 21 with parameters {'lr': 0.0, 'momentum': 0.13}.
+[INFO 07-26 05:05:17] ax.service.ax_client: Generated new trial 22 with parameters {'lr': 0.0, 'momentum': 0.64}.
+[INFO 07-26 05:05:17] ax.service.ax_client: Generated new trial 23 with parameters {'lr': 0.0, 'momentum': 0.16}.
+[INFO 07-26 05:05:17] ax.service.ax_client: Generated new trial 24 with parameters {'lr': 0.0, 'momentum': 0.56}.
+[INFO 07-26 05:05:17] ax.service.ax_client: Generated new trial 25 with parameters {'lr': 0.01, 'momentum': 0.13}.
+[INFO 07-26 05:05:17] ax.service.ax_client: Generated new trial 26 with parameters {'lr': 0.0, 'momentum': 0.03}.
+[INFO 07-26 05:05:17] ax.service.ax_client: Generated new trial 27 with parameters {'lr': 0.05, 'momentum': 0.82}.
+[INFO 07-26 05:05:18] ax.service.ax_client: Generated new trial 28 with parameters {'lr': 0.0, 'momentum': 0.57}.
+[INFO 07-26 05:05:18] ax.service.ax_client: Generated new trial 29 with parameters {'lr': 0.01, 'momentum': 0.76}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4175)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4176)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
+<pre><span class="ansi-cyan-fg">(pid=4158)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4157)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
 0.1%
 0.1%
-0.4%
-0.4%
-2.1%
-2.1%
-2.3%
-2.4%
-8.8%
-8.8%
-43.4%
-36.2%
-36.7%
-37.4%
-38.1%
-38.6%
-39.5%
-40.0%
-73.5%
-70.4%
+0.9%
+0.9%
+4.3%
+4.3%
+17.6%
+17.7%
+49.8%
+49.9%
+42.4%
+50.6%
+88.7%
+66.9%
+88.8%
+90.6%
+91.4%
+91.9%
+67.0%
+67.1%
+92.8%
+67.9%
+93.9%
+68.3%
+95.2%
 100.1%
+<span class="ansi-cyan-fg">(pid=4157)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
 100.1%
-<span class="ansi-cyan-fg">(pid=4175)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4176)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4175)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4176)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4175)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4175)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4158)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4158)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4157)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
 28.4%
+<span class="ansi-cyan-fg">(pid=4158)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4158)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
 113.5%
-<span class="ansi-cyan-fg">(pid=4176)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4176)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4157)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4157)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
 113.5%
 0.5%
+2.5%
+12.4%
+12.9%
+13.9%
+78.5%
+79.0%
 0.5%
-5.5%
-7.0%
-24.3%
-50.7%
-<span class="ansi-cyan-fg">(pid=4175)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4176)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+100.4%2020-07-26 05:05:22,027	ERROR function_runner.py:115 -- Runner Thread raised error.
+<span class="ansi-cyan-fg">(pid=4158)</span> Traceback (most recent call last):
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 109, in run
+<span class="ansi-cyan-fg">(pid=4158)</span>     self._entrypoint()
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 163, in entrypoint
+<span class="ansi-cyan-fg">(pid=4158)</span>     return self._trainable_func(config, self._status_reporter)
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 273, in _trainable_func
+<span class="ansi-cyan-fg">(pid=4158)</span>     output = train_func(config)
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "&lt;ipython-input-5-3680854f46a2&gt;", line 3, in train_evaluate
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/build/facebook/Ax/ax/utils/tutorials/cnn_utils.py", line 76, in load_mnist
+<span class="ansi-cyan-fg">(pid=4158)</span>     root=data_path, train=True, download=True, transform=transform
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py", line 70, in __init__
+<span class="ansi-cyan-fg">(pid=4158)</span>     self.download()
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py", line 137, in download
+<span class="ansi-cyan-fg">(pid=4158)</span>     download_and_extract_archive(url, download_root=self.raw_folder, filename=filename, md5=md5)
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/utils.py", line 249, in download_and_extract_archive
+<span class="ansi-cyan-fg">(pid=4158)</span>     download_url(url, download_root, filename, md5)
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/utils.py", line 86, in download_url
+<span class="ansi-cyan-fg">(pid=4158)</span>     raise RuntimeError("File not found or corrupted.")
+<span class="ansi-cyan-fg">(pid=4158)</span> RuntimeError: File not found or corrupted.
+<span class="ansi-cyan-fg">(pid=4158)</span> Exception in thread Thread-1:
+<span class="ansi-cyan-fg">(pid=4158)</span> Traceback (most recent call last):
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/opt/python/3.7.1/lib/python3.7/threading.py", line 917, in _bootstrap_inner
+<span class="ansi-cyan-fg">(pid=4158)</span>     self.run()
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 128, in run
+<span class="ansi-cyan-fg">(pid=4158)</span>     raise e
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 109, in run
+<span class="ansi-cyan-fg">(pid=4158)</span>     self._entrypoint()
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 163, in entrypoint
+<span class="ansi-cyan-fg">(pid=4158)</span>     return self._trainable_func(config, self._status_reporter)
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 273, in _trainable_func
+<span class="ansi-cyan-fg">(pid=4158)</span>     output = train_func(config)
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "&lt;ipython-input-5-3680854f46a2&gt;", line 3, in train_evaluate
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/build/facebook/Ax/ax/utils/tutorials/cnn_utils.py", line 76, in load_mnist
+<span class="ansi-cyan-fg">(pid=4158)</span>     root=data_path, train=True, download=True, transform=transform
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py", line 70, in __init__
+<span class="ansi-cyan-fg">(pid=4158)</span>     self.download()
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py", line 137, in download
+<span class="ansi-cyan-fg">(pid=4158)</span>     download_and_extract_archive(url, download_root=self.raw_folder, filename=filename, md5=md5)
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/utils.py", line 249, in download_and_extract_archive
+<span class="ansi-cyan-fg">(pid=4158)</span>     download_url(url, download_root, filename, md5)
+<span class="ansi-cyan-fg">(pid=4158)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/utils.py", line 86, in download_url
+<span class="ansi-cyan-fg">(pid=4158)</span>     raise RuntimeError("File not found or corrupted.")
+<span class="ansi-cyan-fg">(pid=4158)</span> RuntimeError: File not found or corrupted.
+<span class="ansi-cyan-fg">(pid=4158)</span> 
+2.5%
+32.8%
+34.3%
+36.8%
+41.2%
+44.2%
 100.4%
-100.4%
-<span class="ansi-cyan-fg">(pid=4175)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4176)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4175)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4175)</span> Processing...
-180.4%/pytorch/torch/csrc/utils/tensor_numpy.cpp:141: UserWarning:
-<span class="ansi-cyan-fg">(pid=4175)</span> 
-<span class="ansi-cyan-fg">(pid=4175)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program.
-<span class="ansi-cyan-fg">(pid=4175)</span> 
-<span class="ansi-cyan-fg">(pid=4175)</span> Done!
-<span class="ansi-cyan-fg">(pid=4176)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4176)</span> Processing...
-180.4%/pytorch/torch/csrc/utils/tensor_numpy.cpp:141: UserWarning:
-<span class="ansi-cyan-fg">(pid=4176)</span> 
-<span class="ansi-cyan-fg">(pid=4176)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program.
-<span class="ansi-cyan-fg">(pid=4176)</span> 
-<span class="ansi-cyan-fg">(pid=4175)</span> 2020-07-25 05:04:13,712	ERROR function_runner.py:115 -- Runner Thread raised error.
-<span class="ansi-cyan-fg">(pid=4175)</span> Traceback (most recent call last):
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 109, in run
-<span class="ansi-cyan-fg">(pid=4175)</span>     self._entrypoint()
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 163, in entrypoint
-<span class="ansi-cyan-fg">(pid=4175)</span>     return self._trainable_func(config, self._status_reporter)
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 273, in _trainable_func
-<span class="ansi-cyan-fg">(pid=4175)</span>     output = train_func(config)
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "&lt;ipython-input-5-3680854f46a2&gt;", line 3, in train_evaluate
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/build/facebook/Ax/ax/utils/tutorials/cnn_utils.py", line 76, in load_mnist
-<span class="ansi-cyan-fg">(pid=4175)</span>     root=data_path, train=True, download=True, transform=transform
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py", line 80, in __init__
-<span class="ansi-cyan-fg">(pid=4175)</span>     self.data, self.targets = torch.load(os.path.join(self.processed_folder, data_file))
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torch/serialization.py", line 593, in load
-<span class="ansi-cyan-fg">(pid=4175)</span>     return _legacy_load(opened_file, map_location, pickle_module, **pickle_load_args)
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torch/serialization.py", line 763, in _legacy_load
-<span class="ansi-cyan-fg">(pid=4175)</span>     magic_number = pickle_module.load(f, **pickle_load_args)
-<span class="ansi-cyan-fg">(pid=4175)</span> EOFError: Ran out of input
-<span class="ansi-cyan-fg">(pid=4175)</span> Exception in thread Thread-1:
-<span class="ansi-cyan-fg">(pid=4175)</span> Traceback (most recent call last):
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/opt/python/3.7.1/lib/python3.7/threading.py", line 917, in _bootstrap_inner
-<span class="ansi-cyan-fg">(pid=4175)</span>     self.run()
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 128, in run
-<span class="ansi-cyan-fg">(pid=4175)</span>     raise e
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 109, in run
-<span class="ansi-cyan-fg">(pid=4175)</span>     self._entrypoint()
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 163, in entrypoint
-<span class="ansi-cyan-fg">(pid=4175)</span>     return self._trainable_func(config, self._status_reporter)
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/ray/tune/function_runner.py", line 273, in _trainable_func
-<span class="ansi-cyan-fg">(pid=4175)</span>     output = train_func(config)
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "&lt;ipython-input-5-3680854f46a2&gt;", line 3, in train_evaluate
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/build/facebook/Ax/ax/utils/tutorials/cnn_utils.py", line 76, in load_mnist
-<span class="ansi-cyan-fg">(pid=4175)</span>     root=data_path, train=True, download=True, transform=transform
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py", line 80, in __init__
-<span class="ansi-cyan-fg">(pid=4175)</span>     self.data, self.targets = torch.load(os.path.join(self.processed_folder, data_file))
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torch/serialization.py", line 593, in load
-<span class="ansi-cyan-fg">(pid=4175)</span>     return _legacy_load(opened_file, map_location, pickle_module, **pickle_load_args)
-<span class="ansi-cyan-fg">(pid=4175)</span>   File "/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torch/serialization.py", line 763, in _legacy_load
-<span class="ansi-cyan-fg">(pid=4175)</span>     magic_number = pickle_module.load(f, **pickle_load_args)
-<span class="ansi-cyan-fg">(pid=4175)</span> EOFError: Ran out of input
-<span class="ansi-cyan-fg">(pid=4175)</span> 
-<span class="ansi-cyan-fg">(pid=4176)</span> Done!
+<span class="ansi-cyan-fg">(pid=4157)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4157)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+180.4%
+<span class="ansi-cyan-fg">(pid=4157)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4157)</span> Processing...
+<span class="ansi-cyan-fg">(pid=4157)</span> /pytorch/torch/csrc/utils/tensor_numpy.cpp:141: UserWarning:
+<span class="ansi-cyan-fg">(pid=4157)</span> 
+<span class="ansi-cyan-fg">(pid=4157)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program.
+<span class="ansi-cyan-fg">(pid=4157)</span> 
+<span class="ansi-cyan-fg">(pid=4157)</span> Done!
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:04:32] ax.service.ax_client: Completed trial 0 with data: {'mean_accuracy': (0.87, 0.0)}.
+<pre>[INFO 07-26 05:05:40] ax.service.ax_client: Completed trial 0 with data: {'mean_accuracy': (0.1, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4176)</span> 2020-07-25 05:04:32,537	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4157)</span> 2020-07-26 05:05:40,311	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:04:35] ax.service.ax_client: Completed trial 2 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 07-26 05:05:43] ax.service.ax_client: Completed trial 2 with data: {'mean_accuracy': (0.12, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4278)</span> 2020-07-25 05:04:35,467	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4258)</span> 2020-07-26 05:05:43,193	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:04:55] ax.service.ax_client: Completed trial 3 with data: {'mean_accuracy': (0.95, 0.0)}.
+<pre>2020-07-26 05:05:43,922	WARNING worker.py:1047 -- The actor or task with ID ffffffffffffffff7dec85640100 is pending and cannot currently be scheduled. It requires {CPU: 1.000000} for execution and {CPU: 1.000000} for placement, but this node only has remaining {CPU: 1.000000}, {node:10.30.0.171: 1.000000}, {memory: 4.345703 GiB}, {object_store_memory: 1.464844 GiB}. In total there are 0 pending tasks and 1 pending actors on this node. This is likely due to all cluster resources being claimed by actors. To resolve the issue, consider creating fewer actors or increase the resources available to this Ray cluster. You can ignore this message if this Ray cluster is expected to auto-scale.
+2020-07-26 05:05:44,251	INFO (unknown file):0 -- gc.collect() freed 132 refs in 0.22836467600006927 seconds
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4303)</span> 2020-07-25 05:04:55,213	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4285)</span> 2020-07-26 05:05:44,210	INFO (unknown file):0 -- gc.collect() freed 24 refs in 0.18361240900003395 seconds
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:04:58] ax.service.ax_client: Completed trial 4 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 07-26 05:06:02] ax.service.ax_client: Completed trial 3 with data: {'mean_accuracy': (0.43, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4318)</span> 2020-07-25 05:04:58,135	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4285)</span> 2020-07-26 05:06:02,812	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:05:17] ax.service.ax_client: Completed trial 5 with data: {'mean_accuracy': (0.11, 0.0)}.
+<pre>[INFO 07-26 05:06:05] ax.service.ax_client: Completed trial 4 with data: {'mean_accuracy': (0.11, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4339)</span> 2020-07-25 05:05:17,782	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4300)</span> 2020-07-26 05:06:05,854	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:05:21] ax.service.ax_client: Completed trial 6 with data: {'mean_accuracy': (0.84, 0.0)}.
+<pre>[INFO 07-26 05:06:23] ax.service.ax_client: Completed trial 5 with data: {'mean_accuracy': (0.1, 0.0)}.
+2020-07-26 05:06:24,063	WARNING worker.py:1047 -- The actor or task with ID ffffffffffffffff24bd907e0100 is pending and cannot currently be scheduled. It requires {CPU: 1.000000} for execution and {CPU: 1.000000} for placement, but this node only has remaining {CPU: 1.000000}, {node:10.30.0.171: 1.000000}, {memory: 4.345703 GiB}, {object_store_memory: 1.464844 GiB}. In total there are 0 pending tasks and 1 pending actors on this node. This is likely due to all cluster resources being claimed by actors. To resolve the issue, consider creating fewer actors or increase the resources available to this Ray cluster. You can ignore this message if this Ray cluster is expected to auto-scale.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4354)</span> 2020-07-25 05:05:21,421	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4301)</span> 2020-07-26 05:06:23,909	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:05:41] ax.service.ax_client: Completed trial 7 with data: {'mean_accuracy': (0.11, 0.0)}.
+<pre>2020-07-26 05:06:24,428	INFO (unknown file):0 -- gc.collect() freed 3 refs in 0.273916268999983 seconds
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4377)</span> 2020-07-25 05:05:41,700	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4340)</span> 2020-07-26 05:06:24,299	INFO (unknown file):0 -- gc.collect() freed 150 refs in 0.13552743499997177 seconds
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:05:45] ax.service.ax_client: Completed trial 8 with data: {'mean_accuracy': (0.48, 0.0)}.
+<pre>[INFO 07-26 05:06:28] ax.service.ax_client: Completed trial 6 with data: {'mean_accuracy': (0.92, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4392)</span> 2020-07-25 05:05:45,502	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4340)</span> 2020-07-26 05:06:28,151	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:06:03] ax.service.ax_client: Completed trial 9 with data: {'mean_accuracy': (0.95, 0.0)}.
+<pre>[INFO 07-26 05:06:46] ax.service.ax_client: Completed trial 7 with data: {'mean_accuracy': (0.96, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4393)</span> 2020-07-25 05:06:03,901	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4358)</span> 2020-07-26 05:06:46,147	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:06:09] ax.service.ax_client: Completed trial 10 with data: {'mean_accuracy': (0.4, 0.0)}.
+<pre>[INFO 07-26 05:06:50] ax.service.ax_client: Completed trial 8 with data: {'mean_accuracy': (0.08, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4436)</span> 2020-07-25 05:06:09,163	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4381)</span> 2020-07-26 05:06:50,060	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:06:27] ax.service.ax_client: Completed trial 11 with data: {'mean_accuracy': (0.86, 0.0)}.
+<pre>[INFO 07-26 05:07:09] ax.service.ax_client: Completed trial 9 with data: {'mean_accuracy': (0.91, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4455)</span> 2020-07-25 05:06:27,341	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4401)</span> 2020-07-26 05:07:09,159	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:06:32] ax.service.ax_client: Completed trial 12 with data: {'mean_accuracy': (0.11, 0.0)}.
+<pre>[INFO 07-26 05:07:12] ax.service.ax_client: Completed trial 10 with data: {'mean_accuracy': (0.1, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4473)</span> 2020-07-25 05:06:32,142	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4419)</span> 2020-07-26 05:07:12,518	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:06:50] ax.service.ax_client: Completed trial 13 with data: {'mean_accuracy': (0.9, 0.0)}.
+<pre>[INFO 07-26 05:07:32] ax.service.ax_client: Completed trial 11 with data: {'mean_accuracy': (0.16, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4493)</span> 2020-07-25 05:06:50,700	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4436)</span> 2020-07-26 05:07:32,730	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:06:54] ax.service.ax_client: Completed trial 14 with data: {'mean_accuracy': (0.97, 0.0)}.
+<pre>[INFO 07-26 05:07:35] ax.service.ax_client: Completed trial 12 with data: {'mean_accuracy': (0.91, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4511)</span> 2020-07-25 05:06:54,531	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4451)</span> 2020-07-26 05:07:35,694	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>2020-07-25 05:06:55,697	WARNING worker.py:1047 -- The actor or task with ID ffffffffffffffffe967c3680100 is pending and cannot currently be scheduled. It requires {CPU: 1.000000} for execution and {CPU: 1.000000} for placement, but this node only has remaining {node:10.30.0.23: 1.000000}, {CPU: 1.000000}, {memory: 4.345703 GiB}, {object_store_memory: 1.464844 GiB}. In total there are 0 pending tasks and 1 pending actors on this node. This is likely due to all cluster resources being claimed by actors. To resolve the issue, consider creating fewer actors or increase the resources available to this Ray cluster. You can ignore this message if this Ray cluster is expected to auto-scale.
-2020-07-25 05:06:56,062	INFO (unknown file):0 -- gc.collect() freed 132 refs in 0.2712702660001014 seconds
+<pre>[INFO 07-26 05:07:54] ax.service.ax_client: Completed trial 13 with data: {'mean_accuracy': (0.9, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4528)</span> 2020-07-25 05:06:55,979	INFO (unknown file):0 -- gc.collect() freed 87 refs in 0.18068211800004974 seconds
+<pre><span class="ansi-cyan-fg">(pid=4452)</span> 2020-07-26 05:07:54,363	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:07:14] ax.service.ax_client: Completed trial 15 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 07-26 05:07:57] ax.service.ax_client: Completed trial 14 with data: {'mean_accuracy': (0.33, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4528)</span> 2020-07-25 05:07:14,258	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4493)</span> 2020-07-26 05:07:57,786	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:07:18] ax.service.ax_client: Completed trial 16 with data: {'mean_accuracy': (0.9, 0.0)}.
+<pre>[INFO 07-26 05:08:17] ax.service.ax_client: Completed trial 15 with data: {'mean_accuracy': (0.83, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4543)</span> 2020-07-25 05:07:18,245	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4514)</span> 2020-07-26 05:08:17,771	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:07:36] ax.service.ax_client: Completed trial 17 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 07-26 05:08:20] ax.service.ax_client: Completed trial 16 with data: {'mean_accuracy': (0.96, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4542)</span> 2020-07-25 05:07:36,076	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4529)</span> 2020-07-26 05:08:20,666	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:07:41] ax.service.ax_client: Completed trial 18 with data: {'mean_accuracy': (0.12, 0.0)}.
+<pre>[INFO 07-26 05:08:39] ax.service.ax_client: Completed trial 17 with data: {'mean_accuracy': (0.93, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4588)</span> 2020-07-25 05:07:41,569	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4530)</span> 2020-07-26 05:08:39,619	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:07:59] ax.service.ax_client: Completed trial 19 with data: {'mean_accuracy': (0.09, 0.0)}.
+<pre>[INFO 07-26 05:08:42] ax.service.ax_client: Completed trial 18 with data: {'mean_accuracy': (0.96, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4606)</span> 2020-07-25 05:07:59,245	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4566)</span> 2020-07-26 05:08:42,817	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:08:04] ax.service.ax_client: Completed trial 20 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 07-26 05:09:02] ax.service.ax_client: Completed trial 19 with data: {'mean_accuracy': (0.12, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4624)</span> 2020-07-25 05:08:04,656	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4592)</span> 2020-07-26 05:09:02,514	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:08:22] ax.service.ax_client: Completed trial 21 with data: {'mean_accuracy': (0.86, 0.0)}.
+<pre>[INFO 07-26 05:09:05] ax.service.ax_client: Completed trial 20 with data: {'mean_accuracy': (0.11, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4642)</span> 2020-07-25 05:08:21,921	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4606)</span> 2020-07-26 05:09:05,753	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:08:27] ax.service.ax_client: Completed trial 22 with data: {'mean_accuracy': (0.94, 0.0)}.
+<pre>[INFO 07-26 05:09:24] ax.service.ax_client: Completed trial 21 with data: {'mean_accuracy': (0.9, 0.0)}.
+2020-07-26 05:09:24,670	WARNING worker.py:1047 -- The actor or task with ID ffffffffffffffffd9752b720100 is pending and cannot currently be scheduled. It requires {CPU: 1.000000} for execution and {CPU: 1.000000} for placement, but this node only has remaining {CPU: 1.000000}, {node:10.30.0.171: 1.000000}, {memory: 4.345703 GiB}, {object_store_memory: 1.464844 GiB}. In total there are 0 pending tasks and 1 pending actors on this node. This is likely due to all cluster resources being claimed by actors. To resolve the issue, consider creating fewer actors or increase the resources available to this Ray cluster. You can ignore this message if this Ray cluster is expected to auto-scale.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4661)</span> 2020-07-25 05:08:27,488	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4607)</span> 2020-07-26 05:09:24,497	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:08:45] ax.service.ax_client: Completed trial 23 with data: {'mean_accuracy': (0.11, 0.0)}.
+<pre>2020-07-26 05:09:25,042	INFO (unknown file):0 -- gc.collect() freed 144 refs in 0.2734801710000738 seconds
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4685)</span> 2020-07-25 05:08:45,113	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4646)</span> 2020-07-26 05:09:25,004	INFO (unknown file):0 -- gc.collect() freed 186 refs in 0.2297733780001181 seconds
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>2020-07-25 05:08:46,087	WARNING worker.py:1047 -- The actor or task with ID ffffffffffffffff6379eeb10100 is pending and cannot currently be scheduled. It requires {CPU: 1.000000} for execution and {CPU: 1.000000} for placement, but this node only has remaining {node:10.30.0.23: 1.000000}, {CPU: 1.000000}, {memory: 4.345703 GiB}, {object_store_memory: 1.464844 GiB}. In total there are 0 pending tasks and 1 pending actors on this node. This is likely due to all cluster resources being claimed by actors. To resolve the issue, consider creating fewer actors or increase the resources available to this Ray cluster. You can ignore this message if this Ray cluster is expected to auto-scale.
-2020-07-25 05:08:46,448	INFO (unknown file):0 -- gc.collect() freed 78 refs in 0.25991174499995395 seconds
+<pre>[INFO 07-26 05:09:28] ax.service.ax_client: Completed trial 22 with data: {'mean_accuracy': (0.89, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4703)</span> 2020-07-25 05:08:46,298	INFO (unknown file):0 -- gc.collect() freed 96 refs in 0.0992192389999218 seconds
+<pre><span class="ansi-cyan-fg">(pid=4646)</span> 2020-07-26 05:09:28,397	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:08:50] ax.service.ax_client: Completed trial 24 with data: {'mean_accuracy': (0.1, 0.0)}.
+<pre>[INFO 07-26 05:09:47] ax.service.ax_client: Completed trial 23 with data: {'mean_accuracy': (0.19, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4703)</span> 2020-07-25 05:08:50,335	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4664)</span> 2020-07-26 05:09:47,204	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:09:08] ax.service.ax_client: Completed trial 25 with data: {'mean_accuracy': (0.92, 0.0)}.
+<pre>[INFO 07-26 05:09:50] ax.service.ax_client: Completed trial 24 with data: {'mean_accuracy': (0.92, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4721)</span> 2020-07-25 05:09:08,193	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4685)</span> 2020-07-26 05:09:50,938	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:09:13] ax.service.ax_client: Completed trial 26 with data: {'mean_accuracy': (0.96, 0.0)}.
+<pre>[INFO 07-26 05:10:09] ax.service.ax_client: Completed trial 25 with data: {'mean_accuracy': (0.12, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4739)</span> 2020-07-25 05:09:12,994	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4706)</span> 2020-07-26 05:10:09,807	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:09:31] ax.service.ax_client: Completed trial 27 with data: {'mean_accuracy': (0.97, 0.0)}.
+<pre>[INFO 07-26 05:10:13] ax.service.ax_client: Completed trial 26 with data: {'mean_accuracy': (0.21, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4758)</span> 2020-07-25 05:09:31,732	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4722)</span> 2020-07-26 05:10:13,774	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:09:35] ax.service.ax_client: Completed trial 28 with data: {'mean_accuracy': (0.9, 0.0)}.
+<pre>[INFO 07-26 05:10:32] ax.service.ax_client: Completed trial 27 with data: {'mean_accuracy': (0.11, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4777)</span> 2020-07-25 05:09:35,773	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4742)</span> 2020-07-26 05:10:32,488	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 07-25 05:09:47] ax.service.ax_client: Completed trial 29 with data: {'mean_accuracy': (0.09, 0.0)}.
+<pre>[INFO 07-26 05:10:37] ax.service.ax_client: Completed trial 28 with data: {'mean_accuracy': (0.88, 0.0)}.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4795)</span> 2020-07-25 05:09:47,336	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4758)</span> 2020-07-26 05:10:37,203	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[INFO 07-26 05:10:48] ax.service.ax_client: Completed trial 29 with data: {'mean_accuracy': (0.11, 0.0)}.
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre><span class="ansi-cyan-fg">(pid=4783)</span> 2020-07-26 05:10:48,243	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
@@ -1186,7 +1209,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <span class="ansi-green-intense-fg ansi-bold">    350</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">    351</span>             logger<span class="ansi-blue-fg">.</span>error<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"Trials did not complete: %s"</span><span class="ansi-blue-fg">,</span> incomplete_trials<span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">TuneError</span>: ('Trials did not complete', [train_evaluate_43628073])</pre>
+<span class="ansi-red-fg">TuneError</span>: ('Trials did not complete', [train_evaluate_96c36a0b])</pre>
 </div>
 </div>
 </div>
