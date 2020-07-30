@@ -2010,6 +2010,21 @@ Subclasses should override to batch data computation across trials + metrics.</p
 </dl>
 </dd></dl>
 <dl class="method">
+<dt id="ax.core.metric.Metric.fetch_multi_group_by_metric">
+<em class="property">property </em><code class="sig-name descname">fetch_multi_group_by_metric</code><a class="headerlink" href="#ax.core.metric.Metric.fetch_multi_group_by_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric class, with which to group this metric in <cite>Experiment._metrics_by_class</cite>,
+which is used to combine metrics on experiment into groups and then fetch their
+data via <cite>Metric.fetch_trial_data_multi</cite> for each group.</p>
+<p>NOTE: By default, this property will just return the class on which it is
+defined; however, in some cases it is useful to group metrics by their
+superclass, in which case this property should return that superclass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></a>[<a class="reference internal" href="#ax.core.metric.Metric" title="ax.core.metric.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
 <dt id="ax.core.metric.Metric.fetch_trial_data">
 <code class="sig-name descname">fetch_trial_data</code><span class="sig-paren">(</span><em class="sig-param">trial</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/metric.html#Metric.fetch_trial_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.metric.Metric.fetch_trial_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch data for one trial.</p>

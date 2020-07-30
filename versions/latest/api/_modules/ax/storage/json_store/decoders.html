@@ -33,7 +33,7 @@ src="/js/documentation_options.js">
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">from</span> <span class="nn">ax.core.arm</span> <span class="kn">import</span> <span class="n">Arm</span>
 <span class="kn">from</span> <span class="nn">ax.core.base_trial</span> <span class="kn">import</span> <span class="n">TrialStatus</span>
@@ -41,6 +41,8 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.generator_run</span> <span class="kn">import</span> <span class="n">GeneratorRun</span>
 <span class="kn">from</span> <span class="nn">ax.core.runner</span> <span class="kn">import</span> <span class="n">Runner</span>
 <span class="kn">from</span> <span class="nn">ax.core.trial</span> <span class="kn">import</span> <span class="n">Trial</span>
+<span class="kn">from</span> <span class="nn">ax.modelbridge.transforms.base</span> <span class="kn">import</span> <span class="n">Transform</span>
+<span class="kn">from</span> <span class="nn">ax.storage.transform_registry</span> <span class="kn">import</span> <span class="n">REVERSE_TRANSFORM_REGISTRY</span>
 
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
@@ -147,6 +149,14 @@ src="/js/documentation_options.js">
     <span class="n">trial</span><span class="o">.</span><span class="n">_generation_step_index</span> <span class="o">=</span> <span class="n">generation_step_index</span>
     <span class="n">trial</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="n">properties</span> <span class="ow">or</span> <span class="p">{}</span>
     <span class="k">return</span> <span class="n">trial</span></div>
+
+
+<div class="viewcode-block" id="transform_type_from_json"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.decoders.transform_type_from_json">[docs]</a><span class="k">def</span> <span class="nf">transform_type_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Transform</span><span class="p">]:</span>
+    <span class="sd">"""Load the transform type from JSON."""</span>
+    <span class="n">index_in_registry</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"index_in_registry"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">index_in_registry</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">REVERSE_TRANSFORM_REGISTRY</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown transform '</span><span class="si">{</span><span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'transform_type'</span><span class="p">)</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">REVERSE_TRANSFORM_REGISTRY</span><span class="p">[</span><span class="n">index_in_registry</span><span class="p">]</span></div>
 </pre></div>
 </div>
 </div>
