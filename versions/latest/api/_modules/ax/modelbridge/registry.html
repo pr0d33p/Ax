@@ -406,7 +406,7 @@ src="/js/documentation_options.js">
     <span class="n">model_keywords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">model_keywords</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bridge_kwargs</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">"Keyword argument `</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">` occurs in both model and model bridge "</span>
                 <span class="sa">f</span><span class="s2">"kwargs stored in the generator run. Assuming the `</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">` kwarg "</span>
                 <span class="s2">"is passed into the model by the model bridge and removing its "</span>

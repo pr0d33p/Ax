@@ -72,8 +72,8 @@ src="/js/documentation_options.js">
                 <span class="k">if</span> <span class="n">p_name</span> <span class="ow">in</span> <span class="n">obsf</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">obsf</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">p_name</span><span class="p">]</span> <span class="o">!=</span> <span class="n">fixed_p</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
                         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                            <span class="s2">"Fixed parameter with out of design value passed "</span>
-                            <span class="s2">"to RemoveFixed."</span>
+                            <span class="sa">f</span><span class="s2">"Fixed parameter </span><span class="si">{</span><span class="n">p_name</span><span class="si">}</span><span class="s2"> with out of design value: "</span>
+                            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">obsf</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">p_name</span><span class="p">]</span><span class="si">}</span><span class="s2"> passed to `RemoveFixed`."</span>
                         <span class="p">)</span>
                     <span class="n">obsf</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">p_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">observation_features</span></div>

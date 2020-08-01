@@ -137,8 +137,9 @@ src="/js/documentation_options.js">
 
 <span class="c1"># Instead of showing a warning (like in the standard library) we throw an error when</span>
 <span class="c1"># deprecated functions are called.</span>
-<span class="c1"># pyre-fixme[3]: Return annotation cannot contain `Any`.</span>
-<span class="c1"># pyre-fixme[2]: Parameter annotation cannot contain `Any`.</span>
+<span class="c1"># pyre-fixme[24]: Generic type `Callable` expects 2 type parameters.</span>
+<span class="c1"># pyre-fixme[24]: Generic type `Callable` expects 2 type parameters.</span>
+<span class="c1"># pyre-fixme[24]: Generic type `Callable` expects 2 type parameters.</span>
 <span class="k">def</span> <span class="nf">_deprecate</span><span class="p">(</span><span class="n">original_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">_deprecated_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>

@@ -112,7 +112,7 @@ src="/js/documentation_options.js">
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">experiment</span> <span class="o">=</span> <span class="n">_load_experiment</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">decoder</span><span class="o">=</span><span class="n">db_settings</span><span class="o">.</span><span class="n">decoder</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">Experiment</span><span class="p">)</span> <span class="ow">or</span> <span class="n">experiment</span><span class="o">.</span><span class="n">is_simple_experiment</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Service API only supports Experiment"</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Service API only supports `Experiment`."</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">"Loaded experiment </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> in "</span>
         <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">_round_floats_for_logging</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="si">}</span><span class="s2"> seconds."</span>
@@ -154,8 +154,10 @@ src="/js/documentation_options.js">
         <span class="n">generation_strategy</span> <span class="o">=</span> <span class="n">_load_generation_strategy_by_experiment_name</span><span class="p">(</span>
             <span class="n">experiment_name</span><span class="o">=</span><span class="n">experiment_name</span><span class="p">,</span> <span class="n">decoder</span><span class="o">=</span><span class="n">db_settings</span><span class="o">.</span><span class="n">decoder</span>
         <span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>  <span class="c1"># Generation strategy has not yet been attached to this</span>
-        <span class="k">return</span> <span class="n">experiment</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># experiment.</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">"does not have a generation strategy"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">experiment</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">raise</span>  <span class="c1"># `ValueError` here could signify more than just absence of GS.</span>
     <span class="k">return</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">generation_strategy</span></div>
 
 

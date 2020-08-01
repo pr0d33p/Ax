@@ -60,6 +60,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.trial</span> <span class="kn">import</span> <span class="n">Trial</span>
 <span class="kn">from</span> <span class="nn">ax.exceptions.storage</span> <span class="kn">import</span> <span class="n">SQADecodeError</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.generation_strategy</span> <span class="kn">import</span> <span class="n">GenerationStrategy</span>
+<span class="kn">from</span> <span class="nn">ax.modelbridge.registry</span> <span class="kn">import</span> <span class="n">Models</span>
 <span class="kn">from</span> <span class="nn">ax.storage.json_store.decoder</span> <span class="kn">import</span> <span class="n">object_from_json</span>
 <span class="kn">from</span> <span class="nn">ax.storage.metric_registry</span> <span class="kn">import</span> <span class="n">REVERSE_METRIC_REGISTRY</span>
 <span class="kn">from</span> <span class="nn">ax.storage.runner_registry</span> <span class="kn">import</span> <span class="n">REVERSE_RUNNER_REGISTRY</span>
@@ -674,7 +675,16 @@ src="/js/documentation_options.js">
             <span class="c1"># Generation strategy had an initialized model.</span>
             <span class="c1"># pyre-ignore[16]: SQAGenerationStrategy does not have `experiment` attr.</span>
             <span class="n">gs</span><span class="o">.</span><span class="n">_experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_from_sqa</span><span class="p">(</span><span class="n">gs_sqa</span><span class="o">.</span><span class="n">experiment</span><span class="p">)</span>
-            <span class="n">gs</span><span class="o">.</span><span class="n">_restore_model_from_generator_run</span><span class="p">()</span>
+            <span class="c1"># If model in the current step was not directly from the `Models` enum,</span>
+            <span class="c1"># pass its type to `restore_model_from_generator_run`, which will then</span>
+            <span class="c1"># attempt to use this type to recreate the model.</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">_curr</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Models</span><span class="p">:</span>
+                <span class="n">models_enum</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">_curr</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">models_enum</span><span class="p">,</span> <span class="n">Models</span><span class="p">)</span>
+                <span class="c1"># pyre-ignore[6]: `models_enum` typing hackiness</span>
+                <span class="n">gs</span><span class="o">.</span><span class="n">_restore_model_from_generator_run</span><span class="p">(</span><span class="n">models_enum</span><span class="o">=</span><span class="n">models_enum</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gs</span><span class="o">.</span><span class="n">_restore_model_from_generator_run</span><span class="p">()</span>
         <span class="n">gs</span><span class="o">.</span><span class="n">_db_id</span> <span class="o">=</span> <span class="n">gs_sqa</span><span class="o">.</span><span class="n">id</span>
         <span class="k">return</span> <span class="n">gs</span></div>
 

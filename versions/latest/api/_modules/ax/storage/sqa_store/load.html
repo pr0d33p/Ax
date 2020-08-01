@@ -76,7 +76,7 @@ src="/js/documentation_options.js">
             <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">exp_sqa_class</span><span class="p">)</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">experiment_name</span><span class="p">)</span><span class="o">.</span><span class="n">one_or_none</span><span class="p">()</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">sqa_experiment</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Experiment `</span><span class="si">{</span><span class="n">experiment_name</span><span class="si">}</span><span class="s2">` not found."</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Experiment '</span><span class="si">{</span><span class="n">experiment_name</span><span class="si">}</span><span class="s2">' not found."</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">sqa_experiment</span>  <span class="c1"># pyre-ignore[7]</span>
 
 

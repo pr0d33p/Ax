@@ -230,10 +230,10 @@ src="/js/documentation_options.js">
                 <span class="s2">"Must give the experiment a name if `db_settings` is not None."</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">db_settings_set</span><span class="p">:</span>
-            <span class="n">experiment</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_experiment_and_generation_strategy</span><span class="p">(</span>
+            <span class="n">experiment_id</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_experiment_and_generation_strategy_db_id</span><span class="p">(</span>
                 <span class="n">experiment_name</span><span class="o">=</span><span class="n">not_none</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
             <span class="p">)</span>
-            <span class="k">if</span> <span class="n">experiment</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">experiment_id</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">"Experiment </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> already exists in the database. "</span>
                     <span class="s2">"To protect experiments that are running in production, "</span>
