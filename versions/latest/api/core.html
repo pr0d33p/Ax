@@ -34,7 +34,7 @@ src="/js/documentation_options.js">
 <dl class="class">
 <dt id="ax.core.arm.Arm">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.arm.</code><code class="sig-name descname">Arm</code><span class="sig-paren">(</span><em class="sig-param">parameters</em>, <em class="sig-param">name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/arm.html#Arm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.arm.Arm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base class for defining arms.</p>
 <p>Randomization in experiments assigns units to a given arm. Thus, the arm
 encapsulates the parametrization needed by the unit.</p>
@@ -125,21 +125,12 @@ automatically set upon addition to a trial).</p>
 </dd></dl>
 </dd></dl>
 </div>
-<div class="section" id="module-ax.core.base">
-<span id="base"></span><h3><cite>Base</cite><a class="headerlink" href="#module-ax.core.base" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="ax.core.base.Base">
-<em class="property">class </em><code class="sig-prename descclassname">ax.core.base.</code><code class="sig-name descname">Base</code><a class="reference internal" href="_modules/ax/core/base.html#Base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.base.Base" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Metaclass for core Ax classes.</p>
-</dd></dl>
-</div>
 <div class="section" id="module-ax.core.base_trial">
 <span id="basetrial"></span><h3><cite>BaseTrial</cite><a class="headerlink" href="#module-ax.core.base_trial" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="ax.core.base_trial.BaseTrial">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.base_trial.</code><code class="sig-name descname">BaseTrial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">trial_type=None</em>, <em class="sig-param">ttl_seconds=None</em>, <em class="sig-param">index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/base_trial.html#BaseTrial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.base_trial.BaseTrial" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a>, <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a>, <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base class for representing trials.</p>
 <p>Trials are containers for arms that are deployed together. There are
 two kinds of trials: regular Trial, which only contains a single arm,
@@ -993,7 +984,7 @@ the trial.</p>
 <dl class="class">
 <dt id="ax.core.data.Data">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.data.</code><code class="sig-name descname">Data</code><span class="sig-paren">(</span><em class="sig-param">df=None</em>, <em class="sig-param">description=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/data.html#Data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.data.Data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Class storing data for an experiment.</p>
 <p>The dataframe is retrieved via the <cite>df</cite> property. The data can be stored
 to an external store for future use by attaching it to an experiment using
@@ -1181,7 +1172,7 @@ which will combine multiple observations of the same metric.</p>
 <dl class="class">
 <dt id="ax.core.experiment.Experiment">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.experiment.</code><code class="sig-name descname">Experiment</code><span class="sig-paren">(</span><em class="sig-param">search_space</em>, <em class="sig-param">name=None</em>, <em class="sig-param">optimization_config=None</em>, <em class="sig-param">tracking_metrics=None</em>, <em class="sig-param">runner=None</em>, <em class="sig-param">status_quo=None</em>, <em class="sig-param">description=None</em>, <em class="sig-param">is_test=False</em>, <em class="sig-param">experiment_type=None</em>, <em class="sig-param">properties=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/experiment.html#Experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.experiment.Experiment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base class for defining an experiment.</p>
 <dl class="method">
 <dt id="ax.core.experiment.Experiment.add_tracking_metric">
@@ -1709,7 +1700,7 @@ or is expected to arrive.</p>
 <dl class="class">
 <dt id="ax.core.generator_run.GeneratorRun">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.generator_run.</code><code class="sig-name descname">GeneratorRun</code><span class="sig-paren">(</span><em class="sig-param">arms</em>, <em class="sig-param">weights=None</em>, <em class="sig-param">optimization_config=None</em>, <em class="sig-param">search_space=None</em>, <em class="sig-param">model_predictions=None</em>, <em class="sig-param">best_arm_predictions=None</em>, <em class="sig-param">type=None</em>, <em class="sig-param">fit_time=None</em>, <em class="sig-param">gen_time=None</em>, <em class="sig-param">model_key=None</em>, <em class="sig-param">model_kwargs=None</em>, <em class="sig-param">bridge_kwargs=None</em>, <em class="sig-param">gen_metadata=None</em>, <em class="sig-param">model_state_after_gen=None</em>, <em class="sig-param">generation_step_index=None</em>, <em class="sig-param">candidate_metadata_by_arm_signature=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/generator_run.html#GeneratorRun"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.generator_run.GeneratorRun" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>An object that represents a single run of a generator.</p>
 <p>This object is created each time the <code class="docutils literal notranslate"><span class="pre">gen</span></code> method of a generator is
 called. It stores the arms and (optionally) weights that were
@@ -1957,7 +1948,7 @@ an experiment object. To force-populate all fields of the
 <dl class="class">
 <dt id="ax.core.metric.Metric">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.metric.</code><code class="sig-name descname">Metric</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">lower_is_better=None</em>, <em class="sig-param">properties=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/metric.html#Metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.metric.Metric" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base class for representing metrics.</p>
 <dl class="attribute">
 <dt id="ax.core.metric.Metric.lower_is_better">
@@ -2330,7 +2321,7 @@ defined on the experiment.</p></li>
 <dl class="class">
 <dt id="ax.core.objective.Objective">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.objective.</code><code class="sig-name descname">Objective</code><span class="sig-paren">(</span><em class="sig-param">metric</em>, <em class="sig-param">minimize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/objective.html#Objective"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.objective.Objective" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base class for representing an objective.</p>
 <dl class="attribute">
 <dt id="ax.core.objective.Objective.minimize">
@@ -2414,7 +2405,7 @@ defined on the experiment.</p></li>
 <dl class="class">
 <dt id="ax.core.observation.Observation">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.observation.</code><code class="sig-name descname">Observation</code><span class="sig-paren">(</span><em class="sig-param">features</em>, <em class="sig-param">data</em>, <em class="sig-param">arm_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/observation.html#Observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.observation.Observation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Represents an observation.</p>
 <p>A set of features (ObservationFeatures) and corresponding measurements
 (ObservationData). Optionally, an arm name associated with the features.</p>
@@ -2449,7 +2440,7 @@ defined on the experiment.</p></li>
 <dl class="class">
 <dt id="ax.core.observation.ObservationData">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.observation.</code><code class="sig-name descname">ObservationData</code><span class="sig-paren">(</span><em class="sig-param">metric_names</em>, <em class="sig-param">means</em>, <em class="sig-param">covariance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/observation.html#ObservationData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.observation.ObservationData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Outcomes observed at a point.</p>
 <p>The “point” corresponding to this ObservationData would be an
 ObservationFeatures object.</p>
@@ -2472,7 +2463,7 @@ ObservationFeatures object.</p>
 <dl class="class">
 <dt id="ax.core.observation.ObservationFeatures">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.observation.</code><code class="sig-name descname">ObservationFeatures</code><span class="sig-paren">(</span><em class="sig-param">parameters</em>, <em class="sig-param">trial_index=None</em>, <em class="sig-param">start_time=None</em>, <em class="sig-param">end_time=None</em>, <em class="sig-param">random_split=None</em>, <em class="sig-param">metadata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/observation.html#ObservationFeatures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.observation.ObservationFeatures" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>The features of an observation.</p>
 <p>These include both the arm parameters and the features of the
 observation found in the Data object: trial index, times,
@@ -2576,7 +2567,7 @@ observation_data: ObservationData</p>
 <dl class="class">
 <dt id="ax.core.optimization_config.OptimizationConfig">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.optimization_config.</code><code class="sig-name descname">OptimizationConfig</code><span class="sig-paren">(</span><em class="sig-param">objective</em>, <em class="sig-param">outcome_constraints=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/optimization_config.html#OptimizationConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.optimization_config.OptimizationConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>An optimization configuration, which comprises an objective
 and outcome constraints.</p>
 <p>There is no minimum or maximum number of outcome constraints, but an
@@ -2628,7 +2619,7 @@ represent metrics with both upper and lower bounds.</p>
 <dl class="class">
 <dt id="ax.core.outcome_constraint.OutcomeConstraint">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.outcome_constraint.</code><code class="sig-name descname">OutcomeConstraint</code><span class="sig-paren">(</span><em class="sig-param">metric</em>, <em class="sig-param">op</em>, <em class="sig-param">bound</em>, <em class="sig-param">relative=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/outcome_constraint.html#OutcomeConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.outcome_constraint.OutcomeConstraint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base class for representing outcome constraints.</p>
 <p>Outcome constraints may of the form metric &gt;= bound or metric &lt;= bound,
 where the bound can be expressed as an absolute measurement or relative
@@ -2861,7 +2852,7 @@ scale. If relative, bound is the acceptable percent change.</p>
 <dl class="class">
 <dt id="ax.core.parameter.Parameter">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.parameter.</code><code class="sig-name descname">Parameter</code><a class="reference internal" href="_modules/ax/core/parameter.html#Parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.parameter.Parameter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <dl class="method">
 <dt id="ax.core.parameter.Parameter.cast">
 <code class="sig-name descname">cast</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/parameter.html#Parameter.cast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.parameter.Parameter.cast" title="Permalink to this definition">¶</a></dt>
@@ -3211,7 +3202,7 @@ the valid range for the parameter. Returns False if value is None.</p>
 <dl class="class">
 <dt id="ax.core.parameter_constraint.ParameterConstraint">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.parameter_constraint.</code><code class="sig-name descname">ParameterConstraint</code><span class="sig-paren">(</span><em class="sig-param">constraint_dict</em>, <em class="sig-param">bound</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/parameter_constraint.html#ParameterConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.parameter_constraint.ParameterConstraint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base class for linear parameter constraints.</p>
 <p>Constraints are expressed using a map from parameter name to weight
 followed by a bound.</p>
@@ -3361,7 +3352,7 @@ We do this by re-applying the original bound weighting.</p>
 <dl class="class">
 <dt id="ax.core.runner.Runner">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.runner.</code><code class="sig-name descname">Runner</code><a class="reference internal" href="_modules/ax/core/runner.html#Runner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.runner.Runner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <p>Abstract base class for custom runner classes</p>
 <dl class="method">
 <dt id="ax.core.runner.Runner.deserialize_init_args">
@@ -3432,7 +3423,7 @@ Used for storage.</p>
 <dl class="class">
 <dt id="ax.core.search_space.SearchSpace">
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.search_space.</code><code class="sig-name descname">SearchSpace</code><span class="sig-paren">(</span><em class="sig-param">parameters</em>, <em class="sig-param">parameter_constraints=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/search_space.html#SearchSpace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.search_space.SearchSpace" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base object for SearchSpace object.</p>
 <p>Contains a set of Parameter objects, each of which have a
 name, type, and set of valid values. The search space also contains

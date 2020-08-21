@@ -32,7 +32,7 @@ src="/js/documentation_options.js">
 <dl class="class">
 <dt id="ax.service.ax_client.AxClient">
 <em class="property">class </em><code class="sig-prename descclassname">ax.service.ax_client.</code><code class="sig-name descname">AxClient</code><span class="sig-paren">(</span><em class="sig-param">generation_strategy=None</em>, <em class="sig-param">db_settings=None</em>, <em class="sig-param">enforce_sequential_optimization=True</em>, <em class="sig-param">random_seed=None</em>, <em class="sig-param">verbose_logging=True</em>, <em class="sig-param">suppress_storage_errors=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/ax_client.html#AxClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.ax_client.AxClient" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ax.service.utils.with_db_settings_base.WithDBSettingsBase</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#ax.service.utils.with_db_settings_base.WithDBSettingsBase" title="ax.service.utils.with_db_settings_base.WithDBSettingsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.service.utils.with_db_settings_base.WithDBSettingsBase</span></code></a></p>
 <p>Convenience handler for management of experimentation cycle through a
 service-like API. External system manages scheduling of the cycle and makes
 calls to this client to get next suggestion in the experiment and log back
@@ -97,11 +97,16 @@ encountered while saving to DB or loading from it.</p></li>
 </dd></dl>
 <dl class="method">
 <dt id="ax.service.ax_client.AxClient.attach_trial">
-<code class="sig-name descname">attach_trial</code><span class="sig-paren">(</span><em class="sig-param">parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/ax_client.html#AxClient.attach_trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.ax_client.AxClient.attach_trial" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">attach_trial</code><span class="sig-paren">(</span><em class="sig-param">parameters</em>, <em class="sig-param">ttl_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/ax_client.html#AxClient.attach_trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.ax_client.AxClient.attach_trial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attach a new trial with the given parameterization to the experiment.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]]) – Parameterization of the new trial.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]]) – Parameterization of the new trial.</p></li>
+<li><p><strong>ttl_seconds</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – If specified, will consider the trial failed after this
+many seconds. Used to detect dead trials that were not marked
+failed properly.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]], <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
@@ -327,15 +332,20 @@ of predicted metric mean and SEM, of form:
 </dd></dl>
 <dl class="method">
 <dt id="ax.service.ax_client.AxClient.get_next_trial">
-<code class="sig-name descname">get_next_trial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/ax_client.html#AxClient.get_next_trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.ax_client.AxClient.get_next_trial" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_next_trial</code><span class="sig-paren">(</span><em class="sig-param">ttl_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/ax_client.html#AxClient.get_next_trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.ax_client.AxClient.get_next_trial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate trial with the next set of parameters to try in the iteration process.</p>
 <p>Note: Service API currently supports only 1-arm trials.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]], <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ttl_seconds</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – If specified, will consider the trial failed after this
+many seconds. Used to detect dead trials that were not marked
+failed properly.</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Tuple of trial parameterization, trial index</p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]], <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple of trial parameterization, trial index</p>
 </dd>
 </dl>
 </dd></dl>
@@ -770,214 +780,34 @@ to a TFidelityTrialEvaluation.</p>
 </dl>
 </dd></dl>
 </div>
-<div class="section" id="module-ax.service.utils.storage">
-<span id="storage"></span><h2>Storage<a class="headerlink" href="#module-ax.service.utils.storage" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="ax.service.utils.storage.get_experiment_id">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">get_experiment_id</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#get_experiment_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.get_experiment_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load experiment from the db. Service API only supports <cite>Experiment</cite>.</p>
+<div class="section" id="module-ax.service.utils.with_db_settings_base">
+<span id="withdbsettingsbase"></span><h2>WithDBSettingsBase<a class="headerlink" href="#module-ax.service.utils.with_db_settings_base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ax.service.utils.with_db_settings_base.WithDBSettingsBase">
+<em class="property">class </em><code class="sig-prename descclassname">ax.service.utils.with_db_settings_base.</code><code class="sig-name descname">WithDBSettingsBase</code><span class="sig-paren">(</span><em class="sig-param">db_settings=None</em>, <em class="sig-param">logging_level=20</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/with_db_settings_base.html#WithDBSettingsBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.with_db_settings_base.WithDBSettingsBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Helper class providing methods for saving changes made to an experiment
+if <cite>db_settings</cite> property is set to a non-None value on the instance.</p>
+<dl class="method">
+<dt id="ax.service.utils.with_db_settings_base.WithDBSettingsBase.db_settings">
+<em class="property">property </em><code class="sig-name descname">db_settings</code><a class="headerlink" href="#ax.service.utils.with_db_settings_base.WithDBSettingsBase.db_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>DB settings set on this instance; guaranteed to be non-None.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Experiment name.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Loaded experiment.</p>
-</dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ax.core.Experiment</p>
+<dd class="field-odd"><p><a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.get_generation_strategy_id">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">get_generation_strategy_id</code><span class="sig-paren">(</span><em class="sig-param">experiment_name</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#get_generation_strategy_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.get_generation_strategy_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load generation strategy associated with experiment by the given name</p>
+<dl class="method">
+<dt id="ax.service.utils.with_db_settings_base.WithDBSettingsBase.db_settings_set">
+<em class="property">property </em><code class="sig-name descname">db_settings_set</code><a class="headerlink" href="#ax.service.utils.with_db_settings_base.WithDBSettingsBase.db_settings_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether non-None DB settings are set on this instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Experiment name.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Loaded experiment.</p>
-</dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ax.core.Experiment</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.load_experiment">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">load_experiment</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#load_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.load_experiment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load experiment from the db. Service API only supports <cite>Experiment</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Experiment name.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Loaded experiment.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ax.core.Experiment</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.load_experiment_and_generation_strategy">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">load_experiment_and_generation_strategy</code><span class="sig-paren">(</span><em class="sig-param">experiment_name</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#load_experiment_and_generation_strategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.load_experiment_and_generation_strategy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load experiment and the corresponding generation strategy from the DB.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Experiment name.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference internal" href="core.html#ax.core.experiment.Experiment" title="ax.core.experiment.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="modelbridge.html#ax.modelbridge.generation_strategy.GenerationStrategy" title="ax.modelbridge.generation_strategy.GenerationStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenerationStrategy</span></code></a>]]</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A tuple of the loaded experiment and generation strategy.</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="data">
-<dt id="ax.service.utils.storage.logger">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">logger</code><em class="property"> = &lt;Logger ax.service.utils.storage (INFO)&gt;</em><a class="headerlink" href="#ax.service.utils.storage.logger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Utilities for storing experiment to the database via <cite>DBSettings</cite>.</p>
-</dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.save_experiment">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">save_experiment</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#save_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.save_experiment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save experiment to db.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>experiment</strong> (<a class="reference internal" href="core.html#ax.core.experiment.Experiment" title="ax.core.experiment.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>) – <cite>Experiment</cite> object.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.save_generation_strategy">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">save_generation_strategy</code><span class="sig-paren">(</span><em class="sig-param">generation_strategy</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#save_generation_strategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.save_generation_strategy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save generation strategy to DB.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>generation_strategy</strong> (<a class="reference internal" href="modelbridge.html#ax.modelbridge.generation_strategy.GenerationStrategy" title="ax.modelbridge.generation_strategy.GenerationStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenerationStrategy</span></code></a>) – Corresponding generation strategy.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.save_new_trial">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">save_new_trial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">trial</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#save_new_trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.save_new_trial" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a new trial on an experiment in DB.</p>
-<p>NOTE: This function also saves data attached to experiment
-for this trial.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>experiment</strong> (<a class="reference internal" href="core.html#ax.core.experiment.Experiment" title="ax.core.experiment.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>) – <cite>Experiment</cite> object.</p></li>
-<li><p><strong>trial</strong> (<a class="reference internal" href="core.html#ax.core.base_trial.BaseTrial" title="ax.core.base_trial.BaseTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTrial</span></code></a>) – <cite>BaseTrial</cite> object.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.save_new_trials">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">save_new_trials</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">trials</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#save_new_trials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.save_new_trials" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a set of new trials on an experiment in DB.</p>
-<p>NOTE: This function also saves data attached to experiment
-for these trials.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>experiment</strong> (<a class="reference internal" href="core.html#ax.core.experiment.Experiment" title="ax.core.experiment.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>) – <cite>Experiment</cite> object.</p></li>
-<li><p><strong>trials</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="core.html#ax.core.base_trial.BaseTrial" title="ax.core.base_trial.BaseTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTrial</span></code></a>]) – List of trials (subclasses of <cite>BaseTrial</cite>: <cite>Trial</cite> or <cite>BatchTrial</cite>).</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.save_updated_trial">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">save_updated_trial</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">trial</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#save_updated_trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.save_updated_trial" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save an updated trial on an experiment in DB.</p>
-<p>NOTE: This function also saves data attached to experiment
-for this trial.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>experiment</strong> (<a class="reference internal" href="core.html#ax.core.experiment.Experiment" title="ax.core.experiment.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>) – <cite>Experiment</cite> object.</p></li>
-<li><p><strong>trial</strong> (<a class="reference internal" href="core.html#ax.core.base_trial.BaseTrial" title="ax.core.base_trial.BaseTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTrial</span></code></a>) – <cite>BaseTrial</cite> object.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.save_updated_trials">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">save_updated_trials</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">trials</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#save_updated_trials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.save_updated_trials" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a set of updated trials on an experiment in DB.</p>
-<p>NOTE: This function also saves data attached to experiment
-for these trials.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>experiment</strong> (<a class="reference internal" href="core.html#ax.core.experiment.Experiment" title="ax.core.experiment.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>) – <cite>Experiment</cite> object.</p></li>
-<li><p><strong>trials</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="core.html#ax.core.base_trial.BaseTrial" title="ax.core.base_trial.BaseTrial"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTrial</span></code></a>]) – List of trials (subclasses of <cite>BaseTrial</cite>: <cite>Trial</cite> or <cite>BatchTrial</cite>).</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="function">
-<dt id="ax.service.utils.storage.update_generation_strategy">
-<code class="sig-prename descclassname">ax.service.utils.storage.</code><code class="sig-name descname">update_generation_strategy</code><span class="sig-paren">(</span><em class="sig-param">generation_strategy</em>, <em class="sig-param">generator_runs</em>, <em class="sig-param">db_settings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/service/utils/storage.html#update_generation_strategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.service.utils.storage.update_generation_strategy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update generation strategy in DB with new generator runs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>generation_strategy</strong> (<a class="reference internal" href="modelbridge.html#ax.modelbridge.generation_strategy.GenerationStrategy" title="ax.modelbridge.generation_strategy.GenerationStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenerationStrategy</span></code></a>) – Corresponding generation strategy.</p></li>
-<li><p><strong>generator_runs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="core.html#ax.core.generator_run.GeneratorRun" title="ax.core.generator_run.GeneratorRun"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorRun</span></code></a>]) – New generator runs produced from the generation strategy
-since its last save.</p></li>
-<li><p><strong>db_settings</strong> (<a class="reference internal" href="storage.html#ax.storage.sqa_store.structs.DBSettings" title="ax.storage.sqa_store.structs.DBSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">DBSettings</span></code></a>) – Defines behavior for loading/saving experiment to/from db.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
 </dd></dl>
 </div>
 </div>
@@ -1003,7 +833,7 @@ since its last save.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-ax.service.managed_loop">Managed Loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-ax.service.utils.best_point">Best Point Identification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-ax.service.utils.instantiation">Instantiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-ax.service.utils.storage">Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-ax.service.utils.with_db_settings_base">WithDBSettingsBase</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="storage.html">ax.storage</a></li>

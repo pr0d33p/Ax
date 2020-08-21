@@ -32,7 +32,7 @@ src="/js/documentation_options.js">
 <span class="c1"># This source code is licensed under the MIT license found in the</span>
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">ax.core</span> <span class="kn">import</span> <span class="n">Experiment</span>
 <span class="kn">from</span> <span class="nn">ax.core.metric</span> <span class="kn">import</span> <span class="n">Metric</span>
@@ -61,6 +61,7 @@ src="/js/documentation_options.js">
     <span class="n">exp</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">,</span>
     <span class="n">metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Metric</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">key_components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">"""Transforms an experiment to a DataFrame. Only supports Experiment and</span>
 <span class="sd">    SimpleExperiment.</span>
@@ -74,6 +75,8 @@ src="/js/documentation_options.js">
 <span class="sd">        key_components: fields that combine to make a unique key corresponding</span>
 <span class="sd">            to rows, similar to the list of fields passed to a GROUP BY.</span>
 <span class="sd">            Defaults to ['arm_name', 'trial_index'].</span>
+<span class="sd">        **kwargs: Custom named arguments, useful for passing complex</span>
+<span class="sd">            objects from call-site to the `fetch_data` callback.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        DataFrame: A dataframe of inputs and metrics by trial and arm.</span>
@@ -84,7 +87,7 @@ src="/js/documentation_options.js">
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">MultiTypeExperiment</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cannot transform MultiTypeExperiments to DataFrames."</span><span class="p">)</span>
 
-    <span class="n">results</span> <span class="o">=</span> <span class="n">exp</span><span class="o">.</span><span class="n">fetch_data</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span><span class="o">.</span><span class="n">df</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">exp</span><span class="o">.</span><span class="n">fetch_data</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">df</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Handle empty case</span>
         <span class="k">return</span> <span class="n">results</span>
     <span class="n">key_col</span> <span class="o">=</span> <span class="s2">"-"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key_components</span><span class="p">)</span>

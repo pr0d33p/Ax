@@ -242,7 +242,8 @@ src="/js/documentation_options.js">
     <span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span>
     <span class="n">objective_weights</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
     <span class="n">outcome_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Model</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]]]:</span>
+    <span class="n">Ys</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Model</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]]]:</span>
     <span class="sd">"""Subset a botorch model to the outputs used in the optimization.</span>
 
 <span class="sd">    Args:</span>
@@ -254,6 +255,8 @@ src="/js/documentation_options.js">
 <span class="sd">        outcome_constraints: A tuple of (A, b). For k outcome constraints</span>
 <span class="sd">            and m outputs at f(x), A is (k x m) and b is (k x 1) such that</span>
 <span class="sd">            A f(x) &lt;= b. (Not used by single task models)</span>
+<span class="sd">        Ys: The corresponding list of m (k_i x 1) outcome tensors Y, for</span>
+<span class="sd">            each outcome.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A three-tuple of model, objective_weights, and outcome_constraints, all</span>
@@ -267,7 +270,7 @@ src="/js/documentation_options.js">
     <span class="n">idcs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nonzero</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))[</span><span class="n">nonzero</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idcs</span><span class="p">)</span> <span class="o">==</span> <span class="n">model</span><span class="o">.</span><span class="n">num_outputs</span><span class="p">:</span>
         <span class="c1"># if we use all model outputs, just return the inputs</span>
-        <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span>
+        <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span><span class="p">,</span> <span class="n">Ys</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">idcs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">num_outputs</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
             <span class="s2">"Model size inconsistency. Tryting to subset a model with "</span>
@@ -279,9 +282,10 @@ src="/js/documentation_options.js">
         <span class="k">if</span> <span class="n">outcome_constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">A</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">outcome_constraints</span>
             <span class="n">outcome_constraints</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span> <span class="n">nonzero</span><span class="p">],</span> <span class="n">b</span>
+        <span class="n">Ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idcs</span><span class="p">]</span> <span class="k">if</span> <span class="n">Ys</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
     <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
         <span class="k">pass</span>
-    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span></div>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span><span class="p">,</span> <span class="n">Ys</span></div>
 
 
 <span class="k">def</span> <span class="nf">_to_inequality_constraints</span><span class="p">(</span>
@@ -387,7 +391,7 @@ src="/js/documentation_options.js">
 
     <span class="c1"># subset model only to the outcomes we need for the optimization</span>
     <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">SUBSET_MODEL</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span> <span class="o">=</span> <span class="n">subset_model</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">subset_model</span><span class="p">(</span>
             <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
             <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
             <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>

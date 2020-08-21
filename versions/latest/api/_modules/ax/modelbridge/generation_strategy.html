@@ -40,7 +40,6 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">ax.core.base</span> <span class="kn">import</span> <span class="n">Base</span>
 <span class="kn">from</span> <span class="nn">ax.core.base_trial</span> <span class="kn">import</span> <span class="n">BaseTrial</span><span class="p">,</span> <span class="n">TrialStatus</span>
 <span class="kn">from</span> <span class="nn">ax.core.data</span> <span class="kn">import</span> <span class="n">Data</span>
 <span class="kn">from</span> <span class="nn">ax.core.experiment</span> <span class="kn">import</span> <span class="n">Experiment</span>
@@ -51,8 +50,16 @@ src="/js/documentation_options.js">
     <span class="n">MaxParallelismReachedException</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.base</span> <span class="kn">import</span> <span class="n">ModelBridge</span>
-<span class="kn">from</span> <span class="nn">ax.modelbridge.registry</span> <span class="kn">import</span> <span class="n">Models</span><span class="p">,</span> <span class="n">get_model_from_generator_run</span>
-<span class="kn">from</span> <span class="nn">ax.utils.common.equality</span> <span class="kn">import</span> <span class="n">equality_typechecker</span><span class="p">,</span> <span class="n">object_attribute_dicts_equal</span>
+<span class="kn">from</span> <span class="nn">ax.modelbridge.registry</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Models</span><span class="p">,</span>
+    <span class="n">_combine_model_kwargs_and_state</span><span class="p">,</span>
+    <span class="n">get_model_from_generator_run</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ax.utils.common.equality</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Base</span><span class="p">,</span>
+    <span class="n">equality_typechecker</span><span class="p">,</span>
+    <span class="n">object_attribute_dicts_equal</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.kwargs</span> <span class="kn">import</span> <span class="n">consolidate_kwargs</span><span class="p">,</span> <span class="n">get_function_argument_names</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.logger</span> <span class="kn">import</span> <span class="n">_round_floats_for_logging</span><span class="p">,</span> <span class="n">get_logger</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="n">checked_cast</span><span class="p">,</span> <span class="n">not_none</span>
@@ -176,7 +183,6 @@ src="/js/documentation_options.js">
 
     <span class="n">_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="n">_steps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GenerationStep</span><span class="p">]</span>
-    <span class="n">_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ModelBridge</span><span class="p">]</span>  <span class="c1"># Current model.</span>
     <span class="n">_curr</span><span class="p">:</span> <span class="n">GenerationStep</span>  <span class="c1"># Current step in the strategy.</span>
     <span class="c1"># Whether all models in this GS are in Models registry enum.</span>
     <span class="n">_uses_registered_models</span><span class="p">:</span> <span class="nb">bool</span>
@@ -185,20 +191,20 @@ src="/js/documentation_options.js">
     <span class="n">_generator_runs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeneratorRun</span><span class="p">]</span>
     <span class="c1"># Experiment, for which this generation strategy has generated trials, if</span>
     <span class="c1"># it exists.</span>
-    <span class="n">_experiment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Experiment</span><span class="p">]</span>
-    <span class="n">_db_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>  <span class="c1"># Used when storing to DB.</span>
+    <span class="n">_experiment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Experiment</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_db_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Used when storing to DB.</span>
+    <span class="c1"># Trial indices as last seen by the model; updated in `_model` property setter.</span>
+    <span class="n">_seen_trial_indices_by_status</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ModelBridge</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Current model.</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GenerationStep</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
             <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">GenerationStep</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">steps</span>
         <span class="p">),</span> <span class="s2">"Steps must be a GenerationStep list."</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_db_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_steps</span> <span class="o">=</span> <span class="n">steps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_uses_registered_models</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generator_runs</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_experiment</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_steps</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">step</span><span class="o">.</span><span class="n">num_trials</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_steps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
@@ -232,6 +238,11 @@ src="/js/documentation_options.js">
         <span class="n">factory_names</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span> <span class="k">if</span> <span class="n">n</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"get_"</span> <span class="k">else</span> <span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">factory_names</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s2">"+"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">factory_names</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+
+    <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">"""Set generation strategy name."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">model_transitions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
@@ -384,9 +395,7 @@ src="/js/documentation_options.js">
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_or_update_model</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_seen_trial_indices_by_status</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span>
-            <span class="n">experiment</span><span class="o">.</span><span class="n">trial_indices_by_status</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_seen_trial_indices</span><span class="p">()</span>
         <span class="n">max_parallelism</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curr</span><span class="o">.</span><span class="n">max_parallelism</span>
         <span class="n">num_running</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_running_trials_for_current_step</span>
         <span class="k">if</span> <span class="n">max_parallelism</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">num_running</span> <span class="o">&gt;=</span> <span class="n">max_parallelism</span><span class="p">:</span>
@@ -495,13 +504,11 @@ src="/js/documentation_options.js">
             <span class="ow">and</span> <span class="n">lgr</span><span class="o">.</span><span class="n">_generation_step_index</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curr</span><span class="o">.</span><span class="n">index</span>
             <span class="ow">and</span> <span class="n">lgr</span><span class="o">.</span><span class="n">_model_state_after_gen</span>
         <span class="p">):</span>
-            <span class="n">serialized_model_state</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="n">lgr</span><span class="o">.</span><span class="n">_model_state_after_gen</span><span class="p">)</span>
-            <span class="n">model_state</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">_deserialize_model_state</span><span class="p">(</span>
-                <span class="n">serialized_model_state</span>
+            <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">_combine_model_kwargs_and_state</span><span class="p">(</span>
+                <span class="n">model_kwargs</span><span class="o">=</span><span class="n">model_kwargs</span><span class="p">,</span>
+                <span class="n">generator_run</span><span class="o">=</span><span class="n">lgr</span><span class="p">,</span>
+                <span class="n">model_class</span><span class="o">=</span><span class="n">not_none</span><span class="p">(</span><span class="n">not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="vm">__class__</span><span class="p">),</span>
             <span class="p">)</span>
-            <span class="c1"># We don't want to update `model_kwargs` on the `GenerationStep`,</span>
-            <span class="c1"># just to add to them for the purpose of this function.</span>
-            <span class="n">model_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">model_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">model_state</span><span class="p">}</span>
 
         <span class="c1"># TODO[T65857344]: move from fetching all data to using cached data</span>
         <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -602,6 +609,17 @@ src="/js/documentation_options.js">
             <span class="n">experiment</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="p">,</span>
             <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">fetch_data</span><span class="p">(),</span>
             <span class="n">models_enum</span><span class="o">=</span><span class="n">models_enum</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_seen_trial_indices</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_save_seen_trial_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">"""Saves Experiment's `trial_indices_by_status` at the time of the model's</span>
+<span class="sd">        last `gen` (so these `trial_indices_by_status` reflect which trials model</span>
+<span class="sd">        has seen the data for). Useful when `use_update=True` for a given</span>
+<span class="sd">        generation step.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seen_trial_indices_by_status</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">trial_indices_by_status</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_find_trials_completed_since_last_gen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>

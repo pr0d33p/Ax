@@ -148,7 +148,7 @@ Strategy</cite>. Do not assign as it will be reassigned when instantiating
 <dl class="class">
 <dt id="ax.modelbridge.generation_strategy.GenerationStrategy">
 <em class="property">class </em><code class="sig-prename descclassname">ax.modelbridge.generation_strategy.</code><code class="sig-name descname">GenerationStrategy</code><span class="sig-paren">(</span><em class="sig-param">steps</em>, <em class="sig-param">name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/generation_strategy.html#GenerationStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.generation_strategy.GenerationStrategy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="core.html#ax.core.base.Base" title="ax.core.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.core.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>GenerationStrategy describes which model should be used to generate new
 points for which trials, enabling and automating use of different models
 throughout the optimization process. For instance, it allows to use one
@@ -329,6 +329,11 @@ such as BoTorch GP+EI, a Thompson sampler, or a Sobol quasirandom generator.</p>
 <dd><p>Alias for field number 1</p>
 </dd></dl>
 <dl class="method">
+<dt id="ax.modelbridge.registry.ModelSetup.not_saved_model_kwargs">
+<em class="property">property </em><code class="sig-name descname">not_saved_model_kwargs</code><a class="headerlink" href="#ax.modelbridge.registry.ModelSetup.not_saved_model_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+<dl class="method">
 <dt id="ax.modelbridge.registry.ModelSetup.standard_bridge_kwargs">
 <em class="property">property </em><code class="sig-name descname">standard_bridge_kwargs</code><a class="headerlink" href="#ax.modelbridge.registry.ModelSetup.standard_bridge_kwargs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 3</p>
@@ -442,7 +447,7 @@ since models and bridges cannot be inspected directly through the enum.</p>
 </dd></dl>
 <dl class="function">
 <dt id="ax.modelbridge.registry.get_model_from_generator_run">
-<code class="sig-prename descclassname">ax.modelbridge.registry.</code><code class="sig-name descname">get_model_from_generator_run</code><span class="sig-paren">(</span><em class="sig-param">generator_run</em>, <em class="sig-param">experiment</em>, <em class="sig-param">data</em>, <em class="sig-param">models_enum=None</em>, <em class="sig-param">after_gen=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/registry.html#get_model_from_generator_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.registry.get_model_from_generator_run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">ax.modelbridge.registry.</code><code class="sig-name descname">get_model_from_generator_run</code><span class="sig-paren">(</span><em class="sig-param">generator_run</em>, <em class="sig-param">experiment</em>, <em class="sig-param">data</em>, <em class="sig-param">models_enum=None</em>, <em class="sig-param">after_gen=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/registry.html#get_model_from_generator_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.registry.get_model_from_generator_run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reinstantiate a model from model key and kwargs stored on a given generator
 run, with the given experiment and the data to initialize the model with.</p>
 <p>Note: requires that the model that was used to get the generator run, is part
@@ -461,9 +466,9 @@ but can still be represented as a <cite>ModelSetup</cite> and was added to a
 registry that extends <cite>Models</cite>.</p></li>
 <li><p><strong>after_gen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to reinstantiate the model in the state, in which it
 was after it created this generator run, as opposed to before.
-Defaults to False, useful when reinstantiating the model to resume
+Defaults to True, useful when reinstantiating the model to resume
 optimization, rather than to recreate its state at the time of
-generation.</p></li>
+generation. TO recreate state at the time of generation, set to <cite>False</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -2764,6 +2769,20 @@ transform (does nothing).</p>
 </dd>
 </dl>
 </dd></dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.modelbridge.transforms.unit_x.normalize_value">
+<code class="sig-prename descclassname">ax.modelbridge.transforms.unit_x.</code><code class="sig-name descname">normalize_value</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">bounds</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/transforms/unit_x.html#normalize_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.transforms.unit_x.normalize_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform bounds to [0,1], and apply the same transform to the value.</p>
+<dl class="simple">
+<dt>Note: if the value is outside of the bounds, then the value will be mapped</dt><dd><p>outside of [0,1].</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 </div>
 <div class="section" id="module-ax.modelbridge.transforms.winsorize">

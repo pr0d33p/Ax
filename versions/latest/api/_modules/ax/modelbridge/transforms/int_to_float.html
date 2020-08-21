@@ -106,8 +106,13 @@ src="/js/documentation_options.js">
                 <span class="n">transformed_parameters</span><span class="p">[</span><span class="n">p_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">RangeParameter</span><span class="p">(</span>
                     <span class="n">name</span><span class="o">=</span><span class="n">p_name</span><span class="p">,</span>
                     <span class="n">parameter_type</span><span class="o">=</span><span class="n">ParameterType</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span>
-                    <span class="n">lower</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span>
-                    <span class="n">upper</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">upper</span><span class="p">,</span>
+                    <span class="c1"># +/- 0.5 ensures that sampling</span>
+                    <span class="c1"># 1) floating point numbers from (quasi-)Uniform(0,1)</span>
+                    <span class="c1"># 2) unnormalizing to the raw search space</span>
+                    <span class="c1"># 3) rounding</span>
+                    <span class="c1"># results in uniform (quasi-)random integers</span>
+                    <span class="n">lower</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span> <span class="o">-</span> <span class="mf">0.49999</span><span class="p">,</span>
+                    <span class="n">upper</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">upper</span> <span class="o">+</span> <span class="mf">0.49999</span><span class="p">,</span>
                     <span class="n">log_scale</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">log_scale</span><span class="p">,</span>
                     <span class="n">digits</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">digits</span><span class="p">,</span>
                     <span class="n">is_fidelity</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">is_fidelity</span><span class="p">,</span>

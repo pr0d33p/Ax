@@ -50,7 +50,7 @@ src="/js/documentation_options.js">
     <span class="c1"># import as module to make sphinx-autodoc-typehints happy</span>
     <span class="kn">from</span> <span class="nn">ax</span> <span class="kn">import</span> <span class="n">modelbridge</span> <span class="k">as</span> <span class="n">modelbridge_module</span>  <span class="c1"># noqa F401  # pragma: no cover</span>
 
-<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="s2">"StratifiedStandardizeY"</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="StratifiedStandardizeY"><a class="viewcode-back" href="../../../../modelbridge.html#ax.modelbridge.transforms.stratified_standardize_y.StratifiedStandardizeY">[docs]</a><span class="k">class</span> <span class="nc">StratifiedStandardizeY</span><span class="p">(</span><span class="n">Transform</span><span class="p">):</span>

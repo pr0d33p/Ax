@@ -35,7 +35,7 @@ src="/js/documentation_options.js">
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">ax.metrics.noisy_function</span> <span class="kn">import</span> <span class="n">NoisyFunctionMetric</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="n">checked_cast</span>
-<span class="kn">from</span> <span class="nn">ax.utils.measurement.synthetic_functions</span> <span class="kn">import</span> <span class="n">branin</span>
+<span class="kn">from</span> <span class="nn">ax.utils.measurement.synthetic_functions</span> <span class="kn">import</span> <span class="n">aug_branin</span><span class="p">,</span> <span class="n">branin</span>
 
 
 <div class="viewcode-block" id="BraninMetric"><a class="viewcode-back" href="../../../metrics.html#ax.metrics.branin.BraninMetric">[docs]</a><span class="k">class</span> <span class="nc">BraninMetric</span><span class="p">(</span><span class="n">NoisyFunctionMetric</span><span class="p">):</span>
@@ -48,6 +48,11 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="NegativeBraninMetric.f"><a class="viewcode-back" href="../../../metrics.html#ax.metrics.branin.NegativeBraninMetric.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="n">fpos</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">fpos</span></div></div>
+
+
+<div class="viewcode-block" id="AugmentedBraninMetric"><a class="viewcode-back" href="../../../metrics.html#ax.metrics.branin.AugmentedBraninMetric">[docs]</a><span class="k">class</span> <span class="nc">AugmentedBraninMetric</span><span class="p">(</span><span class="n">NoisyFunctionMetric</span><span class="p">):</span>
+<div class="viewcode-block" id="AugmentedBraninMetric.f"><a class="viewcode-back" href="../../../metrics.html#ax.metrics.branin.AugmentedBraninMetric.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">checked_cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">aug_branin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span></div></div>
 </pre></div>
 </div>
 </div>

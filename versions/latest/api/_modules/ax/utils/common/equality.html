@@ -32,8 +32,10 @@ src="/js/documentation_options.js">
 <span class="c1"># This source code is licensed under the MIT license found in the</span>
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -52,6 +54,16 @@ src="/js/documentation_options.js">
         <span class="k">return</span> <span class="n">eq_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">_type_safe_equals</span></div>
+
+
+<div class="viewcode-block" id="Base"><a class="viewcode-back" href="../../../../utils.html#ax.storage.sqa_store.db.Base">[docs]</a><span class="k">class</span> <span class="nc">Base</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">"""Metaclass for core Ax classes."""</span>
+
+    <span class="nd">@equality_typechecker</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Base</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">object_attribute_dicts_equal</span><span class="p">(</span>
+            <span class="n">one_dict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="n">other_dict</span><span class="o">=</span><span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="same_elements"><a class="viewcode-back" href="../../../../utils.html#ax.storage.sqa_store.db.same_elements">[docs]</a><span class="k">def</span> <span class="nf">same_elements</span><span class="p">(</span><span class="n">list1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">list2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -123,6 +135,31 @@ src="/js/documentation_options.js">
 <span class="sd">    NOTE: Special-cases some Ax object attributes, like "_experiment" or</span>
 <span class="sd">    "_model", where full equality is hard to check.</span>
 <span class="sd">    """</span>
+    <span class="n">unequal_type</span><span class="p">,</span> <span class="n">unequal_value</span> <span class="o">=</span> <span class="n">object_attribute_dicts_find_unequal_fields</span><span class="p">(</span>
+        <span class="n">one_dict</span><span class="o">=</span><span class="n">one_dict</span><span class="p">,</span> <span class="n">other_dict</span><span class="o">=</span><span class="n">other_dict</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="n">unequal_type</span> <span class="ow">or</span> <span class="n">unequal_value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="object_attribute_dicts_find_unequal_fields"><a class="viewcode-back" href="../../../../utils.html#ax.storage.sqa_store.db.object_attribute_dicts_find_unequal_fields">[docs]</a><span class="k">def</span> <span class="nf">object_attribute_dicts_find_unequal_fields</span><span class="p">(</span>
+    <span class="n">one_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">other_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">fast_return</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>
+    <span class="sd">"""Utility for finding out what attributes of two objects' attribute dicts</span>
+<span class="sd">    are unequal.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        one_dict: First object's attribute dict (`obj.__dict__`).</span>
+<span class="sd">        other_dict: Second object's attribute dict (`obj.__dict__`).</span>
+<span class="sd">        fast_return: Boolean representing whether to return as soon as a</span>
+<span class="sd">            single unequal attribute was found or to iterate over all attributes</span>
+<span class="sd">            and collect all unequal ones.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Two dictionaries:</span>
+<span class="sd">            - attribute name to attribute values of unequal type (as a tuple),</span>
+<span class="sd">            - attribute name to attribute values of unequal value (as a tuple).</span>
+<span class="sd">    """</span>
+    <span class="n">unequal_type</span><span class="p">,</span> <span class="n">unequal_value</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">one_dict</span><span class="p">:</span>
         <span class="n">one_val</span> <span class="o">=</span> <span class="n">one_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
         <span class="n">other_val</span> <span class="o">=</span> <span class="n">other_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
@@ -130,7 +167,9 @@ src="/js/documentation_options.js">
         <span class="n">other_val</span> <span class="o">=</span> <span class="n">numpy_type_to_python_type</span><span class="p">(</span><span class="n">other_val</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">one_val</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">type</span><span class="p">(</span><span class="n">other_val</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">unequal_type</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">one_val</span><span class="p">,</span> <span class="n">other_val</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fast_return</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">unequal_type</span><span class="p">,</span> <span class="n">unequal_value</span>
 
         <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="s2">"_experiment"</span><span class="p">:</span>
             <span class="c1"># prevent infinite loop when checking equality of Trials</span>
@@ -163,8 +202,10 @@ src="/js/documentation_options.js">
         <span class="k">else</span><span class="p">:</span>
             <span class="n">equal</span> <span class="o">=</span> <span class="n">one_val</span> <span class="o">==</span> <span class="n">other_val</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-    <span class="k">return</span> <span class="kc">True</span></div>
+            <span class="n">unequal_value</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">one_val</span><span class="p">,</span> <span class="n">other_val</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fast_return</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">unequal_type</span><span class="p">,</span> <span class="n">unequal_value</span>
+    <span class="k">return</span> <span class="n">unequal_type</span><span class="p">,</span> <span class="n">unequal_value</span></div>
 </pre></div>
 </div>
 </div>

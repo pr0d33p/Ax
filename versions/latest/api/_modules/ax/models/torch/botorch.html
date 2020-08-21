@@ -384,11 +384,14 @@ src="/js/documentation_options.js">
 
         <span class="c1"># subset model only to the outcomes we need for the optimization</span>
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">SUBSET_MODEL</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
-            <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span> <span class="o">=</span> <span class="n">subset_model</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span> <span class="n">objective_weights</span><span class="p">,</span> <span class="n">outcome_constraints</span><span class="p">,</span> <span class="n">Ys</span> <span class="o">=</span> <span class="n">subset_model</span><span class="p">(</span>
                 <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>  <span class="c1"># pyre-ignore [6]</span>
                 <span class="n">objective_weights</span><span class="o">=</span><span class="n">objective_weights</span><span class="p">,</span>
                 <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
+                <span class="n">Ys</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Ys</span><span class="p">,</span>
             <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Ys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ys</span>
 
         <span class="n">bounds_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
         <span class="n">bounds_</span> <span class="o">=</span> <span class="n">bounds_</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -411,7 +414,7 @@ src="/js/documentation_options.js">
                     <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
                     <span class="n">X_observed</span><span class="o">=</span><span class="n">X_observed</span><span class="p">,</span>
                     <span class="n">X_pending</span><span class="o">=</span><span class="n">X_pending</span><span class="p">,</span>
-                    <span class="n">Ys</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Ys</span><span class="p">,</span>  <span class="c1"># Required for chebyshev scalarization calculations.</span>
+                    <span class="n">Ys</span><span class="o">=</span><span class="n">Ys</span><span class="p">,</span>  <span class="c1"># Required for chebyshev scalarization calculations.</span>
                     <span class="o">**</span><span class="n">acf_options</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="k">for</span> <span class="n">objective_weights</span> <span class="ow">in</span> <span class="n">objective_weights_list</span>

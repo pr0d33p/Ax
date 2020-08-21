@@ -124,7 +124,7 @@ src="/js/documentation_options.js">
                 <span class="p">)</span>
             <span class="k">assert</span> <span class="n">input_dim</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_dimensionality</span><span class="p">,</span> <span class="p">(</span>
                 <span class="sa">f</span><span class="s2">"Input violates required dimensionality of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: "</span>
-                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">required_dimensionality</span><span class="si">}</span><span class="s2">."</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">required_dimensionality</span><span class="si">}</span><span class="s2">. Got </span><span class="si">{</span><span class="n">input_dim</span><span class="si">}</span><span class="s2">."</span>
             <span class="p">)</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>

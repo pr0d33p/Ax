@@ -36,54 +36,107 @@ src="/js/documentation_options.js">
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 
 
-<div class="viewcode-block" id="get_logger"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.logger.get_logger">[docs]</a><span class="k">def</span> <span class="nf">get_logger</span><span class="p">(</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">filepath</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-    <span class="n">output_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
+<span class="n">AX_ROOT_LOGGER</span> <span class="o">=</span> <span class="s2">"ax"</span>
+<span class="n">DEFAULT_LOG_LEVEL</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span>
+
+
+<div class="viewcode-block" id="AxOutputNameFilter"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.logger.AxOutputNameFilter">[docs]</a><span class="k">class</span> <span class="nc">AxOutputNameFilter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="p">):</span>
+    <span class="sd">"""This is a filter which sets the record's output_name, if</span>
+<span class="sd">    not configured</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="AxOutputNameFilter.filter"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.logger.AxOutputNameFilter.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">LogRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s2">"output_name"</span><span class="p">):</span>
+            <span class="c1"># pyre-ignore[16]: Record supports arbitrary attributes</span>
+            <span class="n">record</span><span class="o">.</span><span class="n">output_name</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="get_logger"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.logger.get_logger">[docs]</a><span class="k">def</span> <span class="nf">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
     <span class="sd">"""Get an Axlogger.</span>
 
-<span class="sd">    Sets default level to INFO, instead of WARNING. Adds timestamps to logger messages.</span>
+<span class="sd">    To set a human-readable "output_name" that appears in logger outputs,</span>
+<span class="sd">    add `{"output_name": "[MY_OUTPUT_NAME]"}` to the logger's contextual</span>
+<span class="sd">    information. By default, we use the logger's `name`</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        name: The name of the logger.</span>
-<span class="sd">        filepath: Location of the file to log output to. If the file exists, output</span>
-<span class="sd">            will be appended. If it does not exist, a new file will be created.</span>
-<span class="sd">        level: The log level.</span>
-<span class="sd">        output_name: The name of the logger to appear in the logged output. Useful to</span>
-<span class="sd">            abbreviate long logger names.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        The logging.Logger object.</span>
 <span class="sd">    """</span>
-    <span class="k">if</span> <span class="n">output_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">output_name</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
-        <span class="n">fmt</span><span class="o">=</span><span class="sa">f</span><span class="s2">"[%(levelname)s %(asctime)s] </span><span class="si">{</span><span class="n">output_name</span><span class="si">}</span><span class="s2">: %(message)s"</span><span class="p">,</span>
-        <span class="n">datefmt</span><span class="o">=</span><span class="s2">"%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S"</span><span class="p">,</span>
-    <span class="p">)</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
-    <span class="c1"># Add timestamps to log messages.</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
-        <span class="n">console</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
-        <span class="n">console</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
-        <span class="n">console</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">console</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">if</span> <span class="n">filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">logger</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addFilter</span><span class="p">(</span><span class="n">AxOutputNameFilter</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">logger</span></div>
+
+
+<div class="viewcode-block" id="get_root_logger"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.logger.get_root_logger">[docs]</a><span class="k">def</span> <span class="nf">get_root_logger</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">get_logger</span><span class="p">(</span><span class="n">AX_ROOT_LOGGER</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="build_stream_handler"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.logger.build_stream_handler">[docs]</a><span class="k">def</span> <span class="nf">build_stream_handler</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_LOG_LEVEL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">:</span>
+    <span class="sd">"""Build the default stream handler used for most Ax logging. Sets</span>
+<span class="sd">    default level to INFO, instead of WARNING.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        level: The log level. By default, sets level to INFO</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A logging.StreamHandler instance</span>
+<span class="sd">    """</span>
+    <span class="n">console</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">_build_stream_formatter</span><span class="p">()</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">console</span></div>
+
+
+<div class="viewcode-block" id="build_file_handler"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.logger.build_file_handler">[docs]</a><span class="k">def</span> <span class="nf">build_file_handler</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_LOG_LEVEL</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">:</span>
+    <span class="sd">"""Build a file handle that logs entries to the given file, using the</span>
+<span class="sd">    same formatting as the stream handler.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath: Location of the file to log output to. If the file exists, output</span>
+<span class="sd">            will be appended. If it does not exist, a new file will be created.</span>
+<span class="sd">        level: The log level. By default, sets level to INFO</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A logging.FileHandler instance</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Log file (</span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">) already exists, appending logs."</span><span class="p">)</span>
+        <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Log file (</span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">) already exists, appending logs."</span>
+        <span class="p">)</span>
     <span class="n">logfile</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
     <span class="n">logfile</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">_build_stream_formatter</span><span class="p">()</span>
     <span class="n">logfile</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">logger</span></div>
+    <span class="k">return</span> <span class="n">logfile</span></div>
+
+
+<span class="k">def</span> <span class="nf">_build_stream_formatter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
+    <span class="sd">"""Default formatter for log messages. Add timestamps to log messages.</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+        <span class="n">fmt</span><span class="o">=</span><span class="s2">"[</span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(asctime)s</span><span class="s2">] </span><span class="si">%(output_name)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s2">"%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="init_loggers"><a class="viewcode-back" href="../../../../utils.html#ax.utils.common.logger.init_loggers">[docs]</a><span class="k">def</span> <span class="nf">init_loggers</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">"""Sets up Ax's root logger to not propogate to Python's root logger and</span>
+<span class="sd">    use the default stream handler.</span>
+<span class="sd">    """</span>
+    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">get_root_logger</span><span class="p">()</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">DEFAULT_LOG_LEVEL</span><span class="p">)</span>
+    <span class="n">stream_handler</span> <span class="o">=</span> <span class="n">build_stream_handler</span><span class="p">()</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stream_handler</span><span class="p">)</span></div>
 
 
 <span class="c1"># pyre-ignore (ignoring Any in argument and output typing)</span>
@@ -109,6 +162,9 @@ src="/js/documentation_options.js">
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">item</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">item</span>
+
+
+<span class="n">init_loggers</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

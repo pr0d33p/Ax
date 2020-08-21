@@ -55,6 +55,12 @@ this works with both <code class="docutils literal notranslate"><span class="pre
 </div>
 <div class="section" id="module-ax.utils.common.equality">
 <span id="equality"></span><h3>Equality<a class="headerlink" href="#module-ax.utils.common.equality" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ax.utils.common.equality.Base">
+<em class="property">class </em><code class="sig-prename descclassname">ax.utils.common.equality.</code><code class="sig-name descname">Base</code><a class="reference internal" href="_modules/ax/utils/common/equality.html#Base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.equality.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Metaclass for core Ax classes.</p>
+</dd></dl>
 <dl class="function">
 <dt id="ax.utils.common.equality.dataframe_equals">
 <code class="sig-prename descclassname">ax.utils.common.equality.</code><code class="sig-name descname">dataframe_equals</code><span class="sig-paren">(</span><em class="sig-param">df1</em>, <em class="sig-param">df2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/equality.html#dataframe_equals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.equality.dataframe_equals" title="Permalink to this definition">¶</a></dt>
@@ -96,6 +102,33 @@ are the same.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.common.equality.object_attribute_dicts_find_unequal_fields">
+<code class="sig-prename descclassname">ax.utils.common.equality.</code><code class="sig-name descname">object_attribute_dicts_find_unequal_fields</code><span class="sig-paren">(</span><em class="sig-param">one_dict</em>, <em class="sig-param">other_dict</em>, <em class="sig-param">fast_return=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/equality.html#object_attribute_dicts_find_unequal_fields"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.equality.object_attribute_dicts_find_unequal_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility for finding out what attributes of two objects’ attribute dicts
+are unequal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>one_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]) – First object’s attribute dict (<cite>obj.__dict__</cite>).</p></li>
+<li><p><strong>other_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]) – Second object’s attribute dict (<cite>obj.__dict__</cite>).</p></li>
+<li><p><strong>fast_return</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Boolean representing whether to return as soon as a
+single unequal attribute was found or to iterate over all attributes
+and collect all unequal ones.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>attribute name to attribute values of unequal type (as a tuple),</p></li>
+<li><p>attribute name to attribute values of unequal value (as a tuple).</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Two dictionaries</p>
 </dd>
 </dl>
 </dd></dl>
@@ -176,27 +209,99 @@ the arguments and will raise an error if repeat keywords are found.</p>
 </div>
 <div class="section" id="module-ax.utils.common.logger">
 <span id="logger"></span><h3>Logger<a class="headerlink" href="#module-ax.utils.common.logger" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ax.utils.common.logger.AxOutputNameFilter">
+<em class="property">class </em><code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">AxOutputNameFilter</code><span class="sig-paren">(</span><em class="sig-param">name=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#AxOutputNameFilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.AxOutputNameFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Filter" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Filter</span></code></a></p>
+<p>This is a filter which sets the record’s output_name, if
+not configured</p>
+<dl class="method">
+<dt id="ax.utils.common.logger.AxOutputNameFilter.filter">
+<code class="sig-name descname">filter</code><span class="sig-paren">(</span><em class="sig-param">record</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#AxOutputNameFilter.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.AxOutputNameFilter.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if the specified record is to be logged.</p>
+<p>Is the specified record to be logged? Returns 0 for no, nonzero for
+yes. If deemed appropriate, the record may be modified in-place.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
 <dl class="function">
-<dt id="ax.utils.common.logger.get_logger">
-<code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">get_logger</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">filepath=None</em>, <em class="sig-param">level=20</em>, <em class="sig-param">output_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#get_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.get_logger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get an Axlogger.</p>
-<p>Sets default level to INFO, instead of WARNING. Adds timestamps to logger messages.</p>
+<dt id="ax.utils.common.logger.build_file_handler">
+<code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">build_file_handler</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">level=20</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#build_file_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.build_file_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a file handle that logs entries to the given file, using the
+same formatting as the stream handler.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the logger.</p></li>
-<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – Location of the file to log output to. If the file exists, output
+<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Location of the file to log output to. If the file exists, output
 will be appended. If it does not exist, a new file will be created.</p></li>
-<li><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The log level.</p></li>
-<li><p><strong>output_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The name of the logger to appear in the logged output. Useful to
-abbreviate long logger names.</p></li>
+<li><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The log level. By default, sets level to INFO</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamHandler</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A logging.FileHandler instance</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.common.logger.build_stream_handler">
+<code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">build_stream_handler</code><span class="sig-paren">(</span><em class="sig-param">level=20</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#build_stream_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.build_stream_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the default stream handler used for most Ax logging. Sets
+default level to INFO, instead of WARNING.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The log level. By default, sets level to INFO</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamHandler</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A logging.StreamHandler instance</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.common.logger.get_logger">
+<code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">get_logger</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#get_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.get_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an Axlogger.</p>
+<p>To set a human-readable “output_name” that appears in logger outputs,
+add <cite>{“output_name”: “[MY_OUTPUT_NAME]”}</cite> to the logger’s contextual
+information. By default, we use the logger’s <cite>name</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the logger.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The logging.Logger object.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.common.logger.get_root_logger">
+<code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">get_root_logger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#get_root_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.get_root_logger" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.common.logger.init_loggers">
+<code class="sig-prename descclassname">ax.utils.common.logger.</code><code class="sig-name descname">init_loggers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/logger.html#init_loggers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.logger.init_loggers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up Ax’s root logger to not propogate to Python’s root logger and
+use the default stream handler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -264,6 +369,17 @@ needed by its constructor.</p>
 <em class="property">class </em><code class="sig-prename descclassname">ax.utils.common.testutils.</code><code class="sig-name descname">TestCase</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/testutils.html#TestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.testutils.TestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
 <p>The base test case for Ax, contains various helper functions to write unittest.</p>
+<dl class="method">
+<dt id="ax.utils.common.testutils.TestCase.assertEqual">
+<code class="sig-name descname">assertEqual</code><span class="sig-paren">(</span><em class="sig-param">first</em>, <em class="sig-param">second</em>, <em class="sig-param">msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/testutils.html#TestCase.assertEqual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.testutils.TestCase.assertEqual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if the two objects are unequal as determined by the ‘==’
+operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 <dl class="method">
 <dt id="ax.utils.common.testutils.TestCase.assertRaisesOn">
 <code class="sig-name descname">assertRaisesOn</code><span class="sig-paren">(</span><em class="sig-param">exc</em>, <em class="sig-param">line=None</em>, <em class="sig-param">regex=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/common/testutils.html#TestCase.assertRaisesOn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.common.testutils.TestCase.assertRaisesOn" title="Permalink to this definition">¶</a></dt>
@@ -407,16 +523,15 @@ the types in the tuple.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[~T]) – the value to cast to a non <code class="docutils literal notranslate"><span class="pre">None</span></code> type</p>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">val</span></code> when <code class="docutils literal notranslate"><span class="pre">val</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>V</p>
+</dd>
 </dl>
 <dl class="simple">
-<dt>Retruns:</dt><dd><p>V:  <code class="docutils literal notranslate"><span class="pre">val</span></code> when <code class="docutils literal notranslate"><span class="pre">val</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
 <dt>Throws:</dt><dd><p>ValueError if <code class="docutils literal notranslate"><span class="pre">val</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>~T</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1040,6 +1155,60 @@ the square root of the total number of observations.</p>
 </dl>
 </dd></dl>
 <dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_augmented_branin_metric">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_augmented_branin_metric</code><span class="sig-paren">(</span><em class="sig-param">name='aug_branin'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_augmented_branin_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_augmented_branin_metric" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="metrics.html#ax.metrics.branin.AugmentedBraninMetric" title="ax.metrics.branin.AugmentedBraninMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">AugmentedBraninMetric</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_augmented_branin_objective">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_augmented_branin_objective</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_augmented_branin_objective"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_augmented_branin_objective" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="core.html#ax.core.objective.Objective" title="ax.core.objective.Objective"><code class="xref py py-class docutils literal notranslate"><span class="pre">Objective</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_augmented_branin_optimization_config">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_augmented_branin_optimization_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_augmented_branin_optimization_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_augmented_branin_optimization_config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="core.html#ax.core.optimization_config.OptimizationConfig" title="ax.core.optimization_config.OptimizationConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationConfig</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_augmented_hartmann_metric">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_augmented_hartmann_metric</code><span class="sig-paren">(</span><em class="sig-param">name='aug_hartmann'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_augmented_hartmann_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_augmented_hartmann_metric" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="metrics.html#ax.metrics.hartmann6.AugmentedHartmann6Metric" title="ax.metrics.hartmann6.AugmentedHartmann6Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">AugmentedHartmann6Metric</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_augmented_hartmann_objective">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_augmented_hartmann_objective</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_augmented_hartmann_objective"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_augmented_hartmann_objective" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="core.html#ax.core.objective.Objective" title="ax.core.objective.Objective"><code class="xref py py-class docutils literal notranslate"><span class="pre">Objective</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_augmented_hartmann_optimization_config">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_augmented_hartmann_optimization_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_augmented_hartmann_optimization_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_augmented_hartmann_optimization_config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="core.html#ax.core.optimization_config.OptimizationConfig" title="ax.core.optimization_config.OptimizationConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationConfig</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
 <dt id="ax.utils.testing.core_stubs.get_batch_trial">
 <code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_batch_trial</code><span class="sig-paren">(</span><em class="sig-param">abandon_arm=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_batch_trial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_batch_trial" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -1305,10 +1474,37 @@ existed trial in the experiment. Where N is equal to the input argument
 </dd></dl>
 <dl class="function">
 <dt id="ax.utils.testing.core_stubs.get_hartmann_metric">
-<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_hartmann_metric</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_hartmann_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_hartmann_metric" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_hartmann_metric</code><span class="sig-paren">(</span><em class="sig-param">name='hartmann'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_hartmann_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_hartmann_metric" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="metrics.html#ax.metrics.hartmann6.Hartmann6Metric" title="ax.metrics.hartmann6.Hartmann6Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hartmann6Metric</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_hartmann_objective">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_hartmann_objective</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_hartmann_objective"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_hartmann_objective" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="core.html#ax.core.objective.Objective" title="ax.core.objective.Objective"><code class="xref py py-class docutils literal notranslate"><span class="pre">Objective</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_hartmann_optimization_config">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_hartmann_optimization_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_hartmann_optimization_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_hartmann_optimization_config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="core.html#ax.core.optimization_config.OptimizationConfig" title="ax.core.optimization_config.OptimizationConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationConfig</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.utils.testing.core_stubs.get_hartmann_search_space">
+<code class="sig-prename descclassname">ax.utils.testing.core_stubs.</code><code class="sig-name descname">get_hartmann_search_space</code><span class="sig-paren">(</span><em class="sig-param">with_fidelity_parameter=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/utils/testing/core_stubs.html#get_hartmann_search_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.utils.testing.core_stubs.get_hartmann_search_space" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="core.html#ax.core.search_space.SearchSpace" title="ax.core.search_space.SearchSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">SearchSpace</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>

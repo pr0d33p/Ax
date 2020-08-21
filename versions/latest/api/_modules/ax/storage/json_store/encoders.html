@@ -43,6 +43,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.experiment</span> <span class="kn">import</span> <span class="n">Experiment</span>
 <span class="kn">from</span> <span class="nn">ax.core.generator_run</span> <span class="kn">import</span> <span class="n">GeneratorRun</span>
 <span class="kn">from</span> <span class="nn">ax.core.metric</span> <span class="kn">import</span> <span class="n">Metric</span>
+<span class="kn">from</span> <span class="nn">ax.core.multi_type_experiment</span> <span class="kn">import</span> <span class="n">MultiTypeExperiment</span>
 <span class="kn">from</span> <span class="nn">ax.core.objective</span> <span class="kn">import</span> <span class="n">MultiObjective</span><span class="p">,</span> <span class="n">Objective</span><span class="p">,</span> <span class="n">ScalarizedObjective</span>
 <span class="kn">from</span> <span class="nn">ax.core.optimization_config</span> <span class="kn">import</span> <span class="n">OptimizationConfig</span>
 <span class="kn">from</span> <span class="nn">ax.core.outcome_constraint</span> <span class="kn">import</span> <span class="n">OutcomeConstraint</span>
@@ -86,6 +87,18 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="simple_experiment_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.simple_experiment_to_dict">[docs]</a><span class="k">def</span> <span class="nf">simple_experiment_to_dict</span><span class="p">(</span><span class="n">experiment</span><span class="p">:</span> <span class="n">SimpleExperiment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">"""Convert AE simple experiment to a dictionary."""</span>
     <span class="k">return</span> <span class="n">experiment_to_dict</span><span class="p">(</span><span class="n">experiment</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="multi_type_experiment_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.multi_type_experiment_to_dict">[docs]</a><span class="k">def</span> <span class="nf">multi_type_experiment_to_dict</span><span class="p">(</span><span class="n">experiment</span><span class="p">:</span> <span class="n">MultiTypeExperiment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Convert AE multitype experiment to a dictionary."""</span>
+    <span class="n">multi_type_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"default_trial_type"</span><span class="p">:</span> <span class="n">experiment</span><span class="o">.</span><span class="n">_default_trial_type</span><span class="p">,</span>
+        <span class="s2">"_metric_to_canonical_name"</span><span class="p">:</span> <span class="n">experiment</span><span class="o">.</span><span class="n">_metric_to_canonical_name</span><span class="p">,</span>
+        <span class="s2">"_metric_to_trial_type"</span><span class="p">:</span> <span class="n">experiment</span><span class="o">.</span><span class="n">_metric_to_trial_type</span><span class="p">,</span>
+        <span class="s2">"_trial_type_to_runner"</span><span class="p">:</span> <span class="n">experiment</span><span class="o">.</span><span class="n">_trial_type_to_runner</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">multi_type_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">experiment_to_dict</span><span class="p">(</span><span class="n">experiment</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">multi_type_dict</span></div>
 
 
 <div class="viewcode-block" id="batch_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.batch_to_dict">[docs]</a><span class="k">def</span> <span class="nf">batch_to_dict</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">BatchTrial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>

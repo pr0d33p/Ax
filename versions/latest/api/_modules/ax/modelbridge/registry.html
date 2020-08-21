@@ -32,6 +32,8 @@ src="/js/documentation_options.js">
 <span class="c1"># This source code is licensed under the MIT license found in the</span>
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">isfunction</span><span class="p">,</span> <span class="n">signature</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
@@ -149,7 +151,8 @@ src="/js/documentation_options.js">
     <span class="n">bridge_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ModelBridge</span><span class="p">]</span>
     <span class="n">model_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Model</span><span class="p">]</span>
     <span class="n">transforms</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span>
-    <span class="n">standard_bridge_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></div>
+    <span class="n">standard_bridge_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">not_saved_model_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
 <span class="sd">"""A mapping of string keys that indicate a model, to the corresponding</span>
@@ -299,6 +302,10 @@ src="/js/documentation_options.js">
             <span class="o">**</span><span class="n">bridge_kwargs</span><span class="p">,</span>
         <span class="p">)</span>
 
+        <span class="k">if</span> <span class="n">model_setup_info</span><span class="o">.</span><span class="n">not_saved_model_kwargs</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">model_setup_info</span><span class="o">.</span><span class="n">not_saved_model_kwargs</span><span class="p">:</span>
+                <span class="n">model_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
         <span class="c1"># Store all kwargs on model bridge, to be saved on generator run.</span>
         <span class="n">model_bridge</span><span class="o">.</span><span class="n">_set_kwargs_to_save</span><span class="p">(</span>
             <span class="n">model_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
@@ -365,8 +372,8 @@ src="/js/documentation_options.js">
     <span class="n">generator_run</span><span class="p">:</span> <span class="n">GeneratorRun</span><span class="p">,</span>
     <span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">,</span>
-    <span class="n">models_enum</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="s2">"Models"</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">after_gen</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">models_enum</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Models</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">after_gen</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelBridge</span><span class="p">:</span>
     <span class="sd">"""Reinstantiate a model from model key and kwargs stored on a given generator</span>
 <span class="sd">    run, with the given experiment and the data to initialize the model with.</span>
@@ -386,9 +393,9 @@ src="/js/documentation_options.js">
 <span class="sd">            registry that extends `Models`.</span>
 <span class="sd">        after_gen: Whether to reinstantiate the model in the state, in which it</span>
 <span class="sd">            was after it created this generator run, as opposed to before.</span>
-<span class="sd">            Defaults to False, useful when reinstantiating the model to resume</span>
+<span class="sd">            Defaults to True, useful when reinstantiating the model to resume</span>
 <span class="sd">            optimization, rather than to recreate its state at the time of</span>
-<span class="sd">            generation.</span>
+<span class="sd">            generation. TO recreate state at the time of generation, set to `False`.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">generator_run</span><span class="o">.</span><span class="n">_model_key</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -397,9 +404,10 @@ src="/js/documentation_options.js">
         <span class="p">)</span>
     <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">models_enum</span> <span class="ow">or</span> <span class="n">Models</span><span class="p">)(</span><span class="n">generator_run</span><span class="o">.</span><span class="n">_model_key</span><span class="p">)</span>
     <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">generator_run</span><span class="o">.</span><span class="n">_model_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
-    <span class="k">if</span> <span class="n">after_gen</span> <span class="ow">and</span> <span class="n">generator_run</span><span class="o">.</span><span class="n">_model_state_after_gen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">serialized_model_state</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="n">generator_run</span><span class="o">.</span><span class="n">_model_state_after_gen</span><span class="p">)</span>
-        <span class="n">model_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">model_class</span><span class="o">.</span><span class="n">deserialize_state</span><span class="p">(</span><span class="n">serialized_model_state</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">after_gen</span><span class="p">:</span>
+        <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">_combine_model_kwargs_and_state</span><span class="p">(</span>
+            <span class="n">generator_run</span><span class="o">=</span><span class="n">generator_run</span><span class="p">,</span> <span class="n">model_class</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">model_class</span>
+        <span class="p">)</span>
     <span class="n">bridge_kwargs</span> <span class="o">=</span> <span class="n">generator_run</span><span class="o">.</span><span class="n">_bridge_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
     <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">_decode_callables_from_references</span><span class="p">(</span><span class="n">model_kwargs</span><span class="p">)</span>
     <span class="n">bridge_kwargs</span> <span class="o">=</span> <span class="n">_decode_callables_from_references</span><span class="p">(</span><span class="n">bridge_kwargs</span><span class="p">)</span>
@@ -414,6 +422,25 @@ src="/js/documentation_options.js">
             <span class="p">)</span>
             <span class="k">del</span> <span class="n">model_kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">model</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">bridge_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_combine_model_kwargs_and_state</span><span class="p">(</span>
+    <span class="n">generator_run</span><span class="p">:</span> <span class="n">GeneratorRun</span><span class="p">,</span>
+    <span class="n">model_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Model</span><span class="p">],</span>
+    <span class="n">model_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Produces a combined dict of model kwargs and model state after gen,</span>
+<span class="sd">    extracted from generator run. If model kwargs are not specified,</span>
+<span class="sd">    model kwargs from the generator run will be used.</span>
+<span class="sd">    """</span>
+    <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">model_kwargs</span> <span class="ow">or</span> <span class="n">generator_run</span><span class="o">.</span><span class="n">_model_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">generator_run</span><span class="o">.</span><span class="n">_model_state_after_gen</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">model_kwargs</span>
+
+    <span class="n">serialized_model_state</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="n">generator_run</span><span class="o">.</span><span class="n">_model_state_after_gen</span><span class="p">)</span>
+    <span class="c1"># We don't want to update `model_kwargs` on the `GenerationStep`,</span>
+    <span class="c1"># just to add to them for the purpose of this function.</span>
+    <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">model_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">model_class</span><span class="o">.</span><span class="n">deserialize_state</span><span class="p">(</span><span class="n">serialized_model_state</span><span class="p">)}</span>
 
 
 <span class="k">def</span> <span class="nf">_encode_callables_as_references</span><span class="p">(</span><span class="n">kwarg_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>

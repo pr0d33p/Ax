@@ -428,14 +428,17 @@ src="/js/documentation_options.js">
         <span class="n">optimization_config</span><span class="o">=</span><span class="n">problem</span><span class="o">.</span><span class="n">optimization_config</span><span class="p">,</span>
         <span class="n">runner</span><span class="o">=</span><span class="n">SyntheticRunner</span><span class="p">(),</span>
     <span class="p">)</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_trials</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">trial_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_trials</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">gr</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">gen</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">batch_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">experiment</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">generator_run</span><span class="o">=</span><span class="n">gr</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+                <span class="n">trial</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">generator_run</span><span class="o">=</span><span class="n">gr</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">assert</span> <span class="n">batch_size</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="n">experiment</span><span class="o">.</span><span class="n">new_batch_trial</span><span class="p">(</span><span class="n">generator_run</span><span class="o">=</span><span class="n">gr</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+                <span class="n">trial</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">new_batch_trial</span><span class="p">(</span><span class="n">generator_run</span><span class="o">=</span><span class="n">gr</span><span class="p">)</span>
+            <span class="n">trial</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+            <span class="n">benchmark_trial</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">trial_index</span><span class="o">=</span><span class="n">trial_index</span><span class="p">)</span>
+            <span class="n">trial</span><span class="o">.</span><span class="n">mark_completed</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>  <span class="c1"># TODO[T53975770]: test</span>
             <span class="k">if</span> <span class="n">raise_all_exceptions</span><span class="p">:</span>
                 <span class="k">raise</span>

@@ -73,15 +73,15 @@ src="/js/documentation_options.js">
     <span class="n">TModelPredictArm</span><span class="p">,</span>
     <span class="n">TParameterization</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ax.metrics.branin</span> <span class="kn">import</span> <span class="n">BraninMetric</span>
+<span class="kn">from</span> <span class="nn">ax.metrics.branin</span> <span class="kn">import</span> <span class="n">AugmentedBraninMetric</span><span class="p">,</span> <span class="n">BraninMetric</span>
 <span class="kn">from</span> <span class="nn">ax.metrics.factorial</span> <span class="kn">import</span> <span class="n">FactorialMetric</span>
-<span class="kn">from</span> <span class="nn">ax.metrics.hartmann6</span> <span class="kn">import</span> <span class="n">Hartmann6Metric</span>
+<span class="kn">from</span> <span class="nn">ax.metrics.hartmann6</span> <span class="kn">import</span> <span class="n">AugmentedHartmann6Metric</span><span class="p">,</span> <span class="n">Hartmann6Metric</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.factory</span> <span class="kn">import</span> <span class="n">Cont_X_trans</span><span class="p">,</span> <span class="n">get_factorial</span><span class="p">,</span> <span class="n">get_sobol</span>
 <span class="kn">from</span> <span class="nn">ax.runners.synthetic</span> <span class="kn">import</span> <span class="n">SyntheticRunner</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
 
 
-<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="s2">"ae_experiment"</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <span class="c1"># Experiments</span>
@@ -397,6 +397,28 @@ src="/js/documentation_options.js">
     <span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="get_hartmann_search_space"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_hartmann_search_space">[docs]</a><span class="k">def</span> <span class="nf">get_hartmann_search_space</span><span class="p">(</span><span class="n">with_fidelity_parameter</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SearchSpace</span><span class="p">:</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">RangeParameter</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">"x</span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">parameter_type</span><span class="o">=</span><span class="n">ParameterType</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mf">1.0</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="n">with_fidelity_parameter</span><span class="p">:</span>
+        <span class="n">parameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">RangeParameter</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">"fidelity"</span><span class="p">,</span>
+                <span class="n">parameter_type</span><span class="o">=</span><span class="n">ParameterType</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span>
+                <span class="n">lower</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                <span class="n">upper</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                <span class="n">is_fidelity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">target_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">SearchSpace</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="n">Parameter</span><span class="p">],</span> <span class="n">parameters</span><span class="p">))</span></div>
+
+
 <div class="viewcode-block" id="get_search_space_for_value"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_search_space_for_value">[docs]</a><span class="k">def</span> <span class="nf">get_search_space_for_value</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SearchSpace</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">SearchSpace</span><span class="p">([</span><span class="n">FixedParameter</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">val</span><span class="p">)])</span></div>
 
@@ -562,11 +584,24 @@ src="/js/documentation_options.js">
 
 
 <div class="viewcode-block" id="get_branin_metric"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_metric">[docs]</a><span class="k">def</span> <span class="nf">get_branin_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"branin"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BraninMetric</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">BraninMetric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">param_names</span><span class="o">=</span><span class="p">[</span><span class="s2">"x1"</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">],</span> <span class="n">noise_sd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></div>
+    <span class="n">param_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"x1"</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">BraninMetric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">param_names</span><span class="o">=</span><span class="n">param_names</span><span class="p">,</span> <span class="n">noise_sd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_hartmann_metric"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_hartmann_metric">[docs]</a><span class="k">def</span> <span class="nf">get_hartmann_metric</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Hartmann6Metric</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Hartmann6Metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"hartmann"</span><span class="p">,</span> <span class="n">param_names</span><span class="o">=</span><span class="p">[</span><span class="s2">"x1"</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">],</span> <span class="n">noise_sd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></div>
+<div class="viewcode-block" id="get_augmented_branin_metric"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_branin_metric">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_branin_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"aug_branin"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AugmentedBraninMetric</span><span class="p">:</span>
+    <span class="n">param_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"x1"</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">,</span> <span class="s2">"fidelity"</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">AugmentedBraninMetric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">param_names</span><span class="o">=</span><span class="n">param_names</span><span class="p">,</span> <span class="n">noise_sd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_hartmann_metric"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_hartmann_metric">[docs]</a><span class="k">def</span> <span class="nf">get_hartmann_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"hartmann"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Hartmann6Metric</span><span class="p">:</span>
+    <span class="n">param_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"x</span><span class="si">{</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">Hartmann6Metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">param_names</span><span class="o">=</span><span class="n">param_names</span><span class="p">,</span> <span class="n">noise_sd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_augmented_hartmann_metric"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_hartmann_metric">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_hartmann_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"aug_hartmann"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AugmentedHartmann6Metric</span><span class="p">:</span>
+    <span class="n">param_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"x</span><span class="si">{</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)]</span>
+    <span class="n">param_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"fidelity"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">AugmentedHartmann6Metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">param_names</span><span class="o">=</span><span class="n">param_names</span><span class="p">,</span> <span class="n">noise_sd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_factorial_metric"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_factorial_metric">[docs]</a><span class="k">def</span> <span class="nf">get_factorial_metric</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"success_metric"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FactorialMetric</span><span class="p">:</span>
@@ -645,6 +680,30 @@ src="/js/documentation_options.js">
 
 <div class="viewcode-block" id="get_branin_multi_objective_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_multi_objective_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_branin_multi_objective_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_branin_multi_objective</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="get_augmented_branin_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_branin_objective">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_branin_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_augmented_branin_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_augmented_branin_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_branin_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_branin_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_augmented_branin_objective</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="get_hartmann_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_hartmann_objective">[docs]</a><span class="k">def</span> <span class="nf">get_hartmann_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_hartmann_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_augmented_hartmann_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_hartmann_objective">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_hartmann_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_augmented_hartmann_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_hartmann_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_hartmann_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_hartmann_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_hartmann_objective</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="get_augmented_hartmann_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_hartmann_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_hartmann_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_augmented_hartmann_objective</span><span class="p">())</span></div>
 
 
 <span class="c1"># Arms</span>

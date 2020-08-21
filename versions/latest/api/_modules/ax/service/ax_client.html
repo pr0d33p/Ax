@@ -291,16 +291,25 @@ src="/js/documentation_options.js">
             <span class="n">suppress_all_errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_suppress_storage_errors</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="AxClient.get_next_trial"><a class="viewcode-back" href="../../../service.html#ax.service.ax_client.AxClient.get_next_trial">[docs]</a>    <span class="k">def</span> <span class="nf">get_next_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">TParameterization</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="AxClient.get_next_trial"><a class="viewcode-back" href="../../../service.html#ax.service.ax_client.AxClient.get_next_trial">[docs]</a>    <span class="k">def</span> <span class="nf">get_next_trial</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">ttl_seconds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">TParameterization</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="sd">"""</span>
 <span class="sd">        Generate trial with the next set of parameters to try in the iteration process.</span>
 
 <span class="sd">        Note: Service API currently supports only 1-arm trials.</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            ttl_seconds: If specified, will consider the trial failed after this</span>
+<span class="sd">                many seconds. Used to detect dead trials that were not marked</span>
+<span class="sd">                failed properly.</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple of trial parameterization, trial index</span>
 <span class="sd">        """</span>
-        <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">generator_run</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_gen_new_generator_run</span><span class="p">())</span>
+        <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span>
+            <span class="n">generator_run</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_gen_new_generator_run</span><span class="p">(),</span> <span class="n">ttl_seconds</span><span class="o">=</span><span class="n">ttl_seconds</span>
+        <span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">"Generated new trial </span><span class="si">{</span><span class="n">trial</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2"> with parameters "</span>
             <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">_round_floats_for_logging</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">not_none</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">arm</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span><span class="si">}</span><span class="s2">."</span>
@@ -454,18 +463,23 @@ src="/js/documentation_options.js">
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="AxClient.attach_trial"><a class="viewcode-back" href="../../../service.html#ax.service.ax_client.AxClient.attach_trial">[docs]</a>    <span class="k">def</span> <span class="nf">attach_trial</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">TParameterization</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">TParameterization</span><span class="p">,</span> <span class="n">ttl_seconds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">TParameterization</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="sd">"""Attach a new trial with the given parameterization to the experiment.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            parameters: Parameterization of the new trial.</span>
+<span class="sd">            ttl_seconds: If specified, will consider the trial failed after this</span>
+<span class="sd">                many seconds. Used to detect dead trials that were not marked</span>
+<span class="sd">                failed properly.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple of parameterization and trial index from newly created trial.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_search_space_membership</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
-        <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">new_trial</span><span class="p">()</span><span class="o">.</span><span class="n">add_arm</span><span class="p">(</span><span class="n">Arm</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">))</span>
+        <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">ttl_seconds</span><span class="o">=</span><span class="n">ttl_seconds</span><span class="p">)</span><span class="o">.</span><span class="n">add_arm</span><span class="p">(</span>
+            <span class="n">Arm</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">mark_running</span><span class="p">(</span><span class="n">no_runner_required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="s2">"Attached custom parameterization "</span>

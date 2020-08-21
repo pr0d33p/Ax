@@ -545,7 +545,23 @@ src="/js/documentation_options.js">
                         <span class="s2">"for one of those generator runs, and the candidate metadata "</span>
                         <span class="s2">"for the arm from another generator run will not be propagated."</span>
                     <span class="p">)</span>
-        <span class="k">return</span> <span class="n">cand_metadata</span></div>
+        <span class="k">return</span> <span class="n">cand_metadata</span>
+
+    <span class="k">def</span> <span class="nf">_get_candidate_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arm_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TCandidateMetadata</span><span class="p">:</span>
+        <span class="sd">"""Retrieves candidate metadata for a specific arm."""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">arm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arms_by_name</span><span class="p">[</span><span class="n">arm_name</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Arm by name </span><span class="si">{</span><span class="n">arm_name</span><span class="si">}</span><span class="s2"> is not part of trial #</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">."</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">gr_struct</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator_run_structs</span><span class="p">:</span>
+            <span class="n">gr</span> <span class="o">=</span> <span class="n">gr_struct</span><span class="o">.</span><span class="n">generator_run</span>
+            <span class="k">if</span> <span class="n">gr</span> <span class="ow">and</span> <span class="n">gr</span><span class="o">.</span><span class="n">candidate_metadata_by_arm_signature</span> <span class="ow">and</span> <span class="n">arm</span> <span class="ow">in</span> <span class="n">gr</span><span class="o">.</span><span class="n">arms</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">not_none</span><span class="p">(</span><span class="n">gr</span><span class="o">.</span><span class="n">candidate_metadata_by_arm_signature</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                    <span class="n">arm</span><span class="o">.</span><span class="n">signature</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 </pre></div>
 </div>
 </div>

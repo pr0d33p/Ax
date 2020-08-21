@@ -47,6 +47,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.data</span> <span class="kn">import</span> <span class="n">Data</span>  <span class="c1"># noqa F401</span>
 <span class="kn">from</span> <span class="nn">ax.core.experiment</span> <span class="kn">import</span> <span class="n">Experiment</span>
 <span class="kn">from</span> <span class="nn">ax.core.generator_run</span> <span class="kn">import</span> <span class="n">GeneratorRun</span>
+<span class="kn">from</span> <span class="nn">ax.core.multi_type_experiment</span> <span class="kn">import</span> <span class="n">MultiTypeExperiment</span>
 <span class="kn">from</span> <span class="nn">ax.core.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
 <span class="kn">from</span> <span class="nn">ax.core.parameter_constraint</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">OrderConstraint</span><span class="p">,</span>
@@ -65,6 +66,8 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.storage.json_store.registry</span> <span class="kn">import</span> <span class="n">CLASS_DECODER_REGISTRY</span><span class="p">,</span> <span class="n">DECODER_REGISTRY</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="n">not_none</span><span class="p">,</span> <span class="n">torch_type_from_str</span>
 <span class="kn">from</span> <span class="nn">ax.utils.measurement</span> <span class="kn">import</span> <span class="n">synthetic_functions</span>
+<span class="kn">from</span> <span class="nn">ax.utils.measurement.synthetic_functions</span> <span class="kn">import</span> <span class="n">from_botorch</span>
+<span class="kn">from</span> <span class="nn">botorch.test_functions</span> <span class="kn">import</span> <span class="n">synthetic</span> <span class="k">as</span> <span class="n">botorch_synthetic</span>
 
 
 <div class="viewcode-block" id="object_from_json"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.decoder.object_from_json">[docs]</a><span class="k">def</span> <span class="nf">object_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -139,6 +142,8 @@ src="/js/documentation_options.js">
             <span class="k">return</span> <span class="n">generation_step_from_json</span><span class="p">(</span><span class="n">generation_step_json</span><span class="o">=</span><span class="n">object_json</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">_class</span> <span class="o">==</span> <span class="n">GenerationStrategy</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">generation_strategy_from_json</span><span class="p">(</span><span class="n">generation_strategy_json</span><span class="o">=</span><span class="n">object_json</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">_class</span> <span class="o">==</span> <span class="n">MultiTypeExperiment</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">multi_type_experiment_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="o">=</span><span class="n">object_json</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">_class</span> <span class="o">==</span> <span class="n">SimpleExperiment</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">simple_experiment_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="o">=</span><span class="n">object_json</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">_class</span> <span class="o">==</span> <span class="n">Experiment</span><span class="p">:</span>
@@ -265,16 +270,38 @@ src="/js/documentation_options.js">
     <span class="p">}</span></div>
 
 
+<div class="viewcode-block" id="multi_type_experiment_from_json"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.decoder.multi_type_experiment_from_json">[docs]</a><span class="k">def</span> <span class="nf">multi_type_experiment_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">MultiTypeExperiment</span><span class="p">:</span>
+    <span class="sd">"""Load AE MultiTypeExperiment from JSON."""</span>
+    <span class="n">experiment_info</span> <span class="o">=</span> <span class="n">_get_experiment_info</span><span class="p">(</span><span class="n">object_json</span><span class="p">)</span>
+
+    <span class="n">_metric_to_canonical_name</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"_metric_to_canonical_name"</span><span class="p">)</span>
+    <span class="n">_metric_to_trial_type</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"_metric_to_trial_type"</span><span class="p">)</span>
+    <span class="n">_trial_type_to_runner</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"_trial_type_to_runner"</span><span class="p">))</span>
+    <span class="n">tracking_metrics</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"tracking_metrics"</span><span class="p">))</span>
+    <span class="c1"># not relevant to multi type experiment</span>
+    <span class="k">del</span> <span class="n">object_json</span><span class="p">[</span><span class="s2">"runner"</span><span class="p">]</span>
+
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">object_json</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s2">"default_runner"</span><span class="p">]</span> <span class="o">=</span> <span class="n">_trial_type_to_runner</span><span class="p">[</span><span class="n">object_json</span><span class="p">[</span><span class="s2">"default_trial_type"</span><span class="p">]]</span>
+
+    <span class="n">experiment</span> <span class="o">=</span> <span class="n">MultiTypeExperiment</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">tracking_metrics</span><span class="p">:</span>
+        <span class="n">experiment</span><span class="o">.</span><span class="n">_tracking_metrics</span><span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span>
+    <span class="n">experiment</span><span class="o">.</span><span class="n">_metric_to_canonical_name</span> <span class="o">=</span> <span class="n">_metric_to_canonical_name</span>
+    <span class="n">experiment</span><span class="o">.</span><span class="n">_metric_to_trial_type</span> <span class="o">=</span> <span class="n">_metric_to_trial_type</span>
+    <span class="n">experiment</span><span class="o">.</span><span class="n">_trial_type_to_runner</span> <span class="o">=</span> <span class="n">_trial_type_to_runner</span>
+
+    <span class="n">_load_experiment_info</span><span class="p">(</span><span class="n">exp</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">exp_info</span><span class="o">=</span><span class="n">experiment_info</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">experiment</span></div>
+
+
 <div class="viewcode-block" id="simple_experiment_from_json"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.decoder.simple_experiment_from_json">[docs]</a><span class="k">def</span> <span class="nf">simple_experiment_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">SimpleExperiment</span><span class="p">:</span>
     <span class="sd">"""Load AE SimpleExperiment from JSON."""</span>
-    <span class="n">time_created_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"time_created"</span><span class="p">)</span>
-    <span class="n">trials_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"trials"</span><span class="p">)</span>
-    <span class="n">experiment_type_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"experiment_type"</span><span class="p">)</span>
-    <span class="n">data_by_trial_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"data_by_trial"</span><span class="p">)</span>
+    <span class="n">experiment_info</span> <span class="o">=</span> <span class="n">_get_experiment_info</span><span class="p">(</span><span class="n">object_json</span><span class="p">)</span>
+
     <span class="n">description_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"description"</span><span class="p">)</span>
     <span class="n">is_test_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"is_test"</span><span class="p">)</span>
     <span class="n">optimization_config</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"optimization_config"</span><span class="p">))</span>
-
     <span class="c1"># not relevant to simple experiment</span>
     <span class="k">del</span> <span class="n">object_json</span><span class="p">[</span><span class="s2">"tracking_metrics"</span><span class="p">]</span>
     <span class="k">del</span> <span class="n">object_json</span><span class="p">[</span><span class="s2">"runner"</span><span class="p">]</span>
@@ -284,44 +311,50 @@ src="/js/documentation_options.js">
     <span class="n">kwargs</span><span class="p">[</span><span class="s2">"objective_name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">optimization_config</span><span class="o">.</span><span class="n">objective</span><span class="o">.</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span>
     <span class="n">kwargs</span><span class="p">[</span><span class="s2">"minimize"</span><span class="p">]</span> <span class="o">=</span> <span class="n">optimization_config</span><span class="o">.</span><span class="n">objective</span><span class="o">.</span><span class="n">minimize</span>
     <span class="n">kwargs</span><span class="p">[</span><span class="s2">"outcome_constraints"</span><span class="p">]</span> <span class="o">=</span> <span class="n">optimization_config</span><span class="o">.</span><span class="n">outcome_constraints</span>
-    <span class="n">experiment</span> <span class="o">=</span> <span class="n">SimpleExperiment</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
+    <span class="n">experiment</span> <span class="o">=</span> <span class="n">SimpleExperiment</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">experiment</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">description_json</span><span class="p">)</span>
     <span class="n">experiment</span><span class="o">.</span><span class="n">is_test</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">is_test_json</span><span class="p">)</span>
-    <span class="n">experiment</span><span class="o">.</span><span class="n">_time_created</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">time_created_json</span><span class="p">)</span>
-    <span class="n">experiment</span><span class="o">.</span><span class="n">_trials</span> <span class="o">=</span> <span class="n">trials_from_json</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">trials_json</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">experiment</span><span class="o">.</span><span class="n">_trials</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="n">trial</span><span class="o">.</span><span class="n">arms</span><span class="p">:</span>
-            <span class="n">experiment</span><span class="o">.</span><span class="n">_register_arm</span><span class="p">(</span><span class="n">arm</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">experiment</span><span class="o">.</span><span class="n">status_quo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">sq</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">status_quo</span><span class="p">)</span>
-        <span class="n">experiment</span><span class="o">.</span><span class="n">_register_arm</span><span class="p">(</span><span class="n">sq</span><span class="p">)</span>
-    <span class="n">experiment</span><span class="o">.</span><span class="n">_experiment_type</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">experiment_type_json</span><span class="p">)</span>
-    <span class="n">experiment</span><span class="o">.</span><span class="n">_data_by_trial</span> <span class="o">=</span> <span class="n">data_from_json</span><span class="p">(</span><span class="n">data_by_trial_json</span><span class="p">)</span>
+
+    <span class="n">_load_experiment_info</span><span class="p">(</span><span class="n">exp</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">exp_info</span><span class="o">=</span><span class="n">experiment_info</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">experiment</span></div>
 
 
 <div class="viewcode-block" id="experiment_from_json"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.decoder.experiment_from_json">[docs]</a><span class="k">def</span> <span class="nf">experiment_from_json</span><span class="p">(</span><span class="n">object_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>
     <span class="sd">"""Load Ax Experiment from JSON."""</span>
-    <span class="n">time_created_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"time_created"</span><span class="p">)</span>
-    <span class="n">trials_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"trials"</span><span class="p">)</span>
-    <span class="n">experiment_type_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"experiment_type"</span><span class="p">)</span>
-    <span class="n">data_by_trial_json</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"data_by_trial"</span><span class="p">)</span>
+    <span class="n">experiment_info</span> <span class="o">=</span> <span class="n">_get_experiment_info</span><span class="p">(</span><span class="n">object_json</span><span class="p">)</span>
+
     <span class="n">experiment</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">object_json</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
-    <span class="n">experiment</span><span class="o">.</span><span class="n">_time_created</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">time_created_json</span><span class="p">)</span>
-    <span class="n">experiment</span><span class="o">.</span><span class="n">_trials</span> <span class="o">=</span> <span class="n">trials_from_json</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">trials_json</span><span class="p">)</span>
     <span class="n">experiment</span><span class="o">.</span><span class="n">_arms_by_name</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">experiment</span><span class="o">.</span><span class="n">_trials</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="n">trial</span><span class="o">.</span><span class="n">arms</span><span class="p">:</span>
-            <span class="n">experiment</span><span class="o">.</span><span class="n">_register_arm</span><span class="p">(</span><span class="n">arm</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">ttl_seconds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">experiment</span><span class="o">.</span><span class="n">_trials_have_ttl</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">if</span> <span class="n">experiment</span><span class="o">.</span><span class="n">status_quo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">sq</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">status_quo</span><span class="p">)</span>
-        <span class="n">experiment</span><span class="o">.</span><span class="n">_register_arm</span><span class="p">(</span><span class="n">sq</span><span class="p">)</span>
-    <span class="n">experiment</span><span class="o">.</span><span class="n">_experiment_type</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">experiment_type_json</span><span class="p">)</span>
-    <span class="n">experiment</span><span class="o">.</span><span class="n">_data_by_trial</span> <span class="o">=</span> <span class="n">data_from_json</span><span class="p">(</span><span class="n">data_by_trial_json</span><span class="p">)</span>
+
+    <span class="n">_load_experiment_info</span><span class="p">(</span><span class="n">exp</span><span class="o">=</span><span class="n">experiment</span><span class="p">,</span> <span class="n">exp_info</span><span class="o">=</span><span class="n">experiment_info</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">experiment</span></div>
+
+
+<span class="k">def</span> <span class="nf">_get_experiment_info</span><span class="p">(</span><span class="n">object_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Returns basic information from `Experiment` object_json."""</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"time_created_json"</span><span class="p">:</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"time_created"</span><span class="p">),</span>
+        <span class="s2">"trials_json"</span><span class="p">:</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"trials"</span><span class="p">),</span>
+        <span class="s2">"experiment_type_json"</span><span class="p">:</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"experiment_type"</span><span class="p">),</span>
+        <span class="s2">"data_by_trial_json"</span><span class="p">:</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"data_by_trial"</span><span class="p">),</span>
+    <span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">_load_experiment_info</span><span class="p">(</span><span class="n">exp</span><span class="p">:</span> <span class="n">Experiment</span><span class="p">,</span> <span class="n">exp_info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">"""Loads `Experiment` object with basic information."""</span>
+    <span class="n">exp</span><span class="o">.</span><span class="n">_time_created</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">exp_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"time_created_json"</span><span class="p">))</span>
+    <span class="n">exp</span><span class="o">.</span><span class="n">_trials</span> <span class="o">=</span> <span class="n">trials_from_json</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">exp_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"trials_json"</span><span class="p">))</span>
+    <span class="n">exp</span><span class="o">.</span><span class="n">_experiment_type</span> <span class="o">=</span> <span class="n">object_from_json</span><span class="p">(</span><span class="n">exp_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"experiment_type_json"</span><span class="p">))</span>
+    <span class="n">exp</span><span class="o">.</span><span class="n">_data_by_trial</span> <span class="o">=</span> <span class="n">data_from_json</span><span class="p">(</span><span class="n">exp_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"data_by_trial_json"</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">exp</span><span class="o">.</span><span class="n">_trials</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="n">trial</span><span class="o">.</span><span class="n">arms</span><span class="p">:</span>
+            <span class="n">exp</span><span class="o">.</span><span class="n">_register_arm</span><span class="p">(</span><span class="n">arm</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">ttl_seconds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">exp</span><span class="o">.</span><span class="n">_trials_have_ttl</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">status_quo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sq</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="n">exp</span><span class="o">.</span><span class="n">status_quo</span><span class="p">)</span>
+        <span class="n">exp</span><span class="o">.</span><span class="n">_register_arm</span><span class="p">(</span><span class="n">sq</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_convert_generation_step_keys_for_backwards_compatibility</span><span class="p">(</span>
@@ -400,8 +433,11 @@ src="/js/documentation_options.js">
     <span class="n">uses_synthetic_function</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"uses_synthetic_function"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">uses_synthetic_function</span><span class="p">:</span>
         <span class="n">function_name</span> <span class="o">=</span> <span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"function_name"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">function_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">synthetic_functions</span><span class="o">.</span><span class="n">FromBotorch</span><span class="o">.</span><span class="vm">__name__</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># TODO[Lena], pragma: no cover</span>
+        <span class="n">from_botorch_prefix</span> <span class="o">=</span> <span class="n">synthetic_functions</span><span class="o">.</span><span class="n">FromBotorch</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">if</span> <span class="n">function_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">from_botorch_prefix</span><span class="p">):</span>
+            <span class="n">botorch_function_name</span> <span class="o">=</span> <span class="n">function_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">from_botorch_prefix</span><span class="si">}</span><span class="s2">_"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+            <span class="n">botorch_function</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">botorch_synthetic</span><span class="p">,</span> <span class="n">botorch_function_name</span><span class="p">)()</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">from_botorch</span><span class="p">(</span><span class="n">botorch_function</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">f</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">synthetic_functions</span><span class="p">,</span> <span class="n">function_name</span><span class="p">)()</span>
     <span class="k">else</span><span class="p">:</span>

@@ -35,12 +35,17 @@ src="/js/documentation_options.js">
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">ax.metrics.noisy_function</span> <span class="kn">import</span> <span class="n">NoisyFunctionMetric</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="n">checked_cast</span>
-<span class="kn">from</span> <span class="nn">ax.utils.measurement.synthetic_functions</span> <span class="kn">import</span> <span class="n">hartmann6</span>
+<span class="kn">from</span> <span class="nn">ax.utils.measurement.synthetic_functions</span> <span class="kn">import</span> <span class="n">aug_hartmann6</span><span class="p">,</span> <span class="n">hartmann6</span>
 
 
 <div class="viewcode-block" id="Hartmann6Metric"><a class="viewcode-back" href="../../../metrics.html#ax.metrics.hartmann6.Hartmann6Metric">[docs]</a><span class="k">class</span> <span class="nc">Hartmann6Metric</span><span class="p">(</span><span class="n">NoisyFunctionMetric</span><span class="p">):</span>
 <div class="viewcode-block" id="Hartmann6Metric.f"><a class="viewcode-back" href="../../../metrics.html#ax.metrics.hartmann6.Hartmann6Metric.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">checked_cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">hartmann6</span><span class="p">(</span><span class="n">x</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="AugmentedHartmann6Metric"><a class="viewcode-back" href="../../../metrics.html#ax.metrics.hartmann6.AugmentedHartmann6Metric">[docs]</a><span class="k">class</span> <span class="nc">AugmentedHartmann6Metric</span><span class="p">(</span><span class="n">NoisyFunctionMetric</span><span class="p">):</span>
+<div class="viewcode-block" id="AugmentedHartmann6Metric.f"><a class="viewcode-back" href="../../../metrics.html#ax.metrics.hartmann6.AugmentedHartmann6Metric.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">checked_cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">aug_hartmann6</span><span class="p">(</span><span class="n">x</span><span class="p">))</span></div></div>
 </pre></div>
 </div>
 </div>
