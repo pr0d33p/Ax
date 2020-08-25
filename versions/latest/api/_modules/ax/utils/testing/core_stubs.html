@@ -84,7 +84,9 @@ src="/js/documentation_options.js">
 <span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Experiments</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_experiment"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_experiment">[docs]</a><span class="k">def</span> <span class="nf">get_experiment</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>
@@ -312,7 +314,9 @@ src="/js/documentation_options.js">
     <span class="p">)</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Search Spaces</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_search_space"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_search_space">[docs]</a><span class="k">def</span> <span class="nf">get_search_space</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">SearchSpace</span><span class="p">:</span>
@@ -448,7 +452,9 @@ src="/js/documentation_options.js">
     <span class="p">)</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Trials</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_batch_trial"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_batch_trial">[docs]</a><span class="k">def</span> <span class="nf">get_batch_trial</span><span class="p">(</span><span class="n">abandon_arm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BatchTrial</span><span class="p">:</span>
@@ -518,7 +524,9 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">trial</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Parameters</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_range_parameter"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_range_parameter">[docs]</a><span class="k">def</span> <span class="nf">get_range_parameter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RangeParameter</span><span class="p">:</span>
@@ -551,7 +559,9 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">FixedParameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"z"</span><span class="p">,</span> <span class="n">parameter_type</span><span class="o">=</span><span class="n">ParameterType</span><span class="o">.</span><span class="n">BOOL</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Parameter Constraints</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_order_constraint"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_order_constraint">[docs]</a><span class="k">def</span> <span class="nf">get_order_constraint</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OrderConstraint</span><span class="p">:</span>
@@ -576,7 +586,9 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">SumConstraint</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">],</span> <span class="n">is_upper_bound</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Metrics</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_metric"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_metric">[docs]</a><span class="k">def</span> <span class="nf">get_metric</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Metric</span><span class="p">:</span>
@@ -622,7 +634,22 @@ src="/js/documentation_options.js">
     <span class="p">)</span></div>
 
 
-<span class="c1"># Optimization Configs</span>
+<span class="c1">##############################</span>
+<span class="c1"># Outcome Constraints</span>
+<span class="c1">##############################</span>
+
+
+<div class="viewcode-block" id="get_outcome_constraint"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_outcome_constraint">[docs]</a><span class="k">def</span> <span class="nf">get_outcome_constraint</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OutcomeConstraint</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">OutcomeConstraint</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">Metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"m2"</span><span class="p">),</span> <span class="n">op</span><span class="o">=</span><span class="n">ComparisonOp</span><span class="o">.</span><span class="n">GEQ</span><span class="p">,</span> <span class="n">bound</span><span class="o">=-</span><span class="mf">0.25</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_branin_outcome_constraint"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_outcome_constraint">[docs]</a><span class="k">def</span> <span class="nf">get_branin_outcome_constraint</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OutcomeConstraint</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">OutcomeConstraint</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_branin_metric</span><span class="p">(),</span> <span class="n">op</span><span class="o">=</span><span class="n">ComparisonOp</span><span class="o">.</span><span class="n">LEQ</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<span class="c1">##############################</span>
+<span class="c1"># Objectives</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_objective">[docs]</a><span class="k">def</span> <span class="nf">get_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
@@ -644,18 +671,6 @@ src="/js/documentation_options.js">
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_outcome_constraint"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_outcome_constraint">[docs]</a><span class="k">def</span> <span class="nf">get_outcome_constraint</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OutcomeConstraint</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">OutcomeConstraint</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">Metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"m2"</span><span class="p">),</span> <span class="n">op</span><span class="o">=</span><span class="n">ComparisonOp</span><span class="o">.</span><span class="n">GEQ</span><span class="p">,</span> <span class="n">bound</span><span class="o">=-</span><span class="mf">0.25</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="get_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
-    <span class="n">objective</span> <span class="o">=</span> <span class="n">get_objective</span><span class="p">()</span>
-    <span class="n">outcome_constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_outcome_constraint</span><span class="p">()]</span>
-    <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span>
-        <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span>
-    <span class="p">)</span></div>
-
-
 <div class="viewcode-block" id="get_branin_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_objective">[docs]</a><span class="k">def</span> <span class="nf">get_branin_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_branin_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
@@ -666,8 +681,29 @@ src="/js/documentation_options.js">
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_branin_outcome_constraint"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_outcome_constraint">[docs]</a><span class="k">def</span> <span class="nf">get_branin_outcome_constraint</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OutcomeConstraint</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">OutcomeConstraint</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_branin_metric</span><span class="p">(),</span> <span class="n">op</span><span class="o">=</span><span class="n">ComparisonOp</span><span class="o">.</span><span class="n">LEQ</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+<div class="viewcode-block" id="get_augmented_branin_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_branin_objective">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_branin_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_augmented_branin_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_hartmann_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_hartmann_objective">[docs]</a><span class="k">def</span> <span class="nf">get_hartmann_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_hartmann_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_augmented_hartmann_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_hartmann_objective">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_hartmann_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_augmented_hartmann_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<span class="c1">##############################</span>
+<span class="c1"># Optimization Configs</span>
+<span class="c1">##############################</span>
+
+
+<div class="viewcode-block" id="get_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">get_objective</span><span class="p">()</span>
+    <span class="n">outcome_constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_outcome_constraint</span><span class="p">()]</span>
+    <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span>
+        <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_optimization_config_no_constraints"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_optimization_config_no_constraints">[docs]</a><span class="k">def</span> <span class="nf">get_optimization_config_no_constraints</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
@@ -682,20 +718,8 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_branin_multi_objective</span><span class="p">())</span></div>
 
 
-<div class="viewcode-block" id="get_augmented_branin_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_branin_objective">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_branin_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_augmented_branin_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
-
-
 <div class="viewcode-block" id="get_augmented_branin_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_branin_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_branin_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_augmented_branin_objective</span><span class="p">())</span></div>
-
-
-<div class="viewcode-block" id="get_hartmann_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_hartmann_objective">[docs]</a><span class="k">def</span> <span class="nf">get_hartmann_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_hartmann_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="get_augmented_hartmann_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_augmented_hartmann_objective">[docs]</a><span class="k">def</span> <span class="nf">get_augmented_hartmann_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Objective</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">get_augmented_hartmann_metric</span><span class="p">(),</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_hartmann_optimization_config"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_hartmann_optimization_config">[docs]</a><span class="k">def</span> <span class="nf">get_hartmann_optimization_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OptimizationConfig</span><span class="p">:</span>
@@ -706,7 +730,9 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">OptimizationConfig</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">get_augmented_hartmann_objective</span><span class="p">())</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Arms</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_arm"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_arm">[docs]</a><span class="k">def</span> <span class="nf">get_arm</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Arm</span><span class="p">:</span>
@@ -779,7 +805,9 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">AbandonedArm</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"0_0"</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="s2">"foobar"</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Generator Runs</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_generator_run"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_generator_run">[docs]</a><span class="k">def</span> <span class="nf">get_generator_run</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">GeneratorRun</span><span class="p">:</span>
@@ -813,14 +841,18 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">GeneratorRun</span><span class="p">(</span><span class="n">arms</span><span class="o">=</span><span class="n">arms</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Runners</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_synthetic_runner"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_synthetic_runner">[docs]</a><span class="k">def</span> <span class="nf">get_synthetic_runner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">SyntheticRunner</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">SyntheticRunner</span><span class="p">(</span><span class="n">dummy_metadata</span><span class="o">=</span><span class="s2">"foobar"</span><span class="p">)</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Data</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_data"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_data">[docs]</a><span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">trial_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Data</span><span class="p">:</span>
@@ -849,7 +881,9 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">Data</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">df_dicts</span><span class="p">))</span></div>
 
 
+<span class="c1">##############################</span>
 <span class="c1"># Instances of types from core/types.py</span>
+<span class="c1">##############################</span>
 
 
 <div class="viewcode-block" id="get_model_mean"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_model_mean">[docs]</a><span class="k">def</span> <span class="nf">get_model_mean</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TModelMean</span><span class="p">:</span>
