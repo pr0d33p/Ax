@@ -37,7 +37,7 @@ src="/js/documentation_options.js">
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">ax.core.batch_trial</span> <span class="kn">import</span> <span class="n">BatchTrial</span>
 <span class="kn">from</span> <span class="nn">ax.core.experiment</span> <span class="kn">import</span> <span class="n">Experiment</span>
-<span class="kn">from</span> <span class="nn">ax.core.objective</span> <span class="kn">import</span> <span class="n">Objective</span><span class="p">,</span> <span class="n">ScalarizedObjective</span>
+<span class="kn">from</span> <span class="nn">ax.core.objective</span> <span class="kn">import</span> <span class="n">MultiObjective</span><span class="p">,</span> <span class="n">Objective</span><span class="p">,</span> <span class="n">ScalarizedObjective</span>
 <span class="kn">from</span> <span class="nn">ax.core.optimization_config</span> <span class="kn">import</span> <span class="n">OptimizationConfig</span>
 <span class="kn">from</span> <span class="nn">ax.core.trial</span> <span class="kn">import</span> <span class="n">Trial</span>
 <span class="kn">from</span> <span class="nn">ax.core.types</span> <span class="kn">import</span> <span class="n">TModelPredictArm</span><span class="p">,</span> <span class="n">TParameterization</span>
@@ -63,6 +63,13 @@ src="/js/documentation_options.js">
 <span class="sd">        Tuple of parameterization and a mapping from metric name to a tuple of</span>
 <span class="sd">            the corresponding objective mean and SEM.</span>
 <span class="sd">    """</span>
+    <span class="c1"># pyre-ignore [16]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span><span class="o">.</span><span class="n">objective</span><span class="p">,</span> <span class="n">MultiObjective</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">"get_best_raw_objective_point is deprecated for multi-objective "</span>
+            <span class="s2">"optimization. This method will return an arbitrary point on the "</span>
+            <span class="s2">"pareto frontier."</span>
+        <span class="p">)</span>
     <span class="n">opt_config</span> <span class="o">=</span> <span class="n">optimization_config</span> <span class="ow">or</span> <span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span>
     <span class="k">assert</span> <span class="n">opt_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span>
         <span class="s2">"Cannot identify the best point without an optimization config, but no "</span>
@@ -107,6 +114,13 @@ src="/js/documentation_options.js">
 <span class="sd">    Returns:</span>
 <span class="sd">        Tuple of parameterization and model predictions for it.</span>
 <span class="sd">    """</span>
+    <span class="c1"># pyre-ignore [16]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span><span class="o">.</span><span class="n">objective</span><span class="p">,</span> <span class="n">MultiObjective</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">"get_best_from_model_predictions is deprecated for multi-objective "</span>
+            <span class="s2">"optimization configs. This method will return an arbitrary point on "</span>
+            <span class="s2">"the pareto frontier."</span>
+        <span class="p">)</span>
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">trials</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="n">gr</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">Trial</span><span class="p">):</span>
@@ -140,7 +154,12 @@ src="/js/documentation_options.js">
 <span class="sd">    Returns:</span>
 <span class="sd">        Tuple of parameterization and model predictions for it.</span>
 <span class="sd">    """</span>
-
+    <span class="c1"># pyre-ignore [16]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">optimization_config</span><span class="o">.</span><span class="n">objective</span><span class="p">,</span> <span class="n">MultiObjective</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">"get_best_parameters is deprecated for multi-objective optimization. "</span>
+            <span class="s2">"This method will return an arbitrary point on the pareto frontier."</span>
+        <span class="p">)</span>
     <span class="c1"># Find latest trial which has a generator_run attached and get its predictions</span>
     <span class="n">model_predictions</span> <span class="o">=</span> <span class="n">get_best_from_model_predictions</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">experiment</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">model_predictions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>

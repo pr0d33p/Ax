@@ -86,6 +86,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="core.html#ax.core.batch_trial.AbandonedArm">AbandonedArm (class in ax.core.batch_trial)</a>
 </li>
+<li><a href="storage.html#ax.storage.botorch_modular_registry.ACQUISITION_FUNCTION_REGISTRY">ACQUISITION_FUNCTION_REGISTRY (in module ax.storage.botorch_modular_registry)</a>
+</li>
+<li><a href="storage.html#ax.storage.botorch_modular_registry.ACQUISITION_REGISTRY">ACQUISITION_REGISTRY (in module ax.storage.botorch_modular_registry)</a>
+</li>
 <li><a href="core.html#ax.core.batch_trial.BatchTrial.add_arm">add_arm() (ax.core.batch_trial.BatchTrial method)</a>
 <ul>
 <li><a href="core.html#ax.core.trial.Trial.add_arm">(ax.core.trial.Trial method)</a>
@@ -341,6 +345,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="modelbridge.html#module-ax.modelbridge.modelbridge_utils">ax.modelbridge.modelbridge_utils (module)</a>
 </li>
+<li><a href="modelbridge.html#module-ax.modelbridge.multi_objective_torch">ax.modelbridge.multi_objective_torch (module)</a>
+</li>
 <li><a href="modelbridge.html#module-ax.modelbridge.numpy">ax.modelbridge.numpy (module)</a>
 </li>
 <li><a href="modelbridge.html#module-ax.modelbridge.random">ax.modelbridge.random (module)</a>
@@ -468,6 +474,8 @@ src="/js/documentation_options.js">
 <li><a href="service.html#module-ax.service.utils.with_db_settings_base">ax.service.utils.with_db_settings_base (module)</a>
 </li>
 <li><a href="storage.html#module-ax.storage">ax.storage (module)</a>
+</li>
+<li><a href="storage.html#module-ax.storage.botorch_modular_registry">ax.storage.botorch_modular_registry (module)</a>
 </li>
 <li><a href="storage.html#module-ax.storage.json_store.decoder">ax.storage.json_store.decoder (module)</a>
 </li>
@@ -611,12 +619,12 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="core.html#ax.core.utils.best_feasible_objective">best_feasible_objective() (in module ax.core.utils)</a>
 </li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="models.html#ax.models.model_utils.best_in_sample_point">best_in_sample_point() (in module ax.models.model_utils)</a>
 </li>
 <li><a href="models.html#ax.models.model_utils.best_observed_point">best_observed_point() (in module ax.models.model_utils)</a>
 </li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="models.html#ax.models.discrete_base.DiscreteModel.best_point">best_point() (ax.models.discrete_base.DiscreteModel method)</a>
 <ul>
 <li><a href="models.html#ax.models.numpy_base.NumpyModel.best_point">(ax.models.numpy_base.NumpyModel method)</a>
@@ -629,6 +637,12 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.parameter.ParameterType.BOOL">BOOL (ax.core.parameter.ParameterType attribute)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.registry.Models.BOTORCH">BOTORCH (ax.modelbridge.registry.Models attribute)</a>
+</li>
+<li><a href="storage.html#ax.storage.json_store.encoders.botorch_model_to_dict">botorch_model_to_dict() (in module ax.storage.json_store.encoders)</a>
+</li>
+<li><a href="modelbridge.html#ax.modelbridge.registry.Models.BOTORCH_MODULAR">BOTORCH_MODULAR (ax.modelbridge.registry.Models attribute)</a>
+</li>
+<li><a href="storage.html#ax.storage.json_store.encoders.botorch_modular_to_dict">botorch_modular_to_dict() (in module ax.storage.json_store.encoders)</a>
 </li>
 <li><a href="models.html#ax.models.torch.botorch.BotorchModel">BotorchModel (class in ax.models.torch.botorch)</a>
 </li>
@@ -734,6 +748,10 @@ src="/js/documentation_options.js">
 </ul></li>
 <li><a href="modelbridge.html#ax.modelbridge.dispatch_utils.choose_generation_strategy">choose_generation_strategy() (in module ax.modelbridge.dispatch_utils)</a>
 </li>
+<li><a href="storage.html#ax.storage.json_store.decoders.class_from_json">class_from_json() (in module ax.storage.json_store.decoders)</a>
+</li>
+<li><a href="storage.html#ax.storage.botorch_modular_registry.CLASS_TO_REGISTRY">CLASS_TO_REGISTRY (in module ax.storage.botorch_modular_registry)</a>
+</li>
 <li><a href="storage.html#ax.storage.sqa_store.sqa_config.SQAConfig.class_to_sqa_class">class_to_sqa_class (ax.storage.sqa_store.sqa_config.SQAConfig attribute)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.sqa_config.SQAConfig.class_to_sqa_class">class_to_sqa_class() (ax.storage.sqa_store.sqa_config.SQAConfig property)</a>
@@ -816,10 +834,10 @@ src="/js/documentation_options.js">
 </ul></li>
 <li><a href="core.html#ax.core.data.clone_without_metrics">clone_without_metrics() (in module ax.core.data)</a>
 </li>
-<li><a href="utils.html#ax.utils.tutorials.cnn_utils.CNN">CNN (class in ax.utils.tutorials.cnn_utils)</a>
-</li>
 </ul></td>
 <td style="width: 33%; vertical-align: top;"><ul>
+<li><a href="utils.html#ax.utils.tutorials.cnn_utils.CNN">CNN (class in ax.utils.tutorials.cnn_utils)</a>
+</li>
 <li><a href="plot.html#ax.plot.color.COLORS">COLORS (class in ax.plot.color)</a>
 </li>
 <li><a href="core.html#ax.core.data.Data.column_data_types">column_data_types() (ax.core.data.Data static method)</a>
@@ -1032,7 +1050,7 @@ src="/js/documentation_options.js">
 <li><a href="models.html#ax.models.random.sobol.SobolGenerator.deduplicate">(ax.models.random.sobol.SobolGenerator attribute)</a>
 </li>
 </ul></li>
-<li><a href="modelbridge.html#ax.modelbridge.factory.DEFAULT_TORCH_DEVICE">DEFAULT_TORCH_DEVICE (in module ax.modelbridge.factory)</a>
+<li><a href="modelbridge.html#ax.modelbridge.factory.DEFAULT_EHVI_BATCH_LIMIT">DEFAULT_EHVI_BATCH_LIMIT (in module ax.modelbridge.factory)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.sqa_classes.SQAExperiment.default_trial_type">default_trial_type (ax.storage.sqa_store.sqa_classes.SQAExperiment attribute)</a>
 </li>
@@ -1419,6 +1437,8 @@ src="/js/documentation_options.js">
 <ul>
 <li><a href="modelbridge.html#ax.modelbridge.generation_strategy.GenerationStrategy.gen">(ax.modelbridge.generation_strategy.GenerationStrategy method)</a>
 </li>
+<li><a href="modelbridge.html#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.gen">(ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge method)</a>
+</li>
 <li><a href="models.html#ax.models.discrete.full_factorial.FullFactorialGenerator.gen">(ax.models.discrete.full_factorial.FullFactorialGenerator method)</a>
 </li>
 <li><a href="models.html#ax.models.discrete.thompson.ThompsonSampler.gen">(ax.models.discrete.thompson.ThompsonSampler method)</a>
@@ -1556,6 +1576,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_abandoned_arm">get_abandoned_arm() (in module ax.utils.testing.core_stubs)</a>
 </li>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_acquisition_function_type">get_acquisition_function_type() (in module ax.utils.testing.core_stubs)</a>
+</li>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_acquisition_type">get_acquisition_type() (in module ax.utils.testing.core_stubs)</a>
+</li>
 <li><a href="models.html#ax.models.torch.botorch_defaults.get_and_fit_model">get_and_fit_model() (in module ax.models.torch.botorch_defaults)</a>
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_arm">get_arm() (in module ax.utils.testing.core_stubs)</a>
@@ -1600,6 +1624,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.factory.get_botorch">get_botorch() (in module ax.modelbridge.factory)</a>
 </li>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_botorch_model">get_botorch_model() (in module ax.utils.testing.core_stubs)</a>
+</li>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_botorch_model_with_default_acquisition_class">get_botorch_model_with_default_acquisition_class() (in module ax.utils.testing.core_stubs)</a>
+</li>
 <li><a href="models.html#ax.models.torch.utils.get_botorch_objective">get_botorch_objective() (in module ax.models.torch.utils)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.modelbridge_utils.get_bounds_and_task">get_bounds_and_task() (in module ax.modelbridge.modelbridge_utils)</a>
@@ -1607,6 +1635,8 @@ src="/js/documentation_options.js">
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_branin_arms">get_branin_arms() (in module ax.utils.testing.core_stubs)</a>
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_branin_data">get_branin_data() (in module ax.utils.testing.core_stubs)</a>
+</li>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_branin_data_multi_objective">get_branin_data_multi_objective() (in module ax.utils.testing.core_stubs)</a>
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_branin_experiment">get_branin_experiment() (in module ax.utils.testing.core_stubs)</a>
 </li>
@@ -1647,10 +1677,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.db.get_engine">get_engine() (in module ax.storage.sqa_store.db)</a>
 </li>
-<li><a href="storage.html#ax.storage.sqa_store.decoder.Decoder.get_enum_name">get_enum_name() (ax.storage.sqa_store.decoder.Decoder method)</a>
-</li>
 </ul></td>
 <td style="width: 33%; vertical-align: top;"><ul>
+<li><a href="storage.html#ax.storage.sqa_store.decoder.Decoder.get_enum_name">get_enum_name() (ax.storage.sqa_store.decoder.Decoder method)</a>
+</li>
 <li><a href="storage.html#ax.storage.sqa_store.encoder.Encoder.get_enum_value">get_enum_value() (ax.storage.sqa_store.encoder.Encoder method)</a>
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_experiment">get_experiment() (in module ax.utils.testing.core_stubs)</a>
@@ -1728,6 +1758,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="core.html#ax.core.utils.get_missing_metrics_by_name">get_missing_metrics_by_name() (in module ax.core.utils)</a>
 </li>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_mll_type">get_mll_type() (in module ax.utils.testing.core_stubs)</a>
+</li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_model_covariance">get_model_covariance() (in module ax.utils.testing.core_stubs)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.registry.get_model_from_generator_run">get_model_from_generator_run() (in module ax.modelbridge.registry)</a>
@@ -1742,6 +1774,10 @@ src="/js/documentation_options.js">
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_model_predictions_per_arm">get_model_predictions_per_arm() (in module ax.utils.testing.core_stubs)</a>
 </li>
 <li><a href="core.html#ax.core.utils.get_model_times">get_model_times() (in module ax.core.utils)</a>
+</li>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_model_type">get_model_type() (in module ax.utils.testing.core_stubs)</a>
+</li>
+<li><a href="modelbridge.html#ax.modelbridge.factory.get_MOO_EHVI">get_MOO_EHVI() (in module ax.modelbridge.factory)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.factory.get_MOO_PAREGO">get_MOO_PAREGO() (in module ax.modelbridge.factory)</a>
 </li>
@@ -1838,6 +1874,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_sum_constraint2">get_sum_constraint2() (in module ax.utils.testing.core_stubs)</a>
 </li>
+<li><a href="utils.html#ax.utils.testing.core_stubs.get_surrogate">get_surrogate() (in module ax.utils.testing.core_stubs)</a>
+</li>
 <li><a href="utils.html#ax.utils.testing.core_stubs.get_synthetic_runner">get_synthetic_runner() (in module ax.utils.testing.core_stubs)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.factory.get_thompson">get_thompson() (in module ax.modelbridge.factory)</a>
@@ -1906,6 +1944,8 @@ src="/js/documentation_options.js">
 </li>
 </ul></li>
 <li><a href="plot.html#ax.plot.base.AxPlotTypes.HTML">HTML (ax.plot.base.AxPlotTypes attribute)</a>
+</li>
+<li><a href="modelbridge.html#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.hypervolume">hypervolume() (ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge method)</a>
 </li>
 </ul></td>
 </tr></table>
@@ -2202,7 +2242,10 @@ src="/js/documentation_options.js">
 <li><a href="service.html#ax.service.ax_client.AxClient.log_trial_failure">log_trial_failure() (ax.service.ax_client.AxClient method)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.registry.logger">logger (in module ax.modelbridge.registry)</a>
+<ul>
+<li><a href="service.html#ax.service.utils.instantiation.logger">(in module ax.service.utils.instantiation)</a>
 </li>
+</ul></li>
 <li><a href="core.html#ax.core.experiment.Experiment.lookup_data_for_trial">lookup_data_for_trial() (ax.core.experiment.Experiment method)</a>
 <ul>
 <li><a href="ax.html#ax.Experiment.lookup_data_for_trial">(ax.Experiment method)</a>
@@ -2365,6 +2408,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="core.html#ax.core.utils.MissingMetrics">MissingMetrics (class in ax.core.utils)</a>
 </li>
+<li><a href="storage.html#ax.storage.botorch_modular_registry.MLL_REGISTRY">MLL_REGISTRY (in module ax.storage.botorch_modular_registry)</a>
+</li>
 <li><a href="modelbridge.html#ax.modelbridge.array.ArrayModelBridge.model">model (ax.modelbridge.array.ArrayModelBridge attribute)</a>
 <ul>
 <li><a href="modelbridge.html#ax.modelbridge.discrete.DiscreteModelBridge.model">(ax.modelbridge.discrete.DiscreteModelBridge attribute)</a>
@@ -2411,6 +2456,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="core.html#ax.core.generator_run.GeneratorRun.model_predictions_by_arm">model_predictions_by_arm() (ax.core.generator_run.GeneratorRun property)</a>
 </li>
+<li><a href="storage.html#ax.storage.botorch_modular_registry.MODEL_REGISTRY">MODEL_REGISTRY (in module ax.storage.botorch_modular_registry)</a>
+</li>
 <li><a href="modelbridge.html#ax.modelbridge.base.ModelBridge.model_space">model_space() (ax.modelbridge.base.ModelBridge property)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.model_state_after_gen">model_state_after_gen (ax.storage.sqa_store.sqa_classes.SQAGeneratorRun attribute)</a>
@@ -2433,6 +2480,8 @@ src="/js/documentation_options.js">
 </ul></li>
 <li><a href="modelbridge.html#ax.modelbridge.registry.ModelSetup">ModelSetup (class in ax.modelbridge.registry)</a>
 </li>
+<li><a href="modelbridge.html#ax.modelbridge.registry.Models.MOO">MOO (ax.modelbridge.registry.Models attribute)</a>
+</li>
 <li><a href="storage.html#ax.storage.utils.MetricIntent.MULTI_OBJECTIVE">MULTI_OBJECTIVE (ax.storage.utils.MetricIntent attribute)</a>
 </li>
 <li><a href="storage.html#ax.storage.json_store.encoders.multi_objective_to_dict">multi_objective_to_dict() (in module ax.storage.json_store.encoders)</a>
@@ -2444,6 +2493,8 @@ src="/js/documentation_options.js">
 <li><a href="storage.html#ax.storage.json_store.encoders.multi_type_experiment_to_dict">multi_type_experiment_to_dict() (in module ax.storage.json_store.encoders)</a>
 </li>
 <li><a href="core.html#ax.core.objective.MultiObjective">MultiObjective (class in ax.core.objective)</a>
+</li>
+<li><a href="modelbridge.html#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge">MultiObjectiveTorchModelBridge (class in ax.modelbridge.multi_objective_torch)</a>
 </li>
 <li><a href="core.html#ax.core.multi_type_experiment.MultiTypeExperiment">MultiTypeExperiment (class in ax.core.multi_type_experiment)</a>
 </li>
@@ -2619,6 +2670,10 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.observation.observations_from_data">observations_from_data() (in module ax.core.observation)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.cross_validation.CVResult.observed">observed() (ax.modelbridge.cross_validation.CVResult property)</a>
+</li>
+<li><a href="modelbridge.html#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.observed_hypervolume">observed_hypervolume() (ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge method)</a>
+</li>
+<li><a href="modelbridge.html#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.observed_pareto_frontier">observed_pareto_frontier() (ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge method)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.transforms.one_hot.OneHot">OneHot (class in ax.modelbridge.transforms.one_hot)</a>
 </li>
@@ -2843,6 +2898,8 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.parameter.ParameterType">(class in ax.core.parameter)</a>
 </li>
 </ul></li>
+<li><a href="modelbridge.html#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.pareto_frontier">pareto_frontier() (ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge method)</a>
+</li>
 </ul></td>
 <td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="modelbridge.html#ax.modelbridge.modelbridge_utils.parse_observation_features">parse_observation_features() (in module ax.modelbridge.modelbridge_utils)</a>
@@ -3038,6 +3095,8 @@ src="/js/documentation_options.js">
 </ul></li>
 <li><a href="plot.html#ax.plot.helper.resize_subtitles">resize_subtitles() (in module ax.plot.helper)</a>
 </li>
+<li><a href="storage.html#ax.storage.botorch_modular_registry.REVERSE_MLL_REGISTRY">REVERSE_MLL_REGISTRY (in module ax.storage.botorch_modular_registry)</a>
+</li>
 <li><a href="plot.html#ax.plot.helper.rgb">rgb() (in module ax.plot.helper)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.rgba">rgba() (in module ax.plot.color)</a>
@@ -3131,8 +3190,6 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="models.html#ax.models.torch.botorch_defaults.scipy_optimizer">scipy_optimizer() (in module ax.models.torch.botorch_defaults)</a>
 </li>
-<li><a href="models.html#ax.models.torch.botorch_defaults.scipy_optimizer_list">scipy_optimizer_list() (in module ax.models.torch.botorch_defaults)</a>
-</li>
 <li><a href="models.html#ax.models.random.base.RandomModel.scramble">scramble (ax.models.random.base.RandomModel attribute)</a>
 <ul>
 <li><a href="models.html#ax.models.random.sobol.SobolGenerator.scramble">(ax.models.random.sobol.SobolGenerator attribute)</a>
@@ -3172,6 +3229,8 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.search_space.SearchSpace">(class in ax.core.search_space)</a>
 </li>
 </ul></li>
+<li><a href="exceptions.html#ax.exceptions.core.SearchSpaceExhausted">SearchSpaceExhausted</a>
+</li>
 <li><a href="modelbridge.html#ax.modelbridge.transforms.search_space_to_choice.SearchSpaceToChoice">SearchSpaceToChoice (class in ax.modelbridge.transforms.search_space_to_choice)</a>
 </li>
 <li><a href="models.html#ax.models.random.base.RandomModel.seed">seed (ax.models.random.base.RandomModel attribute)</a>
@@ -3234,10 +3293,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="storage.html#ax.storage.json_store.encoders.simple_experiment_to_dict">simple_experiment_to_dict() (in module ax.storage.json_store.encoders)</a>
 </li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="benchmark.html#ax.benchmark.benchmark_problem.SimpleBenchmarkProblem">SimpleBenchmarkProblem (class in ax.benchmark.benchmark_problem)</a>
 </li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="ax.html#ax.SimpleExperiment">SimpleExperiment (class in ax)</a>
 <ul>
 <li><a href="core.html#ax.core.simple_experiment.SimpleExperiment">(class in ax.core.simple_experiment)</a>
@@ -3369,6 +3428,8 @@ src="/js/documentation_options.js">
 <li><a href="ax.html#ax.Experiment.supports_trial_type">(ax.Experiment method)</a>
 </li>
 </ul></li>
+<li><a href="storage.html#ax.storage.json_store.encoders.surrogate_to_dict">surrogate_to_dict() (in module ax.storage.json_store.encoders)</a>
+</li>
 <li><a href="utils.html#ax.utils.measurement.synthetic_functions.SyntheticFunction">SyntheticFunction (class in ax.utils.measurement.synthetic_functions)</a>
 </li>
 <li><a href="runners.html#ax.runners.synthetic.SyntheticRunner">SyntheticRunner (class in ax.runners.synthetic)</a>
@@ -3791,6 +3852,8 @@ src="/js/documentation_options.js">
 <li><a href="storage.html#ax.storage.sqa_store.structs.DBSettings.url">url() (ax.storage.sqa_store.structs.DBSettings property)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.generation_strategy.GenerationStep.use_update">use_update() (ax.modelbridge.generation_strategy.GenerationStep property)</a>
+</li>
+<li><a href="exceptions.html#ax.exceptions.core.UserInputError">UserInputError</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.generation_strategy.GenerationStrategy.uses_non_registered_models">uses_non_registered_models() (ax.modelbridge.generation_strategy.GenerationStrategy property)</a>
 </li>

@@ -45,6 +45,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.search_space</span> <span class="kn">import</span> <span class="n">SearchSpace</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.base</span> <span class="kn">import</span> <span class="n">ModelBridge</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.discrete</span> <span class="kn">import</span> <span class="n">DiscreteModelBridge</span>
+<span class="kn">from</span> <span class="nn">ax.modelbridge.multi_objective_torch</span> <span class="kn">import</span> <span class="n">MultiObjectiveTorchModelBridge</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.random</span> <span class="kn">import</span> <span class="n">RandomModelBridge</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.torch</span> <span class="kn">import</span> <span class="n">TorchModelBridge</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.transforms.base</span> <span class="kn">import</span> <span class="n">Transform</span>
@@ -72,6 +73,8 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.models.torch.botorch</span> <span class="kn">import</span> <span class="n">BotorchModel</span>
 <span class="kn">from</span> <span class="nn">ax.models.torch.botorch_kg</span> <span class="kn">import</span> <span class="n">KnowledgeGradient</span>
 <span class="kn">from</span> <span class="nn">ax.models.torch.botorch_mes</span> <span class="kn">import</span> <span class="n">MaxValueEntropySearch</span>
+<span class="kn">from</span> <span class="nn">ax.models.torch.botorch_modular.model</span> <span class="kn">import</span> <span class="n">BoTorchModel</span>
+<span class="kn">from</span> <span class="nn">ax.models.torch.botorch_moo</span> <span class="kn">import</span> <span class="n">MultiObjectiveBotorchModel</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.kwargs</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">consolidate_kwargs</span><span class="p">,</span>
     <span class="n">get_function_argument_names</span><span class="p">,</span>
@@ -166,6 +169,12 @@ src="/js/documentation_options.js">
         <span class="n">transforms</span><span class="o">=</span><span class="n">Cont_X_trans</span> <span class="o">+</span> <span class="n">Y_trans</span><span class="p">,</span>
         <span class="n">standard_bridge_kwargs</span><span class="o">=</span><span class="n">STANDARD_TORCH_BRIDGE_KWARGS</span><span class="p">,</span>
     <span class="p">),</span>
+    <span class="s2">"BoTorch"</span><span class="p">:</span> <span class="n">ModelSetup</span><span class="p">(</span>
+        <span class="n">bridge_class</span><span class="o">=</span><span class="n">TorchModelBridge</span><span class="p">,</span>
+        <span class="n">model_class</span><span class="o">=</span><span class="n">BoTorchModel</span><span class="p">,</span>
+        <span class="n">transforms</span><span class="o">=</span><span class="n">Cont_X_trans</span> <span class="o">+</span> <span class="n">Y_trans</span><span class="p">,</span>
+        <span class="n">standard_bridge_kwargs</span><span class="o">=</span><span class="n">STANDARD_TORCH_BRIDGE_KWARGS</span><span class="p">,</span>
+    <span class="p">),</span>
     <span class="s2">"GPEI"</span><span class="p">:</span> <span class="n">ModelSetup</span><span class="p">(</span>
         <span class="n">bridge_class</span><span class="o">=</span><span class="n">TorchModelBridge</span><span class="p">,</span>
         <span class="n">model_class</span><span class="o">=</span><span class="n">BotorchModel</span><span class="p">,</span>
@@ -209,6 +218,12 @@ src="/js/documentation_options.js">
         <span class="n">model_class</span><span class="o">=</span><span class="n">UniformGenerator</span><span class="p">,</span>
         <span class="n">transforms</span><span class="o">=</span><span class="n">Cont_X_trans</span><span class="p">,</span>
     <span class="p">),</span>
+    <span class="s2">"MOO"</span><span class="p">:</span> <span class="n">ModelSetup</span><span class="p">(</span>
+        <span class="n">bridge_class</span><span class="o">=</span><span class="n">MultiObjectiveTorchModelBridge</span><span class="p">,</span>
+        <span class="n">model_class</span><span class="o">=</span><span class="n">MultiObjectiveBotorchModel</span><span class="p">,</span>
+        <span class="n">transforms</span><span class="o">=</span><span class="n">Cont_X_trans</span> <span class="o">+</span> <span class="n">Y_trans</span><span class="p">,</span>
+        <span class="n">standard_bridge_kwargs</span><span class="o">=</span><span class="n">STANDARD_TORCH_BRIDGE_KWARGS</span><span class="p">,</span>
+    <span class="p">),</span>
 <span class="p">}</span>
 
 
@@ -236,8 +251,10 @@ src="/js/documentation_options.js">
     <span class="n">FACTORIAL</span> <span class="o">=</span> <span class="s2">"Factorial"</span>
     <span class="n">THOMPSON</span> <span class="o">=</span> <span class="s2">"Thompson"</span>
     <span class="n">BOTORCH</span> <span class="o">=</span> <span class="s2">"BO"</span>
+    <span class="n">BOTORCH_MODULAR</span> <span class="o">=</span> <span class="s2">"BoTorch"</span>
     <span class="n">EMPIRICAL_BAYES_THOMPSON</span> <span class="o">=</span> <span class="s2">"EB"</span>
     <span class="n">UNIFORM</span> <span class="o">=</span> <span class="s2">"Uniform"</span>
+    <span class="n">MOO</span> <span class="o">=</span> <span class="s2">"MOO"</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">model_class</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Model</span><span class="p">]:</span>

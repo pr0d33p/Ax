@@ -62,12 +62,16 @@ src="/js/documentation_options.js">
     <span class="n">TParamValue</span><span class="p">,</span>
     <span class="n">TTrialEvaluation</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ax.utils.common.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">checked_cast</span><span class="p">,</span>
     <span class="n">checked_cast_to_tuple</span><span class="p">,</span>
     <span class="n">not_none</span><span class="p">,</span>
     <span class="n">numpy_type_to_python_type</span><span class="p">,</span>
 <span class="p">)</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <span class="sd">"""Utilities for RESTful-like instantiation of Ax classes needed in AxClient."""</span>
@@ -77,6 +81,19 @@ src="/js/documentation_options.js">
 <span class="n">PARAM_CLASSES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"range"</span><span class="p">,</span> <span class="s2">"choice"</span><span class="p">,</span> <span class="s2">"fixed"</span><span class="p">]</span>
 <span class="n">PARAM_TYPES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"int"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">"float"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">"bool"</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="s2">"str"</span><span class="p">:</span> <span class="nb">str</span><span class="p">}</span>
 <span class="n">COMPARISON_OPS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"&lt;="</span><span class="p">:</span> <span class="n">ComparisonOp</span><span class="o">.</span><span class="n">LEQ</span><span class="p">,</span> <span class="s2">"&gt;="</span><span class="p">:</span> <span class="n">ComparisonOp</span><span class="o">.</span><span class="n">GEQ</span><span class="p">}</span>
+<span class="n">EXPECTED_KEYS_IN_PARAM_REPR</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"name"</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">,</span>
+    <span class="s2">"values"</span><span class="p">,</span>
+    <span class="s2">"bounds"</span><span class="p">,</span>
+    <span class="s2">"value"</span><span class="p">,</span>
+    <span class="s2">"value_type"</span><span class="p">,</span>
+    <span class="s2">"log_scale"</span><span class="p">,</span>
+    <span class="s2">"target_value"</span><span class="p">,</span>
+    <span class="s2">"is_fidelity"</span><span class="p">,</span>
+    <span class="s2">"is_ordered"</span><span class="p">,</span>
+    <span class="s2">"is_task"</span><span class="p">,</span>
+<span class="p">}</span>
 
 
 <span class="k">def</span> <span class="nf">_get_parameter_type</span><span class="p">(</span><span class="n">python_type</span><span class="p">:</span> <span class="n">TParameterType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParameterType</span><span class="p">:</span>
@@ -95,6 +112,11 @@ src="/js/documentation_options.js">
         <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">typ</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">),</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">"Values in `</span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">` not of the same type and no `value_type` was "</span>
             <span class="sa">f</span><span class="s2">"explicitly specified; cannot infer value type for parameter </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2">."</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Inferred value type of </span><span class="si">{</span><span class="n">parameter_type</span><span class="si">}</span><span class="s2"> for parameter </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2">. "</span>
+            <span class="s2">"If that is not the expected value type, you can explicity specify "</span>
+            <span class="s2">"'value_type' ('int', 'float', 'bool' or 'str') in parameter dict."</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">parameter_type</span>
     <span class="k">return</span> <span class="n">_get_parameter_type</span><span class="p">(</span><span class="n">PARAM_TYPES</span><span class="p">[</span><span class="n">typ</span><span class="p">])</span>  <span class="c1"># pyre-ignore[6]</span>
@@ -164,6 +186,19 @@ src="/js/documentation_options.js">
     <span class="n">representation</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">TParamValue</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">TParamValue</span><span class="p">]]]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Parameter</span><span class="p">:</span>
     <span class="sd">"""Instantiate a parameter from JSON representation."""</span>
+    <span class="k">if</span> <span class="s2">"parameter_type"</span> <span class="ow">in</span> <span class="n">representation</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"'parameter_type' is not an expected key in parameter dictionary. "</span>
+            <span class="s2">"If you are looking to specify the type of values that this "</span>
+            <span class="s2">"parameter should take, use 'value_type' (expects 'int', 'float', "</span>
+            <span class="s2">"'str' or 'bool')."</span>
+        <span class="p">)</span>
+    <span class="n">unexpected_keys</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">representation</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="n">EXPECTED_KEYS_IN_PARAM_REPR</span>
+    <span class="k">if</span> <span class="n">unexpected_keys</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Unexpected keys </span><span class="si">{</span><span class="n">unexpected_keys</span><span class="si">}</span><span class="s2"> in parameter representation."</span>
+            <span class="sa">f</span><span class="s2">"Exhaustive set of expected keys: </span><span class="si">{</span><span class="n">EXPECTED_KEYS_IN_PARAM_REPR</span><span class="si">}</span><span class="s2">."</span>
+        <span class="p">)</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">representation</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="s2">"Parameter name must be a string."</span>
     <span class="n">parameter_class</span> <span class="o">=</span> <span class="n">representation</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span>
@@ -364,6 +399,15 @@ src="/js/documentation_options.js">
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>  <span class="c1"># pragma: no cover</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Raw data is expected to be just for one arm."</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">metric_name</span><span class="p">,</span> <span class="n">dat</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">"Raw data for an arm is expected to either be a tuple of "</span>
+                        <span class="s2">"numerical mean and SEM or just a numerical mean."</span>
+                        <span class="sa">f</span><span class="s2">"Got: </span><span class="si">{</span><span class="n">dat</span><span class="si">}</span><span class="s2"> for metric '</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s2">'."</span>
+                    <span class="p">)</span>
+                <span class="n">raw_data</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">dat</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">raw_data</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">raw_data</span>

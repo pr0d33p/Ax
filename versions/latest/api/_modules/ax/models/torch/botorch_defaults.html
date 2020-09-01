@@ -54,7 +54,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">botorch.models.model</span> <span class="kn">import</span> <span class="n">Model</span>
 <span class="kn">from</span> <span class="nn">botorch.models.model_list_gp_regression</span> <span class="kn">import</span> <span class="n">ModelListGP</span>
 <span class="kn">from</span> <span class="nn">botorch.models.multitask</span> <span class="kn">import</span> <span class="n">FixedNoiseMultiTaskGP</span><span class="p">,</span> <span class="n">MultiTaskGP</span>
-<span class="kn">from</span> <span class="nn">botorch.optim.optimize</span> <span class="kn">import</span> <span class="n">optimize_acqf</span><span class="p">,</span> <span class="n">optimize_acqf_list</span>
+<span class="kn">from</span> <span class="nn">botorch.optim.optimize</span> <span class="kn">import</span> <span class="n">optimize_acqf</span>
 <span class="kn">from</span> <span class="nn">botorch.utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">get_objective_weights_transform</span><span class="p">,</span>
     <span class="n">get_outcome_constraint_transforms</span><span class="p">,</span>
@@ -295,7 +295,6 @@ src="/js/documentation_options.js">
 <span class="sd">          values, where `i`-th element is the expected acquisition value</span>
 <span class="sd">          conditional on having observed candidates `0,1,...,i-1`.</span>
 <span class="sd">    """</span>
-
     <span class="n">num_restarts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"num_restarts"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
     <span class="n">raw_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"num_raw_samples"</span><span class="p">,</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">num_restarts</span><span class="p">)</span>
 
@@ -316,60 +315,6 @@ src="/js/documentation_options.js">
         <span class="n">inequality_constraints</span><span class="o">=</span><span class="n">inequality_constraints</span><span class="p">,</span>
         <span class="n">fixed_features</span><span class="o">=</span><span class="n">fixed_features</span><span class="p">,</span>
         <span class="n">sequential</span><span class="o">=</span><span class="n">sequential</span><span class="p">,</span>
-        <span class="n">post_processing_func</span><span class="o">=</span><span class="n">rounding_func</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">expected_acquisition_value</span></div>
-
-
-<span class="c1"># TODO (jej): rewrite optimize_acqf wrappers to avoid duplicate code.</span>
-<div class="viewcode-block" id="scipy_optimizer_list"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.botorch_defaults.scipy_optimizer_list">[docs]</a><span class="k">def</span> <span class="nf">scipy_optimizer_list</span><span class="p">(</span>
-    <span class="n">acq_function_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">AcquisitionFunction</span><span class="p">],</span>
-    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
-    <span class="n">inequality_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">fixed_features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">rounding_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
-    <span class="sa">r</span><span class="sd">"""Sequential optimizer using scipy's minimize module on a numpy-adaptor.</span>
-
-<span class="sd">    The ith acquisition in the sequence uses the ith given acquisition_function.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        acq_function_list: A list of botorch AcquisitionFunctions,</span>
-<span class="sd">            optimized sequentially.</span>
-<span class="sd">        bounds: A `2 x d`-dim tensor, where `bounds[0]` (`bounds[1]`) are the</span>
-<span class="sd">            lower (upper) bounds of the feasible hyperrectangle.</span>
-<span class="sd">        n: The number of candidates to generate.</span>
-<span class="sd">        inequality constraints: A list of tuples (indices, coefficients, rhs),</span>
-<span class="sd">            with each tuple encoding an inequality constraint of the form</span>
-<span class="sd">            `\sum_i (X[indices[i]] * coefficients[i]) &gt;= rhs`</span>
-<span class="sd">        fixed_features: A map {feature_index: value} for features that should</span>
-<span class="sd">            be fixed to a particular value during generation.</span>
-<span class="sd">        rounding_func: A function that rounds an optimization result</span>
-<span class="sd">            appropriately (i.e., according to `round-trip` transformations).</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        2-element tuple containing</span>
-
-<span class="sd">        - A `n x d`-dim tensor of generated candidates.</span>
-<span class="sd">        - A `n`-dim tensor of conditional acquisition</span>
-<span class="sd">          values, where `i`-th element is the expected acquisition value</span>
-<span class="sd">          conditional on having observed candidates `0,1,...,i-1`.</span>
-<span class="sd">    """</span>
-    <span class="n">num_restarts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"num_restarts"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-    <span class="n">raw_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"num_raw_samples"</span><span class="p">,</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">num_restarts</span><span class="p">)</span>
-
-    <span class="c1"># use SLSQP by default for small problems since it yields faster wall times</span>
-    <span class="k">if</span> <span class="s2">"method"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s2">"method"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"SLSQP"</span>
-    <span class="n">X</span><span class="p">,</span> <span class="n">expected_acquisition_value</span> <span class="o">=</span> <span class="n">optimize_acqf_list</span><span class="p">(</span>
-        <span class="n">acq_function_list</span><span class="o">=</span><span class="n">acq_function_list</span><span class="p">,</span>
-        <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
-        <span class="n">num_restarts</span><span class="o">=</span><span class="n">num_restarts</span><span class="p">,</span>
-        <span class="n">raw_samples</span><span class="o">=</span><span class="n">raw_samples</span><span class="p">,</span>
-        <span class="n">options</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="n">inequality_constraints</span><span class="o">=</span><span class="n">inequality_constraints</span><span class="p">,</span>
-        <span class="n">fixed_features</span><span class="o">=</span><span class="n">fixed_features</span><span class="p">,</span>
         <span class="n">post_processing_func</span><span class="o">=</span><span class="n">rounding_func</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">expected_acquisition_value</span></div>

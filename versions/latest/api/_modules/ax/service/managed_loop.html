@@ -32,6 +32,8 @@ src="/js/documentation_options.js">
 <span class="c1"># This source code is licensed under the MIT license found in the</span>
 <span class="c1"># LICENSE file in the root directory of this source tree.</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
@@ -39,6 +41,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.search_space</span> <span class="kn">import</span> <span class="n">SearchSpace</span>
 <span class="kn">from</span> <span class="nn">ax.core.simple_experiment</span> <span class="kn">import</span> <span class="n">SimpleExperiment</span><span class="p">,</span> <span class="n">TEvaluationFunction</span>
 <span class="kn">from</span> <span class="nn">ax.core.types</span> <span class="kn">import</span> <span class="n">TModelPredictArm</span><span class="p">,</span> <span class="n">TParameterization</span>
+<span class="kn">from</span> <span class="nn">ax.exceptions.core</span> <span class="kn">import</span> <span class="n">SearchSpaceExhausted</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.base</span> <span class="kn">import</span> <span class="n">ModelBridge</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.dispatch_utils</span> <span class="kn">import</span> <span class="n">choose_generation_strategy</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.generation_strategy</span> <span class="kn">import</span> <span class="n">GenerationStrategy</span>
@@ -185,13 +188,23 @@ src="/js/documentation_options.js">
         <span class="n">trial</span><span class="o">.</span><span class="n">fetch_data</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_trial</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="OptimizationLoop.full_run"><a class="viewcode-back" href="../../../service.html#ax.OptimizationLoop.full_run">[docs]</a>    <span class="k">def</span> <span class="nf">full_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"OptimizationLoop"</span><span class="p">:</span>
+<div class="viewcode-block" id="OptimizationLoop.full_run"><a class="viewcode-back" href="../../../service.html#ax.OptimizationLoop.full_run">[docs]</a>    <span class="k">def</span> <span class="nf">full_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptimizationLoop</span><span class="p">:</span>
         <span class="sd">"""Runs full optimization loop as defined in the provided optimization</span>
 <span class="sd">        plan."""</span>
         <span class="n">num_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_trials</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Started full optimization with </span><span class="si">{</span><span class="n">num_steps</span><span class="si">}</span><span class="s2"> steps."</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">run_trial</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">run_trial</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">SearchSpaceExhausted</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Stopped optimization as the search space is exhaused. Message "</span>
+                    <span class="sa">f</span><span class="s2">"from generation strategy: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">."</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"Encountered exception during optimization: "</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="OptimizationLoop.get_best_point"><a class="viewcode-back" href="../../../service.html#ax.OptimizationLoop.get_best_point">[docs]</a>    <span class="k">def</span> <span class="nf">get_best_point</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">TParameterization</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TModelPredictArm</span><span class="p">]]:</span>

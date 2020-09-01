@@ -59,7 +59,10 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.modelbridge.generation_strategy</span> <span class="kn">import</span> <span class="n">GenerationStep</span><span class="p">,</span> <span class="n">GenerationStrategy</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.registry</span> <span class="kn">import</span> <span class="n">_encode_callables_as_references</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.transforms.base</span> <span class="kn">import</span> <span class="n">Transform</span>
+<span class="kn">from</span> <span class="nn">ax.models.torch.botorch_modular.model</span> <span class="kn">import</span> <span class="n">BoTorchModel</span>
+<span class="kn">from</span> <span class="nn">ax.models.torch.botorch_modular.surrogate</span> <span class="kn">import</span> <span class="n">Surrogate</span>
 <span class="kn">from</span> <span class="nn">ax.runners.synthetic</span> <span class="kn">import</span> <span class="n">SyntheticRunner</span>
+<span class="kn">from</span> <span class="nn">ax.storage.botorch_modular_registry</span> <span class="kn">import</span> <span class="n">CLASS_TO_REGISTRY</span>
 <span class="kn">from</span> <span class="nn">ax.storage.transform_registry</span> <span class="kn">import</span> <span class="n">TRANSFORM_REGISTRY</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.serialization</span> <span class="kn">import</span> <span class="n">serialize_init_args</span>
 
@@ -436,6 +439,47 @@ src="/js/documentation_options.js">
         <span class="k">return</span> <span class="n">properties</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Expected benchmark problem, got: </span><span class="si">{</span><span class="n">benchmark_problem</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="botorch_model_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.botorch_model_to_dict">[docs]</a><span class="k">def</span> <span class="nf">botorch_model_to_dict</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">BoTorchModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Convert Ax model to a dictionary."""</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"__type"</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s2">"surrogate"</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">surrogate</span><span class="p">,</span>
+        <span class="s2">"surrogate_fit_options"</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">surrogate_fit_options</span><span class="p">,</span>
+        <span class="s2">"acquisition_class"</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">acquisition_class</span><span class="p">,</span>
+        <span class="s2">"botorch_acqf_class"</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">botorch_acqf_class</span><span class="p">,</span>
+        <span class="s2">"acquisition_options"</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">acquisition_options</span> <span class="ow">or</span> <span class="p">{},</span>
+    <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="surrogate_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.surrogate_to_dict">[docs]</a><span class="k">def</span> <span class="nf">surrogate_to_dict</span><span class="p">(</span><span class="n">surrogate</span><span class="p">:</span> <span class="n">Surrogate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Convert Ax surrogate to a dictionary."""</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"__type"</span><span class="p">:</span> <span class="n">surrogate</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s2">"botorch_model_class"</span><span class="p">:</span> <span class="n">surrogate</span><span class="o">.</span><span class="n">botorch_model_class</span><span class="p">,</span>
+        <span class="s2">"mll_class"</span><span class="p">:</span> <span class="n">surrogate</span><span class="o">.</span><span class="n">mll_class</span><span class="p">,</span>
+        <span class="c1"># TODO: Add these once they are implemented.</span>
+        <span class="c1"># "kernel_class": surrogate.kernel_class,</span>
+        <span class="c1"># "kernel_options": surrogate.kernel_options or {},</span>
+        <span class="c1"># "likelihood": surrogate.likelihood,</span>
+    <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="botorch_modular_to_dict"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.encoders.botorch_modular_to_dict">[docs]</a><span class="k">def</span> <span class="nf">botorch_modular_to_dict</span><span class="p">(</span><span class="n">class_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Convert any class to a dictionary."""</span>
+    <span class="k">for</span> <span class="n">_class</span> <span class="ow">in</span> <span class="n">CLASS_TO_REGISTRY</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">class_type</span><span class="p">,</span> <span class="n">_class</span><span class="p">):</span>
+            <span class="n">registry</span> <span class="o">=</span> <span class="n">CLASS_TO_REGISTRY</span><span class="p">[</span><span class="n">_class</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">"__type"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Type[</span><span class="si">{</span><span class="n">_class</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">]"</span><span class="p">,</span>
+                <span class="s2">"index"</span><span class="p">:</span> <span class="n">registry</span><span class="p">[</span><span class="n">class_type</span><span class="p">],</span>
+                <span class="s2">"class"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">_class</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="p">}</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">class_type</span><span class="si">}</span><span class="s2"> does not have a corresponding parent class in "</span>
+        <span class="s2">"CLASS_TO_STR_AND_REGISTRY."</span>
+    <span class="p">)</span></div>
 </pre></div>
 </div>
 </div>

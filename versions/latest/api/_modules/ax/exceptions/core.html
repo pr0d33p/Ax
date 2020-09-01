@@ -50,6 +50,12 @@ src="/js/documentation_options.js">
         <span class="k">return</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"hint"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)])</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
 
 
+<div class="viewcode-block" id="UserInputError"><a class="viewcode-back" href="../../../exceptions.html#ax.exceptions.core.UserInputError">[docs]</a><span class="k">class</span> <span class="nc">UserInputError</span><span class="p">(</span><span class="n">AxError</span><span class="p">):</span>
+    <span class="sd">"""Raised when the user passes in an invalid input"""</span>
+
+    <span class="k">pass</span></div>
+
+
 <div class="viewcode-block" id="UnsupportedError"><a class="viewcode-back" href="../../../exceptions.html#ax.exceptions.core.UnsupportedError">[docs]</a><span class="k">class</span> <span class="nc">UnsupportedError</span><span class="p">(</span><span class="n">AxError</span><span class="p">):</span>
     <span class="sd">"""Raised when an unsupported request is made.</span>
 
@@ -102,6 +108,17 @@ src="/js/documentation_options.js">
     <span class="sd">"""Raised when experiment has incomplete or incorrect information."""</span>
 
     <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SearchSpaceExhausted"><a class="viewcode-back" href="../../../exceptions.html#ax.exceptions.core.SearchSpaceExhausted">[docs]</a><span class="k">class</span> <span class="nc">SearchSpaceExhausted</span><span class="p">(</span><span class="n">AxError</span><span class="p">):</span>
+    <span class="sd">"""Raised when using an algorithm that deduplicates points and no more</span>
+<span class="sd">    new points can be sampled from the search space."""</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">message</span><span class="o">=</span><span class="n">message</span>
+            <span class="ow">or</span> <span class="s2">"No more new points could be sampled in the search space."</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AxWarning"><a class="viewcode-back" href="../../../exceptions.html#ax.exceptions.core.AxWarning">[docs]</a><span class="k">class</span> <span class="nc">AxWarning</span><span class="p">(</span><span class="ne">Warning</span><span class="p">):</span>

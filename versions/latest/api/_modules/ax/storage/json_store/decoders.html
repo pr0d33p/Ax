@@ -42,6 +42,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.runner</span> <span class="kn">import</span> <span class="n">Runner</span>
 <span class="kn">from</span> <span class="nn">ax.core.trial</span> <span class="kn">import</span> <span class="n">Trial</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.transforms.base</span> <span class="kn">import</span> <span class="n">Transform</span>
+<span class="kn">from</span> <span class="nn">ax.storage.botorch_modular_registry</span> <span class="kn">import</span> <span class="n">CLASS_TO_REVERSE_REGISTRY</span>
 <span class="kn">from</span> <span class="nn">ax.storage.transform_registry</span> <span class="kn">import</span> <span class="n">REVERSE_TRANSFORM_REGISTRY</span>
 
 
@@ -157,6 +158,24 @@ src="/js/documentation_options.js">
     <span class="k">if</span> <span class="n">index_in_registry</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">REVERSE_TRANSFORM_REGISTRY</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown transform '</span><span class="si">{</span><span class="n">object_json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'transform_type'</span><span class="p">)</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">REVERSE_TRANSFORM_REGISTRY</span><span class="p">[</span><span class="n">index_in_registry</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="class_from_json"><a class="viewcode-back" href="../../../../storage.html#ax.storage.json_store.decoders.class_from_json">[docs]</a><span class="k">def</span> <span class="nf">class_from_json</span><span class="p">(</span><span class="n">json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">"""Load any class registered in `CLASS_DECODER_REGISTRY` from JSON."""</span>
+    <span class="n">index_in_registry</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"index"</span><span class="p">)</span>
+    <span class="n">class_path</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"class"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_class</span> <span class="ow">in</span> <span class="n">CLASS_TO_REVERSE_REGISTRY</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">class_path</span> <span class="o">==</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">_class</span><span class="si">}</span><span class="s2">"</span><span class="p">:</span>
+            <span class="n">reverse_registry</span> <span class="o">=</span> <span class="n">CLASS_TO_REVERSE_REGISTRY</span><span class="p">[</span><span class="n">_class</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">index_in_registry</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">reverse_registry</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">class_path</span><span class="si">}</span><span class="s2">' is not registered in the reverse registry."</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">reverse_registry</span><span class="p">[</span><span class="n">index_in_registry</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">class_path</span><span class="si">}</span><span class="s2"> does not have a corresponding entry in "</span>
+        <span class="s2">"CLASS_TO_REVERSE_REGISTRY."</span>
+    <span class="p">)</span></div>
 </pre></div>
 </div>
 </div>

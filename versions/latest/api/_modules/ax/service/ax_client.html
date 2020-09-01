@@ -46,6 +46,7 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.core.data</span> <span class="kn">import</span> <span class="n">Data</span>
 <span class="kn">from</span> <span class="nn">ax.core.experiment</span> <span class="kn">import</span> <span class="n">Experiment</span>
 <span class="kn">from</span> <span class="nn">ax.core.generator_run</span> <span class="kn">import</span> <span class="n">GeneratorRun</span>
+<span class="kn">from</span> <span class="nn">ax.core.metric</span> <span class="kn">import</span> <span class="n">Metric</span>
 <span class="kn">from</span> <span class="nn">ax.core.trial</span> <span class="kn">import</span> <span class="n">Trial</span>
 <span class="kn">from</span> <span class="nn">ax.core.types</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">TEvaluationOutcome</span><span class="p">,</span>
@@ -195,12 +196,23 @@ src="/js/documentation_options.js">
 
 <span class="sd">        Args:</span>
 <span class="sd">            parameters: List of dictionaries representing parameters in the</span>
-<span class="sd">                experiment search space. Required elements in the dictionaries</span>
-<span class="sd">                are: "name" (name of this parameter, string), "type" (type of the</span>
-<span class="sd">                parameter: "range", "fixed", or "choice", string), and "bounds"</span>
-<span class="sd">                for range parameters (list of two values, lower bound first),</span>
-<span class="sd">                "values" for choice parameters (list of values), and "value" for</span>
-<span class="sd">                fixed parameters (single value).</span>
+<span class="sd">                experiment search space.</span>
+<span class="sd">                Required elements in the dictionaries are:</span>
+<span class="sd">                1. "name" (name of parameter, string),</span>
+<span class="sd">                2. "type" (type of parameter: "range", "fixed", or "choice", string),</span>
+<span class="sd">                and one of the following:</span>
+<span class="sd">                3a. "bounds" for range parameters (list of two values, lower bound</span>
+<span class="sd">                first),</span>
+<span class="sd">                3b. "values" for choice parameters (list of values), or</span>
+<span class="sd">                3c. "value" for fixed parameters (single value).</span>
+<span class="sd">                Optional elements are:</span>
+<span class="sd">                1. "log_scale" (for float-valued range parameters, bool),</span>
+<span class="sd">                2. "value_type" (to specify type that values of this parameter should</span>
+<span class="sd">                take; expects "float", "int", "bool" or "str"),</span>
+<span class="sd">                3. "is_fidelity" (bool) and "target_value" (float) for fidelity</span>
+<span class="sd">                parameters,</span>
+<span class="sd">                4. "is_ordered" (bool) for choice parameters, and</span>
+<span class="sd">                5. "is_task" (bool) for task parameters.</span>
 <span class="sd">            objective: Name of the metric used as objective in this experiment.</span>
 <span class="sd">                This metric must be present in `raw_data` argument to `complete_trial`.</span>
 <span class="sd">            name: Name of the experiment to be created.</span>
@@ -370,6 +382,13 @@ src="/js/documentation_options.js">
             <span class="n">trial</span><span class="o">=</span><span class="n">trial</span><span class="p">,</span> <span class="n">raw_data</span><span class="o">=</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sample_sizes</span><span class="o">=</span><span class="n">sample_sizes</span>
         <span class="p">)</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">_run_metadata</span> <span class="o">=</span> <span class="n">metadata</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"metric_name"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">metric_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">metrics</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Data was logged for metric </span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s2"> that was not yet "</span>
+                    <span class="s2">"tracked on the experiment. Adding it as tracking metric."</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">add_tracking_metric</span><span class="p">(</span><span class="n">Metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">metric_name</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">attach_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">mark_completed</span><span class="p">()</span>
         <span class="n">data_for_logging</span> <span class="o">=</span> <span class="n">_round_floats_for_logging</span><span class="p">(</span>
@@ -967,6 +986,11 @@ src="/js/documentation_options.js">
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unexpected trial type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+        <span class="n">not_trial_arm_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">arms_by_name</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">not_trial_arm_names</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Arms </span><span class="si">{</span><span class="n">not_trial_arm_names</span><span class="si">}</span><span class="s2"> are not part of trial #</span><span class="si">{</span><span class="n">trial</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">."</span>
+            <span class="p">)</span>
         <span class="n">evaluations</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">arm_name</span><span class="p">:</span> <span class="n">raw_data_to_evaluation</span><span class="p">(</span>
                 <span class="n">raw_data</span><span class="o">=</span><span class="n">raw_data</span><span class="p">[</span><span class="n">arm_name</span><span class="p">],</span> <span class="n">objective_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">objective_name</span>

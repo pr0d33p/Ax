@@ -148,12 +148,23 @@ optional.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="docutils literal notranslate"><span class="pre">None</span></code>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]]]]]) – List of dictionaries representing parameters in the
-experiment search space. Required elements in the dictionaries
-are: “name” (name of this parameter, string), “type” (type of the
-parameter: “range”, “fixed”, or “choice”, string), and “bounds”
-for range parameters (list of two values, lower bound first),
-“values” for choice parameters (list of values), and “value” for
-fixed parameters (single value).</p></li>
+experiment search space.
+Required elements in the dictionaries are:
+1. “name” (name of parameter, string),
+2. “type” (type of parameter: “range”, “fixed”, or “choice”, string),
+and one of the following:
+3a. “bounds” for range parameters (list of two values, lower bound
+first),
+3b. “values” for choice parameters (list of values), or
+3c. “value” for fixed parameters (single value).
+Optional elements are:
+1. “log_scale” (for float-valued range parameters, bool),
+2. “value_type” (to specify type that values of this parameter should
+take; expects “float”, “int”, “bool” or “str”),
+3. “is_fidelity” (bool) and “target_value” (float) for fidelity
+parameters,
+4. “is_ordered” (bool) for choice parameters, and
+5. “is_task” (bool) for task parameters.</p></li>
 <li><p><strong>objective</strong> – Name of the metric used as objective in this experiment.
 This metric must be present in <cite>raw_data</cite> argument to <cite>complete_trial</cite>.</p></li>
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – Name of the experiment to be created.</p></li>
@@ -593,7 +604,7 @@ of this optimization.</p>
 function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#ax.service.managed_loop.OptimizationLoop" title="ax.service.managed_loop.OptimizationLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationLoop</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ForwardRef" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardRef</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -604,7 +615,7 @@ function.</p>
 metrics.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#ax.service.managed_loop.OptimizationLoop" title="ax.service.managed_loop.OptimizationLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationLoop</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ForwardRef" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardRef</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -733,6 +744,11 @@ data, in milliseconds.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="core.html#ax.core.data.Data" title="ax.core.data.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></a></p>
 </dd>
 </dl>
+</dd></dl>
+<dl class="data">
+<dt id="ax.service.utils.instantiation.logger">
+<code class="sig-prename descclassname">ax.service.utils.instantiation.</code><code class="sig-name descname">logger</code><em class="property"> = &lt;Logger ax.service.utils.instantiation (INFO)&gt;</em><a class="headerlink" href="#ax.service.utils.instantiation.logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utilities for RESTful-like instantiation of Ax classes needed in AxClient.</p>
 </dd></dl>
 <dl class="function">
 <dt id="ax.service.utils.instantiation.make_experiment">

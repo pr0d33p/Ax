@@ -104,13 +104,18 @@ src="/js/documentation_options.js">
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Arm</span><span class="p">]:</span>
         <span class="sd">"""The arm associated with this batch."""</span>
-        <span class="c1"># pyre-fixme[16]: `Optional` has no attribute `arms`.</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator_run</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generator_run</span><span class="o">.</span><span class="n">arms</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator_run</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">generator_run</span> <span class="o">=</span> <span class="n">not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generator_run</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">generator_run</span><span class="o">.</span><span class="n">arms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">generator_run</span><span class="o">.</span><span class="n">arms</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>  <span class="c1"># pragma: no cover</span>
                 <span class="s2">"Generator run associated with this trial included multiple "</span>
                 <span class="s2">"arms, but trial expects only one."</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator_run</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator_run</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">generator_run</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="nd">@immutable_once_run</span>
     <span class="k">def</span> <span class="nf">add_arm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arm</span><span class="p">:</span> <span class="n">Arm</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Trial"</span><span class="p">:</span>

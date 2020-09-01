@@ -35,7 +35,7 @@ src="/js/documentation_options.js">
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">MutableMapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">MutableMapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -77,8 +77,18 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.metrics.factorial</span> <span class="kn">import</span> <span class="n">FactorialMetric</span>
 <span class="kn">from</span> <span class="nn">ax.metrics.hartmann6</span> <span class="kn">import</span> <span class="n">AugmentedHartmann6Metric</span><span class="p">,</span> <span class="n">Hartmann6Metric</span>
 <span class="kn">from</span> <span class="nn">ax.modelbridge.factory</span> <span class="kn">import</span> <span class="n">Cont_X_trans</span><span class="p">,</span> <span class="n">get_factorial</span><span class="p">,</span> <span class="n">get_sobol</span>
+<span class="kn">from</span> <span class="nn">ax.models.torch.botorch_modular.acquisition</span> <span class="kn">import</span> <span class="n">Acquisition</span>
+<span class="kn">from</span> <span class="nn">ax.models.torch.botorch_modular.kg</span> <span class="kn">import</span> <span class="n">KnowledgeGradient</span>
+<span class="kn">from</span> <span class="nn">ax.models.torch.botorch_modular.model</span> <span class="kn">import</span> <span class="n">BoTorchModel</span>
+<span class="kn">from</span> <span class="nn">ax.models.torch.botorch_modular.surrogate</span> <span class="kn">import</span> <span class="n">Surrogate</span>
 <span class="kn">from</span> <span class="nn">ax.runners.synthetic</span> <span class="kn">import</span> <span class="n">SyntheticRunner</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span> <span class="nn">botorch.acquisition.acquisition</span> <span class="kn">import</span> <span class="n">AcquisitionFunction</span>
+<span class="kn">from</span> <span class="nn">botorch.acquisition.monte_carlo</span> <span class="kn">import</span> <span class="n">qExpectedImprovement</span>
+<span class="kn">from</span> <span class="nn">botorch.models.gp_regression</span> <span class="kn">import</span> <span class="n">SingleTaskGP</span>
+<span class="kn">from</span> <span class="nn">botorch.models.model</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">gpytorch.mlls.exact_marginal_log_likelihood</span> <span class="kn">import</span> <span class="n">ExactMarginalLogLikelihood</span>
+<span class="kn">from</span> <span class="nn">gpytorch.mlls.marginal_log_likelihood</span> <span class="kn">import</span> <span class="n">MarginalLogLikelihood</span>
 
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -677,7 +687,11 @@ src="/js/documentation_options.js">
 
 <div class="viewcode-block" id="get_branin_multi_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_multi_objective">[docs]</a><span class="k">def</span> <span class="nf">get_branin_multi_objective</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Objective</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">MultiObjective</span><span class="p">(</span>
-        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">get_branin_metric</span><span class="p">(),</span> <span class="n">get_branin_metric</span><span class="p">()],</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">get_branin_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"branin_a"</span><span class="p">),</span>
+            <span class="n">get_branin_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"branin_b"</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">minimize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span></div>
 
 
@@ -881,6 +895,23 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">Data</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">df_dicts</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="get_branin_data_multi_objective"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_branin_data_multi_objective">[docs]</a><span class="k">def</span> <span class="nf">get_branin_data_multi_objective</span><span class="p">(</span>
+    <span class="n">trial_indices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Data</span><span class="p">:</span>
+    <span class="n">df_dicts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"trial_index"</span><span class="p">:</span> <span class="n">trial_index</span><span class="p">,</span>
+            <span class="s2">"metric_name"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"branin_</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"arm_name"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">trial_index</span><span class="si">}</span><span class="s2">_0"</span><span class="p">,</span>
+            <span class="s2">"mean"</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+            <span class="s2">"sem"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">trial_index</span> <span class="ow">in</span> <span class="p">(</span><span class="n">trial_indices</span> <span class="ow">or</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">Data</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">df_dicts</span><span class="p">))</span></div>
+
+
 <span class="c1">##############################</span>
 <span class="c1"># Instances of types from core/types.py</span>
 <span class="c1">##############################</span>
@@ -920,6 +951,45 @@ src="/js/documentation_options.js">
         <span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arms</span><span class="p">))</span>
     <span class="p">}</span></div>
+
+
+<span class="c1">##############################</span>
+<span class="c1"># Modular BoTorch Model Components</span>
+<span class="c1">##############################</span>
+
+
+<div class="viewcode-block" id="get_botorch_model"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_botorch_model">[docs]</a><span class="k">def</span> <span class="nf">get_botorch_model</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BoTorchModel</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">BoTorchModel</span><span class="p">(</span>
+        <span class="n">surrogate</span><span class="o">=</span><span class="n">get_surrogate</span><span class="p">(),</span> <span class="n">acquisition_class</span><span class="o">=</span><span class="n">get_acquisition_type</span><span class="p">()</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_botorch_model_with_default_acquisition_class"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_botorch_model_with_default_acquisition_class">[docs]</a><span class="k">def</span> <span class="nf">get_botorch_model_with_default_acquisition_class</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BoTorchModel</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">BoTorchModel</span><span class="p">(</span>
+        <span class="n">surrogate</span><span class="o">=</span><span class="n">get_surrogate</span><span class="p">(),</span>
+        <span class="n">acquisition_class</span><span class="o">=</span><span class="n">Acquisition</span><span class="p">,</span>
+        <span class="n">botorch_acqf_class</span><span class="o">=</span><span class="n">get_acquisition_function_type</span><span class="p">(),</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_surrogate"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_surrogate">[docs]</a><span class="k">def</span> <span class="nf">get_surrogate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Surrogate</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Surrogate</span><span class="p">(</span><span class="n">get_model_type</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="get_acquisition_type"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_acquisition_type">[docs]</a><span class="k">def</span> <span class="nf">get_acquisition_type</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Acquisition</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">KnowledgeGradient</span></div>
+
+
+<div class="viewcode-block" id="get_model_type"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_model_type">[docs]</a><span class="k">def</span> <span class="nf">get_model_type</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Model</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">SingleTaskGP</span></div>
+
+
+<div class="viewcode-block" id="get_mll_type"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_mll_type">[docs]</a><span class="k">def</span> <span class="nf">get_mll_type</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">MarginalLogLikelihood</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">ExactMarginalLogLikelihood</span></div>
+
+
+<div class="viewcode-block" id="get_acquisition_function_type"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_acquisition_function_type">[docs]</a><span class="k">def</span> <span class="nf">get_acquisition_function_type</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">AcquisitionFunction</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">qExpectedImprovement</span></div>
 </pre></div>
 </div>
 </div>

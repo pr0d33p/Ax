@@ -364,6 +364,10 @@ with a <cite>SobolGenerator(scramble=False)</cite> underlying model.</p>
 <code class="sig-name descname">BOTORCH</code><em class="property"> = 'BO'</em><a class="headerlink" href="#ax.modelbridge.registry.Models.BOTORCH" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
+<dt id="ax.modelbridge.registry.Models.BOTORCH_MODULAR">
+<code class="sig-name descname">BOTORCH_MODULAR</code><em class="property"> = 'BoTorch'</em><a class="headerlink" href="#ax.modelbridge.registry.Models.BOTORCH_MODULAR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
 <dt id="ax.modelbridge.registry.Models.EMPIRICAL_BAYES_THOMPSON">
 <code class="sig-name descname">EMPIRICAL_BAYES_THOMPSON</code><em class="property"> = 'EB'</em><a class="headerlink" href="#ax.modelbridge.registry.Models.EMPIRICAL_BAYES_THOMPSON" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -382,6 +386,10 @@ with a <cite>SobolGenerator(scramble=False)</cite> underlying model.</p>
 <dl class="attribute">
 <dt id="ax.modelbridge.registry.Models.GPMES">
 <code class="sig-name descname">GPMES</code><em class="property"> = 'GPMES'</em><a class="headerlink" href="#ax.modelbridge.registry.Models.GPMES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="ax.modelbridge.registry.Models.MOO">
+<code class="sig-name descname">MOO</code><em class="property"> = 'MOO'</em><a class="headerlink" href="#ax.modelbridge.registry.Models.MOO" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.modelbridge.registry.Models.SOBOL">
@@ -489,8 +497,8 @@ from generator run, use <cite>get_model_from_generator_run</cite> utility from t
 <div class="section" id="module-ax.modelbridge.factory">
 <span id="factory"></span><h3>Factory<a class="headerlink" href="#module-ax.modelbridge.factory" title="Permalink to this headline">¶</a></h3>
 <dl class="data">
-<dt id="ax.modelbridge.factory.DEFAULT_TORCH_DEVICE">
-<code class="sig-prename descclassname">ax.modelbridge.factory.</code><code class="sig-name descname">DEFAULT_TORCH_DEVICE</code><em class="property"> = device(type='cpu')</em><a class="headerlink" href="#ax.modelbridge.factory.DEFAULT_TORCH_DEVICE" title="Permalink to this definition">¶</a></dt>
+<dt id="ax.modelbridge.factory.DEFAULT_EHVI_BATCH_LIMIT">
+<code class="sig-prename descclassname">ax.modelbridge.factory.</code><code class="sig-name descname">DEFAULT_EHVI_BATCH_LIMIT</code><em class="property"> = 5</em><a class="headerlink" href="#ax.modelbridge.factory.DEFAULT_EHVI_BATCH_LIMIT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Module containing functions that generate standard models, such as Sobol,
 GP+EI, etc.</p>
 <p>Note: a special case here is a composite generator, which requires an
@@ -529,6 +537,19 @@ optimization model for subsequent trials).</p>
 </dl>
 </dd></dl>
 <dl class="function">
+<dt id="ax.modelbridge.factory.get_MOO_EHVI">
+<code class="sig-prename descclassname">ax.modelbridge.factory.</code><code class="sig-name descname">get_MOO_EHVI</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">data</em>, <em class="sig-param">ref_point</em>, <em class="sig-param">search_space=None</em>, <em class="sig-param">dtype=torch.float64</em>, <em class="sig-param">device=device(type='cpu')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/factory.html#get_MOO_EHVI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.factory.get_MOO_EHVI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a multi-objective model that generates points with EHVI.</p>
+<p>Requires a <cite>ref_point</cite>, a dictionary of the metric name to the reference point value
+for every objective being optimized. An arm only improves hypervolume if it is
+strictly better than this point in all metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge" title="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTorchModelBridge</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
 <dt id="ax.modelbridge.factory.get_MOO_PAREGO">
 <code class="sig-prename descclassname">ax.modelbridge.factory.</code><code class="sig-name descname">get_MOO_PAREGO</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">data</em>, <em class="sig-param">ref_point=None</em>, <em class="sig-param">search_space=None</em>, <em class="sig-param">dtype=torch.float64</em>, <em class="sig-param">device=device(type='cpu')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/factory.html#get_MOO_PAREGO"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.factory.get_MOO_PAREGO" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instantiates a multi-objective model that generates points with ParEGO.</p>
@@ -536,20 +557,20 @@ optimization model for subsequent trials).</p>
 objectives. This allows it to explore non-convex pareto frontiers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#ax.modelbridge.torch.TorchModelBridge" title="ax.modelbridge.torch.TorchModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">TorchModelBridge</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge" title="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTorchModelBridge</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 <dl class="function">
 <dt id="ax.modelbridge.factory.get_MOO_RS">
 <code class="sig-prename descclassname">ax.modelbridge.factory.</code><code class="sig-name descname">get_MOO_RS</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">data</em>, <em class="sig-param">ref_point=None</em>, <em class="sig-param">search_space=None</em>, <em class="sig-param">dtype=torch.float64</em>, <em class="sig-param">device=device(type='cpu')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/factory.html#get_MOO_RS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.factory.get_MOO_RS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Instantiates a Linear Random Scalarization multi-objective model.</p>
+<dd><p>Instantiates a Random Scalarization multi-objective model.</p>
 <p>Chooses a different random linear scalarization of the objectives
 for generating each new candidate arm. This will only explore the
 convex hull of the pareto frontier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#ax.modelbridge.torch.TorchModelBridge" title="ax.modelbridge.torch.TorchModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">TorchModelBridge</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge" title="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveTorchModelBridge</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1107,6 +1128,81 @@ them to the model.</p>
 <dt id="ax.modelbridge.torch.TorchModelBridge.parameters">
 <code class="sig-name descname">parameters</code><em class="property">: Optional[List[str]]</em><em class="property"> = None</em><a class="headerlink" href="#ax.modelbridge.torch.TorchModelBridge.parameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+</dd></dl>
+</div>
+<div class="section" id="module-ax.modelbridge.multi_objective_torch">
+<span id="multi-objective-torch-model-bridge"></span><h3>Multi-Objective Torch Model Bridge<a class="headerlink" href="#module-ax.modelbridge.multi_objective_torch" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge">
+<em class="property">class </em><code class="sig-prename descclassname">ax.modelbridge.multi_objective_torch.</code><code class="sig-name descname">MultiObjectiveTorchModelBridge</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">search_space</em>, <em class="sig-param">data</em>, <em class="sig-param">model</em>, <em class="sig-param">transforms</em>, <em class="sig-param">transform_configs=None</em>, <em class="sig-param">torch_dtype=None</em>, <em class="sig-param">torch_device=None</em>, <em class="sig-param">status_quo_name=None</em>, <em class="sig-param">status_quo_features=None</em>, <em class="sig-param">optimization_config=None</em>, <em class="sig-param">fit_out_of_design=False</em>, <em class="sig-param">ref_point=None</em>, <em class="sig-param">default_model_gen_options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/multi_objective_torch.html#MultiObjectiveTorchModelBridge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ax.modelbridge.torch.TorchModelBridge" title="ax.modelbridge.torch.TorchModelBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.modelbridge.torch.TorchModelBridge</span></code></a></p>
+<p>A model bridge for using multi-objective torch-based models.</p>
+<p>Specifies an interface that is implemented by MultiObjectiveTorchModel. In
+particular, model should have methods fit, predict, and gen. See
+MultiObjectiveTorchModel for the API for each of these methods.</p>
+<p>Requires that all parameters have been transformed to RangeParameters
+or FixedParameters with float type and no log scale.</p>
+<p>This class converts Ax parameter types to torch tensors before passing
+them to the model.</p>
+<dl class="method">
+<dt id="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.gen">
+<code class="sig-name descname">gen</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">search_space=None</em>, <em class="sig-param">optimization_config=None</em>, <em class="sig-param">pending_observations=None</em>, <em class="sig-param">fixed_features=None</em>, <em class="sig-param">model_gen_options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/multi_objective_torch.html#MultiObjectiveTorchModelBridge.gen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.gen" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of points to generate</p></li>
+<li><p><strong>search_space</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="core.html#ax.core.search_space.SearchSpace" title="ax.core.search_space.SearchSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">SearchSpace</span></code></a>]) – Search space</p></li>
+<li><p><strong>optimization_config</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="core.html#ax.core.optimization_config.OptimizationConfig" title="ax.core.optimization_config.OptimizationConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationConfig</span></code></a>]) – Optimization config</p></li>
+<li><p><strong>pending_observations</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="core.html#ax.core.observation.ObservationFeatures" title="ax.core.observation.ObservationFeatures"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFeatures</span></code></a>]]]) – A map from metric name to pending
+observations for that metric.</p></li>
+<li><p><strong>fixed_features</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="core.html#ax.core.observation.ObservationFeatures" title="ax.core.observation.ObservationFeatures"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFeatures</span></code></a>]) – An ObservationFeatures object containing any
+features that should be fixed at specified values during
+generation.</p></li>
+<li><p><strong>model_gen_options</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AcquisitionFunction</span></code>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]]]) – A config dictionary that is passed along to the
+model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="core.html#ax.core.generator_run.GeneratorRun" title="ax.core.generator_run.GeneratorRun"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorRun</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
+<dt id="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.hypervolume">
+<code class="sig-name descname">hypervolume</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/multi_objective_torch.html#MultiObjectiveTorchModelBridge.hypervolume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.hypervolume" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
+<dt id="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.observed_hypervolume">
+<code class="sig-name descname">observed_hypervolume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/multi_objective_torch.html#MultiObjectiveTorchModelBridge.observed_hypervolume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.observed_hypervolume" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
+<dt id="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.observed_pareto_frontier">
+<code class="sig-name descname">observed_pareto_frontier</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/multi_objective_torch.html#MultiObjectiveTorchModelBridge.observed_pareto_frontier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.observed_pareto_frontier" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
+<dt id="ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.pareto_frontier">
+<code class="sig-name descname">pareto_frontier</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/modelbridge/multi_objective_torch.html#MultiObjectiveTorchModelBridge.pareto_frontier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.pareto_frontier" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 </dd></dl>
 </div>
 </div>
@@ -2793,7 +2889,10 @@ transform (does nothing).</p>
 <dd><p>Bases: <a class="reference internal" href="#ax.modelbridge.transforms.base.Transform" title="ax.modelbridge.transforms.base.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.modelbridge.transforms.base.Transform</span></code></a></p>
 <p>Clip the mean values for each metric to lay within the limits provided in
 the config as a tuple of (lower bound percentile, upper bound percentile).
-Config should include those bounds under key “winsorization_limits”.</p>
+These values are the percentile to trim from the lower and upper bounds,
+specified as a float in [0.0, 1). To clip to the 10th and 90th percentile,
+for instance, you’ll pass (0.1, 0.1). Config should include those bounds
+under the key “winsorization_limits”.</p>
 <dl class="attribute">
 <dt id="ax.modelbridge.transforms.winsorize.Winsorize.config">
 <code class="sig-name descname">config</code><em class="property"> = None</em><a class="headerlink" href="#ax.modelbridge.transforms.winsorize.Winsorize.config" title="Permalink to this definition">¶</a></dt>

@@ -80,6 +80,13 @@ more data is available.</p>
 <p>Useful to distinguish data failure reasons in automated analyses.</p>
 </dd></dl>
 <dl class="exception">
+<dt id="ax.exceptions.core.SearchSpaceExhausted">
+<em class="property">exception </em><code class="sig-prename descclassname">ax.exceptions.core.</code><code class="sig-name descname">SearchSpaceExhausted</code><span class="sig-paren">(</span><em class="sig-param">message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/exceptions/core.html#SearchSpaceExhausted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.exceptions.core.SearchSpaceExhausted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ax.exceptions.core.AxError" title="ax.exceptions.core.AxError"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.exceptions.core.AxError</span></code></a></p>
+<p>Raised when using an algorithm that deduplicates points and no more
+new points can be sampled from the search space.</p>
+</dd></dl>
+<dl class="exception">
 <dt id="ax.exceptions.core.UnsupportedError">
 <em class="property">exception </em><code class="sig-prename descclassname">ax.exceptions.core.</code><code class="sig-name descname">UnsupportedError</code><span class="sig-paren">(</span><em class="sig-param">message</em>, <em class="sig-param">hint=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/exceptions/core.html#UnsupportedError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.exceptions.core.UnsupportedError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#ax.exceptions.core.AxError" title="ax.exceptions.core.AxError"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.exceptions.core.AxError</span></code></a></p>
@@ -98,6 +105,12 @@ It differs in the following ways:</p>
 </dl>
 </li>
 </ol>
+</dd></dl>
+<dl class="exception">
+<dt id="ax.exceptions.core.UserInputError">
+<em class="property">exception </em><code class="sig-prename descclassname">ax.exceptions.core.</code><code class="sig-name descname">UserInputError</code><span class="sig-paren">(</span><em class="sig-param">message</em>, <em class="sig-param">hint=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/exceptions/core.html#UserInputError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.exceptions.core.UserInputError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ax.exceptions.core.AxError" title="ax.exceptions.core.AxError"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.exceptions.core.AxError</span></code></a></p>
+<p>Raised when the user passes in an invalid input</p>
 </dd></dl>
 </div>
 <div class="section" id="module-ax.exceptions.data_provider">

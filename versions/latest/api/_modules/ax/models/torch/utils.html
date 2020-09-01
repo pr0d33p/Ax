@@ -36,6 +36,7 @@ src="/js/documentation_options.js">
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">ax.core.types</span> <span class="kn">import</span> <span class="n">TConfig</span>
 <span class="kn">from</span> <span class="nn">ax.exceptions.model</span> <span class="kn">import</span> <span class="n">ModelError</span>
 <span class="kn">from</span> <span class="nn">ax.models.model_utils</span> <span class="kn">import</span> <span class="n">filter_constraints_and_fixed_features</span><span class="p">,</span> <span class="n">get_observed</span>
 <span class="kn">from</span> <span class="nn">ax.models.random.sobol</span> <span class="kn">import</span> <span class="n">SobolGenerator</span>
@@ -191,6 +192,7 @@ src="/js/documentation_options.js">
     <span class="n">linear_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">fixed_features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">rounding_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">model_gen_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
     <span class="n">linear_constraints_array</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -213,6 +215,7 @@ src="/js/documentation_options.js">
         <span class="n">linear_constraints</span><span class="o">=</span><span class="n">linear_constraints_array</span><span class="p">,</span>
         <span class="n">fixed_features</span><span class="o">=</span><span class="n">fixed_features</span><span class="p">,</span>
         <span class="n">rounding_func</span><span class="o">=</span><span class="n">array_rounding_func</span><span class="p">,</span>
+        <span class="n">model_gen_options</span><span class="o">=</span><span class="n">model_gen_options</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">array_X</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 

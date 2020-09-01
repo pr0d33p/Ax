@@ -187,6 +187,16 @@ does not allow us to exactly recreate an existing object.</p>
 </dl>
 </dd></dl>
 <dl class="function">
+<dt id="ax.storage.json_store.decoders.class_from_json">
+<code class="sig-prename descclassname">ax.storage.json_store.decoders.</code><code class="sig-name descname">class_from_json</code><span class="sig-paren">(</span><em class="sig-param">json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/storage/json_store/decoders.html#class_from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.storage.json_store.decoders.class_from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load any class registered in <cite>CLASS_DECODER_REGISTRY</cite> from JSON.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
 <dt id="ax.storage.json_store.decoders.transform_type_from_json">
 <code class="sig-prename descclassname">ax.storage.json_store.decoders.</code><code class="sig-name descname">transform_type_from_json</code><span class="sig-paren">(</span><em class="sig-param">object_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/storage/json_store/decoders.html#transform_type_from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.storage.json_store.decoders.transform_type_from_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load the transform type from JSON.</p>
@@ -259,6 +269,26 @@ recursively convert the entire object.</p>
 <dt id="ax.storage.json_store.encoders.benchmark_problem_to_dict">
 <code class="sig-prename descclassname">ax.storage.json_store.encoders.</code><code class="sig-name descname">benchmark_problem_to_dict</code><span class="sig-paren">(</span><em class="sig-param">benchmark_problem</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/storage/json_store/encoders.html#benchmark_problem_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.storage.json_store.encoders.benchmark_problem_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts an Ax benchmark problem to a serializable dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.storage.json_store.encoders.botorch_model_to_dict">
+<code class="sig-prename descclassname">ax.storage.json_store.encoders.</code><code class="sig-name descname">botorch_model_to_dict</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/storage/json_store/encoders.html#botorch_model_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.storage.json_store.encoders.botorch_model_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert Ax model to a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.storage.json_store.encoders.botorch_modular_to_dict">
+<code class="sig-prename descclassname">ax.storage.json_store.encoders.</code><code class="sig-name descname">botorch_modular_to_dict</code><span class="sig-paren">(</span><em class="sig-param">class_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/storage/json_store/encoders.html#botorch_modular_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.storage.json_store.encoders.botorch_modular_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert any class to a dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
@@ -479,6 +509,16 @@ recursively convert the entire object.</p>
 <dt id="ax.storage.json_store.encoders.sum_parameter_constraint_to_dict">
 <code class="sig-prename descclassname">ax.storage.json_store.encoders.</code><code class="sig-name descname">sum_parameter_constraint_to_dict</code><span class="sig-paren">(</span><em class="sig-param">parameter_constraint</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/storage/json_store/encoders.html#sum_parameter_constraint_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.storage.json_store.encoders.sum_parameter_constraint_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert Ax sum parameter constraint to a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.storage.json_store.encoders.surrogate_to_dict">
+<code class="sig-prename descclassname">ax.storage.json_store.encoders.</code><code class="sig-name descname">surrogate_to_dict</code><span class="sig-paren">(</span><em class="sig-param">surrogate</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/storage/json_store/encoders.html#surrogate_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.storage.json_store.encoders.surrogate_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert Ax surrogate to a dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
@@ -1575,7 +1615,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.declarative_base</span></code></p>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.data">
-<code class="sig-name descname">data</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAData]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac207d48; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">data</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAData]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af976c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.default_trial_type">
@@ -1591,7 +1631,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.generation_strategy">
-<code class="sig-name descname">generation_strategy</code><em class="property">: Optional[ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2140c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.generation_strategy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generation_strategy</code><em class="property">: Optional[ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af979c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.generation_strategy" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.id">
@@ -1611,7 +1651,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.metrics">
-<code class="sig-name descname">metrics</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAMetric]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac207dc8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.metrics" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">metrics</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAMetric]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af97748; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.metrics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.name">
@@ -1619,11 +1659,11 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.parameter_constraints">
-<code class="sig-name descname">parameter_constraints</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAParameterConstraint]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac207ec8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.parameter_constraints" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parameter_constraints</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAParameterConstraint]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af97848; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.parameter_constraints" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.parameters">
-<code class="sig-name descname">parameters</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAParameter]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac207e48; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.parameters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parameters</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAParameter]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af977c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.parameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.properties">
@@ -1631,7 +1671,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.runners">
-<code class="sig-name descname">runners</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQARunner]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac207f48; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.runners" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">runners</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQARunner]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af978c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.runners" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.status_quo_name">
@@ -1647,7 +1687,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAExperiment.trials">
-<code class="sig-name descname">trials</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQATrial]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac214048; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.trials" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">trials</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQATrial]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af97948; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAExperiment.trials" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 </dd></dl>
 <dl class="class">
@@ -1660,7 +1700,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.data">
-<code class="sig-name descname">data</code><em class="property">: ax.storage.sqa_store.sqa_classes.SQAData</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2f0f48; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">data</code><em class="property">: ax.storage.sqa_store.sqa_classes.SQAData</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af078c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.experiment_id">
@@ -1668,7 +1708,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.generator_runs">
-<code class="sig-name descname">generator_runs</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAGeneratorRun]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2f0ec8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.generator_runs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generator_runs</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAGeneratorRun]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af07848; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.generator_runs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.id">
@@ -1689,7 +1729,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.declarative_base</span></code></p>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.arms">
-<code class="sig-name descname">arms</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAArm]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2f0748; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.arms" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">arms</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAArm]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af070c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.arms" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.best_arm_name">
@@ -1749,7 +1789,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.metrics">
-<code class="sig-name descname">metrics</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAMetric]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2f07c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.metrics" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">metrics</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAMetric]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af07148; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.metrics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.model_key">
@@ -1769,11 +1809,11 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.parameter_constraints">
-<code class="sig-name descname">parameter_constraints</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAParameterConstraint]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2f08c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.parameter_constraints" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parameter_constraints</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAParameterConstraint]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af07248; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.parameter_constraints" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.parameters">
-<code class="sig-name descname">parameters</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAParameter]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2f0848; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.parameters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parameters</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAParameter]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af071c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.parameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAGeneratorRun.time_created">
@@ -1854,7 +1894,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAMetric.scalarized_objective_children_metrics">
-<code class="sig-name descname">scalarized_objective_children_metrics</code><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2f0048; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAMetric.scalarized_objective_children_metrics" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">scalarized_objective_children_metrics</code><em class="property"> = &lt;RelationshipProperty at 0x7ff46aef0948; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQAMetric.scalarized_objective_children_metrics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQAMetric.scalarized_objective_id">
@@ -2018,7 +2058,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.declarative_base</span></code></p>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQATrial.abandoned_arms">
-<code class="sig-name descname">abandoned_arms</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAAbandonedArm]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac207948; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQATrial.abandoned_arms" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">abandoned_arms</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAAbandonedArm]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af972c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQATrial.abandoned_arms" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQATrial.abandoned_reason">
@@ -2038,7 +2078,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQATrial.generator_runs">
-<code class="sig-name descname">generator_runs</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAGeneratorRun]</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac2079c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQATrial.generator_runs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generator_runs</code><em class="property">: List[ax.storage.sqa_store.sqa_classes.SQAGeneratorRun]</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af97348; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQATrial.generator_runs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQATrial.id">
@@ -2078,7 +2118,7 @@ Either creator or url must be specified as a way to connect to the SQL db.</p>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQATrial.runner">
-<code class="sig-name descname">runner</code><em class="property">: ax.storage.sqa_store.sqa_classes.SQARunner</em><em class="property"> = &lt;RelationshipProperty at 0x7f12ac207a48; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQATrial.runner" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">runner</code><em class="property">: ax.storage.sqa_store.sqa_classes.SQARunner</em><em class="property"> = &lt;RelationshipProperty at 0x7ff46af973c8; no key&gt;</em><a class="headerlink" href="#ax.storage.sqa_store.sqa_classes.SQATrial.runner" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="attribute">
 <dt id="ax.storage.sqa_store.sqa_classes.SQATrial.status">
@@ -2378,9 +2418,39 @@ the “process_bind_param” method of this class.</p>
 </dd></dl>
 </div>
 </div>
-<div class="section" id="module-ax.storage.metric_registry">
-<span id="registries"></span><h2>Registries<a class="headerlink" href="#module-ax.storage.metric_registry" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
+<div class="section" id="module-ax.storage.botorch_modular_registry">
+<span id="registries"></span><h2>Registries<a class="headerlink" href="#module-ax.storage.botorch_modular_registry" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="ax.storage.botorch_modular_registry.ACQUISITION_FUNCTION_REGISTRY">
+<code class="sig-prename descclassname">ax.storage.botorch_modular_registry.</code><code class="sig-name descname">ACQUISITION_FUNCTION_REGISTRY</code><em class="property">: Dict[Type[botorch.acquisition.acquisition.AcquisitionFunction], int]</em><em class="property"> = {&lt;class 'botorch.acquisition.monte_carlo.qExpectedImprovement'&gt;: 0, &lt;class 'botorch.acquisition.monte_carlo.qNoisyExpectedImprovement'&gt;: 1, &lt;class 'botorch.acquisition.knowledge_gradient.qKnowledgeGradient'&gt;: 2, &lt;class 'botorch.acquisition.knowledge_gradient.qMultiFidelityKnowledgeGradient'&gt;: 3, &lt;class 'botorch.acquisition.max_value_entropy_search.qMaxValueEntropy'&gt;: 4, &lt;class 'botorch.acquisition.max_value_entropy_search.qMultiFidelityMaxValueEntropy'&gt;: 5}</em><a class="headerlink" href="#ax.storage.botorch_modular_registry.ACQUISITION_FUNCTION_REGISTRY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of BoTorch <cite>MarginalLogLikelihood</cite> classes to ints.</p>
+</dd></dl>
+<dl class="data">
+<dt id="ax.storage.botorch_modular_registry.ACQUISITION_REGISTRY">
+<code class="sig-prename descclassname">ax.storage.botorch_modular_registry.</code><code class="sig-name descname">ACQUISITION_REGISTRY</code><em class="property">: Dict[Type[ax.models.torch.botorch_modular.acquisition.Acquisition], int]</em><em class="property"> = {&lt;class 'ax.models.torch.botorch_modular.acquisition.Acquisition'&gt;: 0, &lt;class 'ax.models.torch.botorch_modular.kg.KnowledgeGradient'&gt;: 1, &lt;class 'ax.models.torch.botorch_modular.kg.MultiFidelityKnowledgeGradient'&gt;: 2, &lt;class 'ax.models.torch.botorch_modular.mes.MaxValueEntropySearch'&gt;: 3, &lt;class 'ax.models.torch.botorch_modular.mes.MultiFidelityMaxValueEntropySearch'&gt;: 4}</em><a class="headerlink" href="#ax.storage.botorch_modular_registry.ACQUISITION_REGISTRY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of BoTorch <cite>Model</cite> classes to ints.</p>
+</dd></dl>
+<dl class="data">
+<dt id="ax.storage.botorch_modular_registry.CLASS_TO_REGISTRY">
+<code class="sig-prename descclassname">ax.storage.botorch_modular_registry.</code><code class="sig-name descname">CLASS_TO_REGISTRY</code><em class="property">: Dict[Any, Dict[Type[Any], int]]</em><em class="property"> = {&lt;class 'ax.models.torch.botorch_modular.acquisition.Acquisition'&gt;: {&lt;class 'ax.models.torch.botorch_modular.acquisition.Acquisition'&gt;: 0, &lt;class 'ax.models.torch.botorch_modular.kg.KnowledgeGradient'&gt;: 1, &lt;class 'ax.models.torch.botorch_modular.kg.MultiFidelityKnowledgeGradient'&gt;: 2, &lt;class 'ax.models.torch.botorch_modular.mes.MaxValueEntropySearch'&gt;: 3, &lt;class 'ax.models.torch.botorch_modular.mes.MultiFidelityMaxValueEntropySearch'&gt;: 4}, &lt;class 'botorch.acquisition.acquisition.AcquisitionFunction'&gt;: {&lt;class 'botorch.acquisition.monte_carlo.qExpectedImprovement'&gt;: 0, &lt;class 'botorch.acquisition.monte_carlo.qNoisyExpectedImprovement'&gt;: 1, &lt;class 'botorch.acquisition.knowledge_gradient.qKnowledgeGradient'&gt;: 2, &lt;class 'botorch.acquisition.knowledge_gradient.qMultiFidelityKnowledgeGradient'&gt;: 3, &lt;class 'botorch.acquisition.max_value_entropy_search.qMaxValueEntropy'&gt;: 4, &lt;class 'botorch.acquisition.max_value_entropy_search.qMultiFidelityMaxValueEntropy'&gt;: 5}, &lt;class 'gpytorch.mlls.marginal_log_likelihood.MarginalLogLikelihood'&gt;: {&lt;class 'gpytorch.mlls.exact_marginal_log_likelihood.ExactMarginalLogLikelihood'&gt;: 0}, &lt;class 'botorch.models.model.Model'&gt;: {&lt;class 'botorch.models.gp_regression.FixedNoiseGP'&gt;: 0, &lt;class 'botorch.models.gp_regression.SingleTaskGP'&gt;: 1, &lt;class 'botorch.models.gp_regression_fidelity.FixedNoiseMultiFidelityGP'&gt;: 2, &lt;class 'botorch.models.gp_regression_fidelity.SingleTaskMultiFidelityGP'&gt;: 3}}</em><a class="headerlink" href="#ax.storage.botorch_modular_registry.CLASS_TO_REGISTRY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse registries for decoding.</p>
+</dd></dl>
+<dl class="data">
+<dt id="ax.storage.botorch_modular_registry.MLL_REGISTRY">
+<code class="sig-prename descclassname">ax.storage.botorch_modular_registry.</code><code class="sig-name descname">MLL_REGISTRY</code><em class="property">: Dict[Type[gpytorch.mlls.marginal_log_likelihood.MarginalLogLikelihood], int]</em><em class="property"> = {&lt;class 'gpytorch.mlls.exact_marginal_log_likelihood.ExactMarginalLogLikelihood'&gt;: 0}</em><a class="headerlink" href="#ax.storage.botorch_modular_registry.MLL_REGISTRY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overarching mapping from encoded classes to registry map.</p>
+</dd></dl>
+<dl class="data">
+<dt id="ax.storage.botorch_modular_registry.MODEL_REGISTRY">
+<code class="sig-prename descclassname">ax.storage.botorch_modular_registry.</code><code class="sig-name descname">MODEL_REGISTRY</code><em class="property">: Dict[Type[botorch.models.model.Model], int]</em><em class="property"> = {&lt;class 'botorch.models.gp_regression.FixedNoiseGP'&gt;: 0, &lt;class 'botorch.models.gp_regression.SingleTaskGP'&gt;: 1, &lt;class 'botorch.models.gp_regression_fidelity.FixedNoiseMultiFidelityGP'&gt;: 2, &lt;class 'botorch.models.gp_regression_fidelity.SingleTaskMultiFidelityGP'&gt;: 3}</em><a class="headerlink" href="#ax.storage.botorch_modular_registry.MODEL_REGISTRY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of Botorch <cite>AcquisitionFunction</cite> classes to ints.</p>
+</dd></dl>
+<dl class="data">
+<dt id="ax.storage.botorch_modular_registry.REVERSE_MLL_REGISTRY">
+<code class="sig-prename descclassname">ax.storage.botorch_modular_registry.</code><code class="sig-name descname">REVERSE_MLL_REGISTRY</code><em class="property">: Dict[int, Type[gpytorch.mlls.marginal_log_likelihood.MarginalLogLikelihood]]</em><em class="property"> = {0: &lt;class 'gpytorch.mlls.exact_marginal_log_likelihood.ExactMarginalLogLikelihood'&gt;}</em><a class="headerlink" href="#ax.storage.botorch_modular_registry.REVERSE_MLL_REGISTRY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overarching mapping from encoded classes to reverse registry map.</p>
+</dd></dl>
+<span class="target" id="module-ax.storage.metric_registry"></span><dl class="function">
 <dt id="ax.storage.metric_registry.register_metric">
 <code class="sig-prename descclassname">ax.storage.metric_registry.</code><code class="sig-name descname">register_metric</code><span class="sig-paren">(</span><em class="sig-param">metric_cls</em>, <em class="sig-param">val=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/storage/metric_registry.html#register_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.storage.metric_registry.register_metric" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a custom metric class to the SQA and JSON registries.
@@ -2520,7 +2590,7 @@ special types of linear constraints.</p>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ax.storage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#json">JSON</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sqlalchemy-mysql-sqlite">SQLAlchemy (MySQL / SQLite)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-ax.storage.metric_registry">Registries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-ax.storage.botorch_modular_registry">Registries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-ax.storage.utils">Utilities</a></li>
 </ul>
 </li>
