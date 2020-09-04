@@ -437,6 +437,182 @@ hover.</p></li>
 </dl>
 </dd></dl>
 </div>
+<div class="section" id="module-ax.plot.pareto_frontier">
+<span id="pareto-plots"></span><h3>Pareto Plots<a class="headerlink" href="#module-ax.plot.pareto_frontier" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="ax.plot.pareto_frontier.interact_pareto_frontier">
+<code class="sig-prename descclassname">ax.plot.pareto_frontier.</code><code class="sig-name descname">interact_pareto_frontier</code><span class="sig-paren">(</span><em class="sig-param">frontier_list</em>, <em class="sig-param">CI_level=0.9</em>, <em class="sig-param">show_parameterization_on_hover=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/plot/pareto_frontier.html#interact_pareto_frontier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.plot.pareto_frontier.interact_pareto_frontier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a pareto frontier from a list of objects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ax.plot.base.AxPlotConfig" title="ax.plot.base.AxPlotConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxPlotConfig</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.plot.pareto_frontier.plot_pareto_frontier">
+<code class="sig-prename descclassname">ax.plot.pareto_frontier.</code><code class="sig-name descname">plot_pareto_frontier</code><span class="sig-paren">(</span><em class="sig-param">frontier</em>, <em class="sig-param">CI_level=0.9</em>, <em class="sig-param">show_parameterization_on_hover=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/plot/pareto_frontier.html#plot_pareto_frontier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.plot.pareto_frontier.plot_pareto_frontier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a Pareto frontier from a ParetoFrontierResults object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frontier</strong> (<a class="reference internal" href="#ax.plot.pareto_utils.ParetoFrontierResults" title="ax.plot.pareto_utils.ParetoFrontierResults"><em>ParetoFrontierResults</em></a>) – The results of the Pareto frontier
+computation.</p></li>
+<li><p><strong>CI_level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em>) – The confidence level, i.e. 0.95 (95%)</p></li>
+<li><p><strong>show_parameterization_on_hover</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, show the
+parameterization of the points on the frontier on hover.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The resulting Plotly plot definition.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>AEPlotConfig</p>
+</dd>
+</dl>
+</dd></dl>
+<span class="target" id="module-ax.plot.pareto_utils"></span><dl class="class">
+<dt id="ax.plot.pareto_utils.COLORS">
+<em class="property">class </em><code class="sig-prename descclassname">ax.plot.pareto_utils.</code><code class="sig-name descname">COLORS</code><a class="reference internal" href="_modules/ax/plot/pareto_utils.html#COLORS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.plot.pareto_utils.COLORS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="ax.plot.pareto_utils.COLORS.CORAL">
+<code class="sig-name descname">CORAL</code><em class="property"> = (251, 128, 114)</em><a class="headerlink" href="#ax.plot.pareto_utils.COLORS.CORAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="ax.plot.pareto_utils.COLORS.LIGHT_PURPLE">
+<code class="sig-name descname">LIGHT_PURPLE</code><em class="property"> = (190, 186, 218)</em><a class="headerlink" href="#ax.plot.pareto_utils.COLORS.LIGHT_PURPLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="ax.plot.pareto_utils.COLORS.ORANGE">
+<code class="sig-name descname">ORANGE</code><em class="property"> = (253, 180, 98)</em><a class="headerlink" href="#ax.plot.pareto_utils.COLORS.ORANGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="ax.plot.pareto_utils.COLORS.PINK">
+<code class="sig-name descname">PINK</code><em class="property"> = (188, 128, 189)</em><a class="headerlink" href="#ax.plot.pareto_utils.COLORS.PINK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="ax.plot.pareto_utils.COLORS.STEELBLUE">
+<code class="sig-name descname">STEELBLUE</code><em class="property"> = (128, 177, 211)</em><a class="headerlink" href="#ax.plot.pareto_utils.COLORS.STEELBLUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="ax.plot.pareto_utils.COLORS.TEAL">
+<code class="sig-name descname">TEAL</code><em class="property"> = (141, 211, 199)</em><a class="headerlink" href="#ax.plot.pareto_utils.COLORS.TEAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="ax.plot.pareto_utils.ParetoFrontierResults">
+<em class="property">class </em><code class="sig-prename descclassname">ax.plot.pareto_utils.</code><code class="sig-name descname">ParetoFrontierResults</code><a class="reference internal" href="_modules/ax/plot/pareto_utils.html#ParetoFrontierResults"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.plot.pareto_utils.ParetoFrontierResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
+<p>Container for results from Pareto frontier computation.</p>
+<dl class="method">
+<dt id="ax.plot.pareto_utils.ParetoFrontierResults.absolute_metrics">
+<em class="property">property </em><code class="sig-name descname">absolute_metrics</code><a class="headerlink" href="#ax.plot.pareto_utils.ParetoFrontierResults.absolute_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+<dl class="method">
+<dt id="ax.plot.pareto_utils.ParetoFrontierResults.means">
+<em class="property">property </em><code class="sig-name descname">means</code><a class="headerlink" href="#ax.plot.pareto_utils.ParetoFrontierResults.means" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+<dl class="method">
+<dt id="ax.plot.pareto_utils.ParetoFrontierResults.outcome_constraints">
+<em class="property">property </em><code class="sig-name descname">outcome_constraints</code><a class="headerlink" href="#ax.plot.pareto_utils.ParetoFrontierResults.outcome_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 6</p>
+</dd></dl>
+<dl class="method">
+<dt id="ax.plot.pareto_utils.ParetoFrontierResults.param_dicts">
+<em class="property">property </em><code class="sig-name descname">param_dicts</code><a class="headerlink" href="#ax.plot.pareto_utils.ParetoFrontierResults.param_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+<dl class="method">
+<dt id="ax.plot.pareto_utils.ParetoFrontierResults.primary_metric">
+<em class="property">property </em><code class="sig-name descname">primary_metric</code><a class="headerlink" href="#ax.plot.pareto_utils.ParetoFrontierResults.primary_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+<dl class="method">
+<dt id="ax.plot.pareto_utils.ParetoFrontierResults.secondary_metric">
+<em class="property">property </em><code class="sig-name descname">secondary_metric</code><a class="headerlink" href="#ax.plot.pareto_utils.ParetoFrontierResults.secondary_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+<dl class="method">
+<dt id="ax.plot.pareto_utils.ParetoFrontierResults.sems">
+<em class="property">property </em><code class="sig-name descname">sems</code><a class="headerlink" href="#ax.plot.pareto_utils.ParetoFrontierResults.sems" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.plot.pareto_utils.compute_pareto_frontier">
+<code class="sig-prename descclassname">ax.plot.pareto_utils.</code><code class="sig-name descname">compute_pareto_frontier</code><span class="sig-paren">(</span><em class="sig-param">experiment</em>, <em class="sig-param">primary_objective</em>, <em class="sig-param">secondary_objective</em>, <em class="sig-param">data=None</em>, <em class="sig-param">outcome_constraints=None</em>, <em class="sig-param">absolute_metrics=None</em>, <em class="sig-param">num_points=10</em>, <em class="sig-param">trial_index=None</em>, <em class="sig-param">chebyshev=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/plot/pareto_utils.html#compute_pareto_frontier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.plot.pareto_utils.compute_pareto_frontier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the Pareto frontier between two objectives. For experiments
+with batch trials, a trial index must be provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>experiment</strong> (<a class="reference internal" href="core.html#ax.core.experiment.Experiment" title="ax.core.experiment.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>) – The experiment to compute a pareto frontier for.</p></li>
+<li><p><strong>primary_objective</strong> (<a class="reference internal" href="core.html#ax.core.metric.Metric" title="ax.core.metric.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code></a>) – The primary objective to optimize.</p></li>
+<li><p><strong>secondary_objective</strong> (<a class="reference internal" href="core.html#ax.core.metric.Metric" title="ax.core.metric.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code></a>) – The secondary objective against which
+to trade off the primary objective.</p></li>
+<li><p><strong>outcome_constraints</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="core.html#ax.core.outcome_constraint.OutcomeConstraint" title="ax.core.outcome_constraint.OutcomeConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">OutcomeConstraint</span></code></a>]]) – Outcome
+constraints to be respected by the optimization. Can only contain
+constraints on metrics that are not primary or secondary objectives.</p></li>
+<li><p><strong>absolute_metrics</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – List of outcome metrics that
+should NOT be relativized w.r.t. the status quo (all other outcomes
+will be in % relative to status_quo).</p></li>
+<li><p><strong>num_points</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The number of points to compute on the
+Pareto frontier.</p></li>
+<li><p><strong>chebyshev</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to use augmented_chebyshev_scalarization
+when computing Pareto Frontier points.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A NamedTuple with the following fields:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>param_dicts: The parameter dicts of the</dt><dd><p>points generated on the Pareto Frontier.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>means: The posterior mean predictions of</dt><dd><p>the model for each metric (same order as the param dicts).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>sems: The posterior sem predictions of</dt><dd><p>the model for each metric (same order as the param dicts).</p>
+</dd>
+</dl>
+</li>
+<li><p>primary_metric: The name of the primary metric.</p></li>
+<li><p>secondary_metric: The name of the secondary metric.</p></li>
+<li><dl class="simple">
+<dt>absolute_metrics: List of outcome metrics that</dt><dd><p>are NOT be relativized w.r.t. the status quo (all other metrics
+are in % relative to status_quo).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ax.plot.pareto_utils.ParetoFrontierResults" title="ax.plot.pareto_utils.ParetoFrontierResults">ParetoFrontierResults</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="function">
+<dt id="ax.plot.pareto_utils.rgba">
+<code class="sig-prename descclassname">ax.plot.pareto_utils.</code><code class="sig-name descname">rgba</code><span class="sig-paren">(</span><em class="sig-param">rgb_tuple</em>, <em class="sig-param">alpha=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/plot/pareto_utils.html#rgba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.plot.pareto_utils.rgba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert RGB tuple to an RGBA string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+</div>
 <div class="section" id="module-ax.plot.scatter">
 <span id="scatter-plots"></span><h3>Scatter Plots<a class="headerlink" href="#module-ax.plot.scatter" title="Permalink to this headline">¶</a></h3>
 <dl class="function">

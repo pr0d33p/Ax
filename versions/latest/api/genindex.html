@@ -86,6 +86,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="core.html#ax.core.batch_trial.AbandonedArm">AbandonedArm (class in ax.core.batch_trial)</a>
 </li>
+<li><a href="plot.html#ax.plot.pareto_utils.ParetoFrontierResults.absolute_metrics">absolute_metrics() (ax.plot.pareto_utils.ParetoFrontierResults property)</a>
+</li>
 <li><a href="storage.html#ax.storage.botorch_modular_registry.ACQUISITION_FUNCTION_REGISTRY">ACQUISITION_FUNCTION_REGISTRY (in module ax.storage.botorch_modular_registry)</a>
 </li>
 <li><a href="storage.html#ax.storage.botorch_modular_registry.ACQUISITION_REGISTRY">ACQUISITION_REGISTRY (in module ax.storage.botorch_modular_registry)</a>
@@ -319,10 +321,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="metrics.html#module-ax.metrics.factorial">ax.metrics.factorial (module)</a>
 </li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="metrics.html#module-ax.metrics.hartmann6">ax.metrics.hartmann6 (module)</a>
 </li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="metrics.html#module-ax.metrics.l2norm">ax.metrics.l2norm (module)</a>
 </li>
 <li><a href="metrics.html#module-ax.metrics.noisy_function">ax.metrics.noisy_function (module)</a>
@@ -446,6 +448,10 @@ src="/js/documentation_options.js">
 <li><a href="plot.html#module-ax.plot.helper">ax.plot.helper (module)</a>
 </li>
 <li><a href="plot.html#module-ax.plot.marginal_effects">ax.plot.marginal_effects (module)</a>
+</li>
+<li><a href="plot.html#module-ax.plot.pareto_frontier">ax.plot.pareto_frontier (module)</a>
+</li>
+<li><a href="plot.html#module-ax.plot.pareto_utils">ax.plot.pareto_utils (module)</a>
 </li>
 <li><a href="plot.html#module-ax.plot.render">ax.plot.render (module)</a>
 </li>
@@ -834,12 +840,15 @@ src="/js/documentation_options.js">
 </ul></li>
 <li><a href="core.html#ax.core.data.clone_without_metrics">clone_without_metrics() (in module ax.core.data)</a>
 </li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="utils.html#ax.utils.tutorials.cnn_utils.CNN">CNN (class in ax.utils.tutorials.cnn_utils)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.COLORS">COLORS (class in ax.plot.color)</a>
+<ul>
+<li><a href="plot.html#ax.plot.pareto_utils.COLORS">(class in ax.plot.pareto_utils)</a>
 </li>
+</ul></li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="core.html#ax.core.data.Data.column_data_types">column_data_types() (ax.core.data.Data static method)</a>
 <ul>
 <li><a href="ax.html#ax.Data.column_data_types">(ax.Data static method)</a>
@@ -859,6 +868,8 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.base_trial.BaseTrial.completed_successfully">completed_successfully() (ax.core.base_trial.BaseTrial property)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.cross_validation.compute_diagnostics">compute_diagnostics() (in module ax.modelbridge.cross_validation)</a>
+</li>
+<li><a href="plot.html#ax.plot.pareto_utils.compute_pareto_frontier">compute_pareto_frontier() (in module ax.plot.pareto_utils)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.transforms.standardize_y.compute_standardization_parameters">compute_standardization_parameters() (in module ax.modelbridge.transforms.standardize_y)</a>
 </li>
@@ -953,7 +964,10 @@ src="/js/documentation_options.js">
 <li><a href="utils.html#ax.utils.common.docutils.copy_doc">copy_doc() (in module ax.utils.common.docutils)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.COLORS.CORAL">CORAL (ax.plot.color.COLORS attribute)</a>
+<ul>
+<li><a href="plot.html#ax.plot.pareto_utils.COLORS.CORAL">(ax.plot.pareto_utils.COLORS attribute)</a>
 </li>
+</ul></li>
 <li><a href="core.html#ax.core.observation.ObservationData.covariance">covariance (ax.core.observation.ObservationData attribute)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.db.create_all_tables">create_all_tables() (in module ax.storage.sqa_store.db)</a>
@@ -2055,10 +2069,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.db.init_test_engine_and_session_factory">init_test_engine_and_session_factory() (in module ax.storage.sqa_store.db)</a>
 </li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="core.html#ax.core.parameter.ParameterType.INT">INT (ax.core.parameter.ParameterType attribute)</a>
 </li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="modelbridge.html#ax.modelbridge.transforms.one_hot.OneHotEncoder.int_encoder">int_encoder (ax.modelbridge.transforms.one_hot.OneHotEncoder attribute)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.sqa_classes.SQAMetric.intent">intent (ax.storage.sqa_store.sqa_classes.SQAMetric attribute)</a>
@@ -2076,6 +2090,8 @@ src="/js/documentation_options.js">
 <li><a href="plot.html#ax.plot.diagnostic.interact_empirical_model_validation">interact_empirical_model_validation() (in module ax.plot.diagnostic)</a>
 </li>
 <li><a href="plot.html#ax.plot.scatter.interact_fitted">interact_fitted() (in module ax.plot.scatter)</a>
+</li>
+<li><a href="plot.html#ax.plot.pareto_frontier.interact_pareto_frontier">interact_pareto_frontier() (in module ax.plot.pareto_frontier)</a>
 </li>
 <li><a href="plot.html#ax.plot.base.AxPlotTypes.INTERACT_SLICE">INTERACT_SLICE (ax.plot.base.AxPlotTypes attribute)</a>
 </li>
@@ -2193,7 +2209,10 @@ src="/js/documentation_options.js">
 <li><a href="core.html#ax.core.types.ComparisonOp.LEQ">LEQ (ax.core.types.ComparisonOp attribute)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.COLORS.LIGHT_PURPLE">LIGHT_PURPLE (ax.plot.color.COLORS attribute)</a>
+<ul>
+<li><a href="plot.html#ax.plot.pareto_utils.COLORS.LIGHT_PURPLE">(ax.plot.pareto_utils.COLORS attribute)</a>
 </li>
+</ul></li>
 <li><a href="storage.html#ax.storage.utils.ParameterConstraintType.LINEAR">LINEAR (ax.storage.utils.ParameterConstraintType attribute)</a>
 </li>
 <li><a href="utils.html#ax.utils.report.render.link_html">link_html() (in module ax.utils.report.render)</a>
@@ -2321,6 +2340,8 @@ src="/js/documentation_options.js">
 <li><a href="plot.html#ax.plot.trace.mean_trace_scatter">mean_trace_scatter() (in module ax.plot.trace)</a>
 </li>
 <li><a href="core.html#ax.core.observation.ObservationData.means">means (ax.core.observation.ObservationData attribute)</a>
+</li>
+<li><a href="plot.html#ax.plot.pareto_utils.ParetoFrontierResults.means">means() (ax.plot.pareto_utils.ParetoFrontierResults property)</a>
 </li>
 <li><a href="core.html#ax.core.types.merge_model_predict">merge_model_predict() (in module ax.core.types)</a>
 </li>
@@ -2747,7 +2768,10 @@ src="/js/documentation_options.js">
 <li><a href="storage.html#ax.storage.sqa_store.db.optional_session_scope">optional_session_scope() (in module ax.storage.sqa_store.db)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.COLORS.ORANGE">ORANGE (ax.plot.color.COLORS attribute)</a>
+<ul>
+<li><a href="plot.html#ax.plot.pareto_utils.COLORS.ORANGE">(ax.plot.pareto_utils.COLORS attribute)</a>
 </li>
+</ul></li>
 <li><a href="storage.html#ax.storage.utils.ParameterConstraintType.ORDER">ORDER (ax.storage.utils.ParameterConstraintType attribute)</a>
 </li>
 <li><a href="storage.html#ax.storage.json_store.encoders.order_parameter_constraint_to_dict">order_parameter_constraint_to_dict() (in module ax.storage.json_store.encoders)</a>
@@ -2780,6 +2804,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="ax.html#ax.OptimizationConfig.outcome_constraints">(ax.OptimizationConfig property)</a>
 </li>
+<li><a href="plot.html#ax.plot.pareto_utils.ParetoFrontierResults.outcome_constraints">(ax.plot.pareto_utils.ParetoFrontierResults property)</a>
+</li>
 </ul></li>
 <li><a href="ax.html#ax.OutcomeConstraint">OutcomeConstraint (class in ax)</a>
 <ul>
@@ -2807,6 +2833,8 @@ src="/js/documentation_options.js">
 <li><a href="ax.html#ax.GeneratorRun.param_df">(ax.GeneratorRun property)</a>
 </li>
 </ul></li>
+<li><a href="plot.html#ax.plot.pareto_utils.ParetoFrontierResults.param_dicts">param_dicts() (ax.plot.pareto_utils.ParetoFrontierResults property)</a>
+</li>
 <li><a href="ax.html#ax.Parameter">Parameter (class in ax)</a>
 <ul>
 <li><a href="core.html#ax.core.parameter.Parameter">(class in ax.core.parameter)</a>
@@ -2900,6 +2928,8 @@ src="/js/documentation_options.js">
 </ul></li>
 <li><a href="modelbridge.html#ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge.pareto_frontier">pareto_frontier() (ax.modelbridge.multi_objective_torch.MultiObjectiveTorchModelBridge method)</a>
 </li>
+<li><a href="plot.html#ax.plot.pareto_utils.ParetoFrontierResults">ParetoFrontierResults (class in ax.plot.pareto_utils)</a>
+</li>
 </ul></td>
 <td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="modelbridge.html#ax.modelbridge.modelbridge_utils.parse_observation_features">parse_observation_features() (in module ax.modelbridge.modelbridge_utils)</a>
@@ -2909,7 +2939,10 @@ src="/js/documentation_options.js">
 <li><a href="models.html#ax.models.torch.utils.pick_best_out_of_sample_point_acqf_class">pick_best_out_of_sample_point_acqf_class() (in module ax.models.torch.utils)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.COLORS.PINK">PINK (ax.plot.color.COLORS attribute)</a>
+<ul>
+<li><a href="plot.html#ax.plot.pareto_utils.COLORS.PINK">(ax.plot.pareto_utils.COLORS attribute)</a>
 </li>
+</ul></li>
 <li><a href="plot.html#ax.plot.bandit_rollout.plot_bandit_rollout">plot_bandit_rollout() (in module ax.plot.bandit_rollout)</a>
 </li>
 <li><a href="plot.html#ax.plot.render.plot_config_to_html">plot_config_to_html() (in module ax.plot.render)</a>
@@ -2929,6 +2962,8 @@ src="/js/documentation_options.js">
 <li><a href="plot.html#ax.plot.scatter.plot_multiple_metrics">plot_multiple_metrics() (in module ax.plot.scatter)</a>
 </li>
 <li><a href="plot.html#ax.plot.scatter.plot_objective_vs_constraints">plot_objective_vs_constraints() (in module ax.plot.scatter)</a>
+</li>
+<li><a href="plot.html#ax.plot.pareto_frontier.plot_pareto_frontier">plot_pareto_frontier() (in module ax.plot.pareto_frontier)</a>
 </li>
 <li><a href="plot.html#ax.plot.feature_importances.plot_relative_feature_importance">plot_relative_feature_importance() (in module ax.plot.feature_importances)</a>
 </li>
@@ -2966,6 +3001,8 @@ src="/js/documentation_options.js">
 <li><a href="models.html#ax.models.torch.utils.predict_from_model">predict_from_model() (in module ax.models.torch.utils)</a>
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.cross_validation.CVResult.predicted">predicted() (ax.modelbridge.cross_validation.CVResult property)</a>
+</li>
+<li><a href="plot.html#ax.plot.pareto_utils.ParetoFrontierResults.primary_metric">primary_metric() (ax.plot.pareto_utils.ParetoFrontierResults property)</a>
 </li>
 <li><a href="storage.html#ax.storage.sqa_store.json.JSONEncodedObject.process_bind_param">process_bind_param() (ax.storage.sqa_store.json.JSONEncodedObject method)</a>
 <ul>
@@ -3075,10 +3112,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="utils.html#ax.utils.notebook.plotting.render">render() (in module ax.utils.notebook.plotting)</a>
 </li>
-</ul></td>
-<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="utils.html#ax.utils.report.render.render_report_elements">render_report_elements() (in module ax.utils.report.render)</a>
 </li>
+</ul></td>
+<td style="width: 33%; vertical-align: top;"><ul>
 <li><a href="core.html#ax.core.data.Data.required_columns">required_columns() (ax.core.data.Data static method)</a>
 <ul>
 <li><a href="ax.html#ax.Data.required_columns">(ax.Data static method)</a>
@@ -3100,7 +3137,10 @@ src="/js/documentation_options.js">
 <li><a href="plot.html#ax.plot.helper.rgb">rgb() (in module ax.plot.helper)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.rgba">rgba() (in module ax.plot.color)</a>
+<ul>
+<li><a href="plot.html#ax.plot.pareto_utils.rgba">(in module ax.plot.pareto_utils)</a>
 </li>
+</ul></li>
 <li><a href="ax.html#ax.BatchTrial.run">run() (ax.BatchTrial method)</a>
 <ul>
 <li><a href="core.html#ax.core.base_trial.BaseTrial.run">(ax.core.base_trial.BaseTrial method)</a>
@@ -3233,6 +3273,8 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="modelbridge.html#ax.modelbridge.transforms.search_space_to_choice.SearchSpaceToChoice">SearchSpaceToChoice (class in ax.modelbridge.transforms.search_space_to_choice)</a>
 </li>
+<li><a href="plot.html#ax.plot.pareto_utils.ParetoFrontierResults.secondary_metric">secondary_metric() (ax.plot.pareto_utils.ParetoFrontierResults property)</a>
+</li>
 <li><a href="models.html#ax.models.random.base.RandomModel.seed">seed (ax.models.random.base.RandomModel attribute)</a>
 <ul>
 <li><a href="models.html#ax.models.random.sobol.SobolGenerator.seed">(ax.models.random.sobol.SobolGenerator attribute)</a>
@@ -3241,6 +3283,8 @@ src="/js/documentation_options.js">
 </li>
 </ul></li>
 <li><a href="plot.html#ax.plot.trace.sem_range_scatter">sem_range_scatter() (in module ax.plot.trace)</a>
+</li>
+<li><a href="plot.html#ax.plot.pareto_utils.ParetoFrontierResults.sems">sems() (ax.plot.pareto_utils.ParetoFrontierResults property)</a>
 </li>
 <li><a href="core.html#ax.core.observation.separate_observations">separate_observations() (in module ax.core.observation)</a>
 </li>
@@ -3293,10 +3337,10 @@ src="/js/documentation_options.js">
 </li>
 <li><a href="storage.html#ax.storage.json_store.encoders.simple_experiment_to_dict">simple_experiment_to_dict() (in module ax.storage.json_store.encoders)</a>
 </li>
-<li><a href="benchmark.html#ax.benchmark.benchmark_problem.SimpleBenchmarkProblem">SimpleBenchmarkProblem (class in ax.benchmark.benchmark_problem)</a>
-</li>
 </ul></td>
 <td style="width: 33%; vertical-align: top;"><ul>
+<li><a href="benchmark.html#ax.benchmark.benchmark_problem.SimpleBenchmarkProblem">SimpleBenchmarkProblem (class in ax.benchmark.benchmark_problem)</a>
+</li>
 <li><a href="ax.html#ax.SimpleExperiment">SimpleExperiment (class in ax)</a>
 <ul>
 <li><a href="core.html#ax.core.simple_experiment.SimpleExperiment">(class in ax.core.simple_experiment)</a>
@@ -3389,7 +3433,10 @@ src="/js/documentation_options.js">
 <li><a href="storage.html#ax.storage.sqa_store.sqa_classes.SQAExperiment.status_quo_parameters">status_quo_parameters (ax.storage.sqa_store.sqa_classes.SQAExperiment attribute)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.COLORS.STEELBLUE">STEELBLUE (ax.plot.color.COLORS attribute)</a>
+<ul>
+<li><a href="plot.html#ax.plot.pareto_utils.COLORS.STEELBLUE">(ax.plot.pareto_utils.COLORS attribute)</a>
 </li>
+</ul></li>
 <li><a href="storage.html#ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy.steps">steps (ax.storage.sqa_store.sqa_classes.SQAGenerationStrategy attribute)</a>
 </li>
 <li><a href="core.html#ax.core.runner.Runner.stop">stop() (ax.core.runner.Runner method)</a>
@@ -3458,7 +3505,10 @@ src="/js/documentation_options.js">
 <li><a href="modelbridge.html#ax.modelbridge.transforms.convert_metric_names.tconfig_from_mt_experiment">tconfig_from_mt_experiment() (in module ax.modelbridge.transforms.convert_metric_names)</a>
 </li>
 <li><a href="plot.html#ax.plot.color.COLORS.TEAL">TEAL (ax.plot.color.COLORS attribute)</a>
+<ul>
+<li><a href="plot.html#ax.plot.pareto_utils.COLORS.TEAL">(ax.plot.pareto_utils.COLORS attribute)</a>
 </li>
+</ul></li>
 <li><a href="models.html#ax.models.torch.utils.tensor_callable_to_array_callable">tensor_callable_to_array_callable() (in module ax.models.torch.utils)</a>
 </li>
 <li><a href="utils.html#ax.utils.common.testutils.TestCase">TestCase (class in ax.utils.common.testutils)</a>
