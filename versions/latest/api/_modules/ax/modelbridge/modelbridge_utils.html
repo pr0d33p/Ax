@@ -155,7 +155,7 @@ src="/js/documentation_options.js">
 <span class="sd">        List of candidates, represented as ObservationFeatures.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">candidate_metadata</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidate_metadata</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>  <span class="c1"># pragma: no cover</span>
             <span class="s2">"Observations metadata list provided is not of "</span>
             <span class="s2">"the same size as the number of candidates."</span>
         <span class="p">)</span>

@@ -175,10 +175,11 @@ src="/js/documentation_options.js">
         <span class="bp">self</span><span class="p">,</span> <span class="n">observation_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ObservationFeatures</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ObservationData</span><span class="p">]:</span>
         <span class="c1"># Convert observations to array</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[[</span><span class="n">of</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">]</span> <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="n">observation_features</span><span class="p">]</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_predict</span><span class="p">(</span>
+            <span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_transform_observation_features</span><span class="p">(</span>
+                <span class="n">observation_features</span><span class="o">=</span><span class="n">observation_features</span>
+            <span class="p">)</span>
         <span class="p">)</span>
-        <span class="n">f</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
         <span class="c1"># Convert arrays to observations</span>
         <span class="k">return</span> <span class="n">array_to_observation_data</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">outcomes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">outcomes</span><span class="p">)</span>
 
@@ -367,6 +368,18 @@ src="/js/documentation_options.js">
             <span class="n">Xs_train</span><span class="o">=</span><span class="n">Xs_train</span><span class="p">,</span> <span class="n">Ys_train</span><span class="o">=</span><span class="n">Ys_train</span><span class="p">,</span> <span class="n">Yvars_train</span><span class="o">=</span><span class="n">Yvars_train</span><span class="p">,</span> <span class="n">X_test</span><span class="o">=</span><span class="n">X_test</span>
         <span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_evaluate_acquisition_function</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">observation_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ObservationFeatures</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_evaluate_acquisition_function</span><span class="p">(</span>
+            <span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_transform_observation_features</span><span class="p">(</span>
+                <span class="n">observation_features</span><span class="o">=</span><span class="n">observation_features</span>
+            <span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_model_evaluate_acquisition_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># pragma: no cover</span>
+
     <span class="k">def</span> <span class="nf">_transform_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="sd">"""A function that performs the `round trip` transformations.</span>
 <span class="sd">        This function is passed to _model_gen.</span>
@@ -408,9 +421,18 @@ src="/js/documentation_options.js">
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="sd">"""Apply terminal transform to given observation features and return result.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[[</span><span class="n">of</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">]</span> <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="n">observation_features</span><span class="p">]</span>
-        <span class="p">)</span></div>
+        <span class="sd">"""Converts a set of observation features to a nxd array of points."""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="c1"># pyre-ignore[6]: Except statement below should catch wrongly</span>
+                    <span class="c1"># typed parameters.</span>
+                    <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">p</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="n">observation_features</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Invalid formatting of observation features."</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="array_to_observation_data"><a class="viewcode-back" href="../../../modelbridge.html#ax.modelbridge.array.array_to_observation_data">[docs]</a><span class="k">def</span> <span class="nf">array_to_observation_data</span><span class="p">(</span>

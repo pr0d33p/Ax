@@ -791,6 +791,23 @@ cov[j, m1, m2] is Cov[m1@j, m2@j].</p></li>
 <code class="sig-name descname">dtype</code><em class="property">: Optional[torch.dtype]</em><em class="property"> = None</em><a class="headerlink" href="#ax.models.torch_base.TorchModel.dtype" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="method">
+<dt id="ax.models.torch_base.TorchModel.evaluate_acquisition_function">
+<code class="sig-name descname">evaluate_acquisition_function</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch_base.html#TorchModel.evaluate_acquisition_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch_base.TorchModel.evaluate_acquisition_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the acquisition function on the candidate set <cite>X</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>) – (j x d) tensor of the j points at which to evaluate the acquisition
+function.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A single-element tensor with the acquisition value for these points.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="method">
 <dt id="ax.models.torch_base.TorchModel.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">Xs</em>, <em class="sig-param">Ys</em>, <em class="sig-param">Yvars</em>, <em class="sig-param">bounds</em>, <em class="sig-param">task_features</em>, <em class="sig-param">feature_names</em>, <em class="sig-param">metric_names</em>, <em class="sig-param">fidelity_features</em>, <em class="sig-param">candidate_metadata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch_base.html#TorchModel.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch_base.TorchModel.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit model to m outcomes.</p>
@@ -1969,7 +1986,7 @@ but can differ to account for fidelities etc.</p>
 </dd></dl>
 <dl class="function">
 <dt id="ax.models.torch.utils.pick_best_out_of_sample_point_acqf_class">
-<code class="sig-prename descclassname">ax.models.torch.utils.</code><code class="sig-name descname">pick_best_out_of_sample_point_acqf_class</code><span class="sig-paren">(</span><em class="sig-param">Xs</em>, <em class="sig-param">outcome_constraints=None</em>, <em class="sig-param">mc_samples=512</em>, <em class="sig-param">qmc=True</em>, <em class="sig-param">seed_inner=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/utils.html#pick_best_out_of_sample_point_acqf_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.utils.pick_best_out_of_sample_point_acqf_class" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">ax.models.torch.utils.</code><code class="sig-name descname">pick_best_out_of_sample_point_acqf_class</code><span class="sig-paren">(</span><em class="sig-param">outcome_constraints=None</em>, <em class="sig-param">mc_samples=512</em>, <em class="sig-param">qmc=True</em>, <em class="sig-param">seed_inner=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/models/torch/utils.html#pick_best_out_of_sample_point_acqf_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.models.torch.utils.pick_best_out_of_sample_point_acqf_class" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AcquisitionFunction</span></code>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</p>

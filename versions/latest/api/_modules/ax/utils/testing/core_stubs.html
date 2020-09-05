@@ -248,6 +248,14 @@ src="/js/documentation_options.js">
     <span class="k">return</span> <span class="n">batch_trial</span><span class="o">.</span><span class="n">experiment</span></div>
 
 
+<div class="viewcode-block" id="get_experiment_with_trial_with_ttl"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_experiment_with_trial_with_ttl">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_with_trial_with_ttl</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>
+    <span class="n">batch_trial</span> <span class="o">=</span> <span class="n">get_batch_trial</span><span class="p">()</span>
+    <span class="n">batch_trial</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span>
+        <span class="n">generator_run</span><span class="o">=</span><span class="n">GeneratorRun</span><span class="p">(</span><span class="n">arms</span><span class="o">=</span><span class="p">[</span><span class="n">get_arm</span><span class="p">()]),</span> <span class="n">ttl_seconds</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">batch_trial</span><span class="o">.</span><span class="n">experiment</span></div>
+
+
 <div class="viewcode-block" id="get_experiment_with_data"><a class="viewcode-back" href="../../../../utils.html#ax.utils.testing.core_stubs.get_experiment_with_data">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_with_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>
     <span class="n">batch_trial</span> <span class="o">=</span> <span class="n">get_batch_trial</span><span class="p">()</span>
     <span class="n">batch_trial</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">attach_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">get_data</span><span class="p">())</span>

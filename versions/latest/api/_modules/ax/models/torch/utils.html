@@ -419,7 +419,6 @@ src="/js/documentation_options.js">
         <span class="p">)</span>
 
     <span class="n">acqf_class</span><span class="p">,</span> <span class="n">acqf_options</span> <span class="o">=</span> <span class="n">pick_best_out_of_sample_point_acqf_class</span><span class="p">(</span>
-        <span class="n">Xs</span><span class="o">=</span><span class="n">Xs</span><span class="p">,</span>
         <span class="n">outcome_constraints</span><span class="o">=</span><span class="n">outcome_constraints</span><span class="p">,</span>
         <span class="n">mc_samples</span><span class="o">=</span><span class="n">mc_samples</span><span class="p">,</span>
         <span class="n">qmc</span><span class="o">=</span><span class="n">qmc</span><span class="p">,</span>
@@ -455,7 +454,6 @@ src="/js/documentation_options.js">
 
 
 <div class="viewcode-block" id="pick_best_out_of_sample_point_acqf_class"><a class="viewcode-back" href="../../../../models.html#ax.models.torch.utils.pick_best_out_of_sample_point_acqf_class">[docs]</a><span class="k">def</span> <span class="nf">pick_best_out_of_sample_point_acqf_class</span><span class="p">(</span>
-    <span class="n">Xs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tensor</span><span class="p">],</span>
     <span class="n">outcome_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">mc_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">qmc</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>

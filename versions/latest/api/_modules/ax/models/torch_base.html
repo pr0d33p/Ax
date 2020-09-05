@@ -239,6 +239,18 @@ src="/js/documentation_options.js">
 <span class="sd">            candidate_metadata: Model-produced metadata for candidates, in</span>
 <span class="sd">                the order corresponding to the Xs.</span>
 <span class="sd">        """</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="TorchModel.evaluate_acquisition_function"><a class="viewcode-back" href="../../../models.html#ax.models.torch_base.TorchModel.evaluate_acquisition_function">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_acquisition_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+        <span class="sd">"""Evaluate the acquisition function on the candidate set `X`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            X: (j x d) tensor of the j points at which to evaluate the acquisition</span>
+<span class="sd">                function.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A single-element tensor with the acquisition value for these points.</span>
+<span class="sd">        """</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 </pre></div>
 </div>

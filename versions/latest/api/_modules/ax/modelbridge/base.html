@@ -778,6 +778,30 @@ src="/js/documentation_options.js">
 <span class="sd">        """</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># pragma: no cover</span>
 
+<div class="viewcode-block" id="ModelBridge.evaluate_acquisition_function"><a class="viewcode-back" href="../../../modelbridge.html#ax.modelbridge.base.ModelBridge.evaluate_acquisition_function">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_acquisition_function</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">observation_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ObservationFeatures</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">"""Evaluate the acquisition function for given set of observation</span>
+<span class="sd">        features.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            observation_features: A list of observation features, representing</span>
+<span class="sd">                parameterizations, for which to evaluate the acquisition function.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A list of acquisition function values, in the same order as the</span>
+<span class="sd">            input observation features.</span>
+<span class="sd">        """</span>
+        <span class="n">obs_feats</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">observation_features</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">obs_feats</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">transform_observation_features</span><span class="p">(</span><span class="n">obs_feats</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_acquisition_function</span><span class="p">(</span><span class="n">observation_features</span><span class="o">=</span><span class="n">obs_feats</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_evaluate_acquisition_function</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">observation_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ObservationFeatures</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># pragma: no cover</span>
+
     <span class="k">def</span> <span class="nf">_set_kwargs_to_save</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">model_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
