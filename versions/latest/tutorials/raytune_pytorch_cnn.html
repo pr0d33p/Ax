@@ -378,7 +378,7 @@ function slice_config_to_trace(
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 09-05 05:23:14] ax.utils.notebook.plotting: Injecting Plotly library into cell. Do not overwrite or delete cell.
+<pre>[INFO 09-06 05:21:14] ax.utils.notebook.plotting: Injecting Plotly library into cell. Do not overwrite or delete cell.
 </pre>
 </div>
 </div>
@@ -486,7 +486,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 09-05 05:23:15] ax.service.ax_client: Starting optimization with verbose logging. To disable logging, set the `verbose_logging` argument to `False`. Note that float values in the logs are rounded to 2 decimal points.
+<pre>[INFO 09-06 05:21:14] ax.service.ax_client: Starting optimization with verbose logging. To disable logging, set the `verbose_logging` argument to `False`. Note that float values in the logs are rounded to 2 decimal points.
 </pre>
 </div>
 </div>
@@ -522,9 +522,9 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[INFO 09-05 05:23:15] ax.service.utils.instantiation: Inferred value type of ParameterType.FLOAT for parameter lr. If that is not the expected value type, you can explicity specify 'value_type' ('int', 'float', 'bool' or 'str') in parameter dict.
-[INFO 09-05 05:23:15] ax.service.utils.instantiation: Inferred value type of ParameterType.FLOAT for parameter momentum. If that is not the expected value type, you can explicity specify 'value_type' ('int', 'float', 'bool' or 'str') in parameter dict.
-[INFO 09-05 05:23:15] ax.modelbridge.dispatch_utils: Using Bayesian Optimization generation strategy: GenerationStrategy(name='Sobol+GPEI', steps=[Sobol for 5 trials, GPEI for subsequent trials]). Iterations after 5 will take longer to generate due to  model-fitting.
+<pre>[INFO 09-06 05:21:14] ax.service.utils.instantiation: Inferred value type of ParameterType.FLOAT for parameter lr. If that is not the expected value type, you can explicity specify 'value_type' ('int', 'float', 'bool' or 'str') in parameter dict.
+[INFO 09-06 05:21:14] ax.service.utils.instantiation: Inferred value type of ParameterType.FLOAT for parameter momentum. If that is not the expected value type, you can explicity specify 'value_type' ('int', 'float', 'bool' or 'str') in parameter dict.
+[INFO 09-06 05:21:14] ax.modelbridge.dispatch_utils: Using Bayesian Optimization generation strategy: GenerationStrategy(name='Sobol+GPEI', steps=[Sobol for 5 trials, GPEI for subsequent trials]). Iterations after 5 will take longer to generate due to  model-fitting.
 </pre>
 </div>
 </div>
@@ -588,40 +588,40 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>2020-09-05 05:23:15,140	INFO resource_spec.py:231 -- Starting Ray with 4.35 GiB memory available for workers and up to 2.18 GiB for objects. You can adjust these settings with ray.init(memory=&lt;bytes&gt;, object_store_memory=&lt;bytes&gt;).
-2020-09-05 05:23:15,600	INFO services.py:1193 -- View the Ray dashboard at <span class="ansi-green-intense-fg ansi-bold">localhost:8265</span>
-[INFO 09-05 05:23:16] ax.service.ax_client: Generated new trial 0 with parameters {'lr': 0.0, 'momentum': 0.34}.
-[INFO 09-05 05:23:16] ax.service.ax_client: Generated new trial 1 with parameters {'lr': 0.16, 'momentum': 0.75}.
-[INFO 09-05 05:23:16] ax.service.ax_client: Generated new trial 2 with parameters {'lr': 0.0, 'momentum': 0.53}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 3 with parameters {'lr': 0.0, 'momentum': 0.8}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 4 with parameters {'lr': 0.2, 'momentum': 0.95}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 5 with parameters {'lr': 0.0, 'momentum': 0.0}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 6 with parameters {'lr': 0.0, 'momentum': 0.39}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 7 with parameters {'lr': 0.22, 'momentum': 0.68}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 8 with parameters {'lr': 0.0, 'momentum': 0.3}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 9 with parameters {'lr': 0.0, 'momentum': 0.69}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 10 with parameters {'lr': 0.2, 'momentum': 0.78}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 11 with parameters {'lr': 0.0, 'momentum': 0.18}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 12 with parameters {'lr': 0.0, 'momentum': 0.27}.
-[INFO 09-05 05:23:17] ax.service.ax_client: Generated new trial 13 with parameters {'lr': 0.0, 'momentum': 0.07}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 14 with parameters {'lr': 0.0, 'momentum': 0.12}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 15 with parameters {'lr': 0.04, 'momentum': 0.51}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 16 with parameters {'lr': 0.04, 'momentum': 0.13}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 17 with parameters {'lr': 0.01, 'momentum': 0.31}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 18 with parameters {'lr': 0.01, 'momentum': 0.06}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 19 with parameters {'lr': 0.0, 'momentum': 0.75}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 20 with parameters {'lr': 0.0, 'momentum': 0.88}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 21 with parameters {'lr': 0.0, 'momentum': 0.78}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 22 with parameters {'lr': 0.13, 'momentum': 0.46}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 23 with parameters {'lr': 0.06, 'momentum': 0.32}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 24 with parameters {'lr': 0.17, 'momentum': 0.64}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 25 with parameters {'lr': 0.0, 'momentum': 0.22}.
-[INFO 09-05 05:23:18] ax.service.ax_client: Generated new trial 26 with parameters {'lr': 0.2, 'momentum': 0.04}.
-[INFO 09-05 05:23:19] ax.service.ax_client: Generated new trial 27 with parameters {'lr': 0.14, 'momentum': 0.66}.
-[INFO 09-05 05:23:19] ax.service.ax_client: Generated new trial 28 with parameters {'lr': 0.0, 'momentum': 0.28}.
-[INFO 09-05 05:23:19] ax.service.ax_client: Generated new trial 29 with parameters {'lr': 0.36, 'momentum': 0.73}.
-<span class="ansi-cyan-fg">(pid=4475)</span> 2020-09-05 05:23:21,078	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4476)</span> 2020-09-05 05:23:21,083	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<pre>2020-09-06 05:21:14,916	INFO resource_spec.py:231 -- Starting Ray with 4.35 GiB memory available for workers and up to 2.18 GiB for objects. You can adjust these settings with ray.init(memory=&lt;bytes&gt;, object_store_memory=&lt;bytes&gt;).
+2020-09-06 05:21:15,386	INFO services.py:1193 -- View the Ray dashboard at <span class="ansi-green-intense-fg ansi-bold">localhost:8265</span>
+[INFO 09-06 05:21:16] ax.service.ax_client: Generated new trial 0 with parameters {'lr': 0.0, 'momentum': 0.5}.
+[INFO 09-06 05:21:16] ax.service.ax_client: Generated new trial 1 with parameters {'lr': 0.0, 'momentum': 0.14}.
+[INFO 09-06 05:21:16] ax.service.ax_client: Generated new trial 2 with parameters {'lr': 0.0, 'momentum': 0.87}.
+[INFO 09-06 05:21:16] ax.service.ax_client: Generated new trial 3 with parameters {'lr': 0.05, 'momentum': 0.63}.
+[INFO 09-06 05:21:16] ax.service.ax_client: Generated new trial 4 with parameters {'lr': 0.0, 'momentum': 0.82}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 5 with parameters {'lr': 0.0, 'momentum': 0.42}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 6 with parameters {'lr': 0.0, 'momentum': 0.99}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 7 with parameters {'lr': 0.0, 'momentum': 0.82}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 8 with parameters {'lr': 0.0, 'momentum': 0.27}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 9 with parameters {'lr': 0.0, 'momentum': 0.98}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 10 with parameters {'lr': 0.0, 'momentum': 0.49}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 11 with parameters {'lr': 0.1, 'momentum': 0.48}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 12 with parameters {'lr': 0.0, 'momentum': 0.87}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 13 with parameters {'lr': 0.0, 'momentum': 0.3}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 14 with parameters {'lr': 0.0, 'momentum': 0.47}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 15 with parameters {'lr': 0.0, 'momentum': 0.41}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 16 with parameters {'lr': 0.11, 'momentum': 0.52}.
+[INFO 09-06 05:21:17] ax.service.ax_client: Generated new trial 17 with parameters {'lr': 0.0, 'momentum': 0.52}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 18 with parameters {'lr': 0.0, 'momentum': 0.65}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 19 with parameters {'lr': 0.0, 'momentum': 0.42}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 20 with parameters {'lr': 0.07, 'momentum': 0.61}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 21 with parameters {'lr': 0.0, 'momentum': 0.16}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 22 with parameters {'lr': 0.0, 'momentum': 0.34}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 23 with parameters {'lr': 0.0, 'momentum': 0.09}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 24 with parameters {'lr': 0.19, 'momentum': 0.67}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 25 with parameters {'lr': 0.0, 'momentum': 0.79}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 26 with parameters {'lr': 0.0, 'momentum': 0.33}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 27 with parameters {'lr': 0.0, 'momentum': 0.23}.
+[INFO 09-06 05:21:18] ax.service.ax_client: Generated new trial 28 with parameters {'lr': 0.0, 'momentum': 0.99}.
+[INFO 09-06 05:21:19] ax.service.ax_client: Generated new trial 29 with parameters {'lr': 0.0, 'momentum': 0.61}.
+<span class="ansi-cyan-fg">(pid=4444)</span> 2020-09-06 05:21:20,829	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4445)</span> 2020-09-06 05:21:20,847	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
 0.1%
 0.1%
 </pre>
@@ -630,66 +630,34 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4475)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4476)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
+<pre><span class="ansi-cyan-fg">(pid=4444)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4445)</span> Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>1.1%
+<pre>1.2%
 0.9%
-1.2%
-1.2%
-7.6%
-7.7%
-6.3%
-8.1%
-6.9%
-27.4%
-24.0%
-27.9%
-24.2%
-24.8%
-28.8%
-25.7%
-29.1%
-26.0%
-26.8%
-27.4%
-30.2%
-28.2%
-30.4%
-30.5%
-57.7%
-54.0%
-58.3%
-55.0%
-56.4%
-61.2%
-57.7%
-62.1%
-62.9%
-58.3%
-63.4%
-63.6%
-58.4%
-59.0%
-59.3%
-59.8%
-65.5%
-60.2%
-66.8%
-61.0%
-61.7%
-66.9%
-62.3%
-67.0%
-98.2%
-89.8%
-98.3%
+8.8%
+4.3%
+35.6%
+18.2%
+37.2%
+18.8%
+67.9%
+50.8%
+69.3%
+52.1%
+69.6%
+69.9%
+70.4%
+70.5%
+71.4%
+52.2%
 100.1%
+82.3%
 100.1%
 </pre>
 </div>
@@ -697,30 +665,33 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4475)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4476)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4475)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4476)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4475)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4475)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4476)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4476)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
+<pre><span class="ansi-cyan-fg">(pid=4444)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4445)</span> Extracting /home/travis/.data/MNIST/raw/train-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4444)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4445)</span> Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4444)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4444)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4445)</span> Extracting /home/travis/.data/MNIST/raw/train-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4445)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>113.5%
+<pre>28.4%
+28.4%
+113.5%
 113.5%
 0.5%
 0.5%
-7.9%
+7.0%
 5.5%
-8.4%
-9.4%
-52.7%
+52.2%
 25.8%
+52.7%
+27.8%
+30.3%
 100.4%
 100.4%
 </pre>
@@ -729,139 +700,141 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4475)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4476)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4475)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4476)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
-<span class="ansi-cyan-fg">(pid=4475)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4475)</span> Processing...
-<span class="ansi-cyan-fg">(pid=4476)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
-<span class="ansi-cyan-fg">(pid=4476)</span> Processing...
+<pre><span class="ansi-cyan-fg">(pid=4444)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4445)</span> Extracting /home/travis/.data/MNIST/raw/t10k-images-idx3-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4444)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4445)</span> Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+<span class="ansi-cyan-fg">(pid=4444)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4444)</span> Processing...
+<span class="ansi-cyan-fg">(pid=4445)</span> Extracting /home/travis/.data/MNIST/raw/t10k-labels-idx1-ubyte.gz to /home/travis/.data/MNIST/raw
+<span class="ansi-cyan-fg">(pid=4445)</span> Processing...
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>180.4%
+<pre>180.4%/home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py:469: UserWarning:
+<span class="ansi-cyan-fg">(pid=4444)</span> 
+<span class="ansi-cyan-fg">(pid=4444)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:141.)
+<span class="ansi-cyan-fg">(pid=4444)</span> 
 180.4%
-<span class="ansi-cyan-fg">(pid=4475)</span> /home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py:469: UserWarning:
-<span class="ansi-cyan-fg">(pid=4475)</span> 
-<span class="ansi-cyan-fg">(pid=4475)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:141.)
-<span class="ansi-cyan-fg">(pid=4475)</span> 
-<span class="ansi-cyan-fg">(pid=4476)</span> /home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py:469: UserWarning:
-<span class="ansi-cyan-fg">(pid=4476)</span> 
-<span class="ansi-cyan-fg">(pid=4476)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:141.)
-<span class="ansi-cyan-fg">(pid=4476)</span> 
+<span class="ansi-cyan-fg">(pid=4445)</span> /home/travis/virtualenv/python3.7.1/lib/python3.7/site-packages/torchvision/datasets/mnist.py:469: UserWarning:
+<span class="ansi-cyan-fg">(pid=4445)</span> 
+<span class="ansi-cyan-fg">(pid=4445)</span> The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:141.)
+<span class="ansi-cyan-fg">(pid=4445)</span> 
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-cyan-fg">(pid=4475)</span> Done!
-<span class="ansi-cyan-fg">(pid=4476)</span> Done!
+<pre><span class="ansi-cyan-fg">(pid=4444)</span> Done!
+<span class="ansi-cyan-fg">(pid=4445)</span> Done!
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre><span class="ansi-cyan-fg">(pid=4476)</span> 2020-09-05 05:23:38,544	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:23:38] ax.service.ax_client: Completed trial 1 with data: {'mean_accuracy': (0.09, 0.0)}.
-[INFO 09-05 05:23:38] ax.service.ax_client: Completed trial 0 with data: {'mean_accuracy': (0.22, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4475)</span> 2020-09-05 05:23:38,675	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-<span class="ansi-cyan-fg">(pid=4565)</span> 2020-09-05 05:23:41,644	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4564)</span> 2020-09-05 05:23:41,669	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4565)</span> 2020-09-05 05:23:57,415	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:23:57] ax.service.ax_client: Completed trial 2 with data: {'mean_accuracy': (0.38, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4564)</span> 2020-09-05 05:23:57,671	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:23:57] ax.service.ax_client: Completed trial 3 with data: {'mean_accuracy': (0.96, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4576)</span> 2020-09-05 05:23:59,639	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4629)</span> 2020-09-05 05:24:00,598	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4576)</span> 2020-09-05 05:24:15,422	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:24:15] ax.service.ax_client: Completed trial 4 with data: {'mean_accuracy': (0.12, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4629)</span> 2020-09-05 05:24:16,563	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:24:16] ax.service.ax_client: Completed trial 5 with data: {'mean_accuracy': (0.95, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4659)</span> 2020-09-05 05:24:18,436	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4678)</span> 2020-09-05 05:24:19,321	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4659)</span> 2020-09-05 05:24:34,409	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:24:34] ax.service.ax_client: Completed trial 6 with data: {'mean_accuracy': (0.16, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4678)</span> 2020-09-05 05:24:34,745	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:24:34] ax.service.ax_client: Completed trial 7 with data: {'mean_accuracy': (0.1, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4702)</span> 2020-09-05 05:24:37,756	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4706)</span> 2020-09-05 05:24:37,841	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4706)</span> 2020-09-05 05:24:53,451	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:24:53] ax.service.ax_client: Completed trial 9 with data: {'mean_accuracy': (0.96, 0.0)}.
-[INFO 09-05 05:24:53] ax.service.ax_client: Completed trial 8 with data: {'mean_accuracy': (0.96, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4702)</span> 2020-09-05 05:24:53,653	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-<span class="ansi-cyan-fg">(pid=4715)</span> 2020-09-05 05:24:55,645	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4786)</span> 2020-09-05 05:24:56,844	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4715)</span> 2020-09-05 05:25:11,784	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:25:11] ax.service.ax_client: Completed trial 10 with data: {'mean_accuracy': (0.1, 0.0)}.
-[INFO 09-05 05:25:12] ax.service.ax_client: Completed trial 11 with data: {'mean_accuracy': (0.94, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4786)</span> 2020-09-05 05:25:12,582	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-<span class="ansi-cyan-fg">(pid=4811)</span> 2020-09-05 05:25:15,077	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4815)</span> 2020-09-05 05:25:15,449	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4811)</span> 2020-09-05 05:25:31,248	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:25:31] ax.service.ax_client: Completed trial 12 with data: {'mean_accuracy': (0.84, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4815)</span> 2020-09-05 05:25:32,106	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:25:32] ax.service.ax_client: Completed trial 13 with data: {'mean_accuracy': (0.92, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4824)</span> 2020-09-05 05:25:33,626	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4877)</span> 2020-09-05 05:25:35,003	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4824)</span> 2020-09-05 05:25:49,993	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:25:50] ax.service.ax_client: Completed trial 14 with data: {'mean_accuracy': (0.9, 0.0)}.
-[INFO 09-05 05:25:51] ax.service.ax_client: Completed trial 15 with data: {'mean_accuracy': (0.12, 0.0)}.<span class="ansi-cyan-fg">(pid=4877)</span> 2020-09-05 05:25:51,222	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<pre><span class="ansi-cyan-fg">(pid=4445)</span> 2020-09-06 05:21:37,739	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:21:37] ax.service.ax_client: Completed trial 1 with data: {'mean_accuracy': (0.11, 0.0)}.
+[INFO 09-06 05:21:38] ax.service.ax_client: Completed trial 0 with data: {'mean_accuracy': (0.63, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4444)</span> 2020-09-06 05:21:38,323	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4534)</span> 2020-09-06 05:21:40,813	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4538)</span> 2020-09-06 05:21:41,308	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+[INFO 09-06 05:21:57] ax.service.ax_client: Completed trial 2 with data: {'mean_accuracy': (0.9, 0.0)}.<span class="ansi-cyan-fg">(pid=4534)</span> 2020-09-06 05:21:56,957	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 
-<span class="ansi-cyan-fg">(pid=4901)</span> 2020-09-05 05:25:53,011	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4920)</span> 2020-09-05 05:25:54,053	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4901)</span> 2020-09-05 05:26:08,634	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:26:08] ax.service.ax_client: Completed trial 16 with data: {'mean_accuracy': (0.1, 0.0)}.
-[INFO 09-05 05:26:10] ax.service.ax_client: Completed trial 17 with data: {'mean_accuracy': (0.09, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4920)</span> 2020-09-05 05:26:10,018	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-<span class="ansi-cyan-fg">(pid=4943)</span> 2020-09-05 05:26:11,585	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4961)</span> 2020-09-05 05:26:12,861	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4943)</span> 2020-09-05 05:26:27,314	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:26:27] ax.service.ax_client: Completed trial 18 with data: {'mean_accuracy': (0.11, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4961)</span> 2020-09-05 05:26:29,044	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:26:29] ax.service.ax_client: Completed trial 19 with data: {'mean_accuracy': (0.95, 0.0)}.
-<span class="ansi-cyan-fg">(pid=4985)</span> 2020-09-05 05:26:30,465	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5009)</span> 2020-09-05 05:26:32,015	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=4985)</span> 2020-09-05 05:26:46,241	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:26:46] ax.service.ax_client: Completed trial 20 with data: {'mean_accuracy': (0.93, 0.0)}.
-[INFO 09-05 05:26:48] ax.service.ax_client: Completed trial 21 with data: {'mean_accuracy': (0.93, 0.0)}.
-<span class="ansi-cyan-fg">(pid=5009)</span> 2020-09-05 05:26:48,148	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-<span class="ansi-cyan-fg">(pid=5034)</span> 2020-09-05 05:26:49,440	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5052)</span> 2020-09-05 05:26:51,156	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5034)</span> 2020-09-05 05:27:05,597	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:27:05] ax.service.ax_client: Completed trial 22 with data: {'mean_accuracy': (0.1, 0.0)}.
-[INFO 09-05 05:27:07] ax.service.ax_client: Completed trial 23 with data: {'mean_accuracy': (0.1, 0.0)}.
-<span class="ansi-cyan-fg">(pid=5052)</span> 2020-09-05 05:27:07,209	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-<span class="ansi-cyan-fg">(pid=5075)</span> 2020-09-05 05:27:08,863	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5094)</span> 2020-09-05 05:27:10,049	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5075)</span> 2020-09-05 05:27:24,868	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:27:24] ax.service.ax_client: Completed trial 24 with data: {'mean_accuracy': (0.1, 0.0)}.
-<span class="ansi-cyan-fg">(pid=5094)</span> 2020-09-05 05:27:26,325	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:27:26] ax.service.ax_client: Completed trial 25 with data: {'mean_accuracy': (0.61, 0.0)}.
-<span class="ansi-cyan-fg">(pid=5117)</span> 2020-09-05 05:27:27,823	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5137)</span> 2020-09-05 05:27:29,093	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5117)</span> 2020-09-05 05:27:43,659	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:27:43] ax.service.ax_client: Completed trial 26 with data: {'mean_accuracy': (0.11, 0.0)}.
-[INFO 09-05 05:27:45] ax.service.ax_client: Completed trial 27 with data: {'mean_accuracy': (0.09, 0.0)}.
-<span class="ansi-cyan-fg">(pid=5137)</span> 2020-09-05 05:27:45,040	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-<span class="ansi-cyan-fg">(pid=5165)</span> 2020-09-05 05:27:46,952	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5184)</span> 2020-09-05 05:27:48,002	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
-<span class="ansi-cyan-fg">(pid=5165)</span> 2020-09-05 05:28:03,090	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
-[INFO 09-05 05:28:03] ax.service.ax_client: Completed trial 28 with data: {'mean_accuracy': (0.92, 0.0)}.
-[INFO 09-05 05:28:03] ax.service.ax_client: Completed trial 29 with data: {'mean_accuracy': (0.11, 0.0)}.
-<span class="ansi-cyan-fg">(pid=5184)</span> 2020-09-05 05:28:03,931	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:21:57] ax.service.ax_client: Completed trial 3 with data: {'mean_accuracy': (0.09, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4538)</span> 2020-09-06 05:21:57,098	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4547)</span> 2020-09-06 05:21:59,180	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4604)</span> 2020-09-06 05:22:00,020	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4604)</span> 2020-09-06 05:22:14,995	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:22:15] ax.service.ax_client: Completed trial 5 with data: {'mean_accuracy': (0.91, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4547)</span> 2020-09-06 05:22:15,279	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:22:15] ax.service.ax_client: Completed trial 4 with data: {'mean_accuracy': (0.9, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4630)</span> 2020-09-06 05:22:18,172	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4634)</span> 2020-09-06 05:22:18,578	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4630)</span> 2020-09-06 05:22:33,555	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:22:33] ax.service.ax_client: Completed trial 6 with data: {'mean_accuracy': (0.09, 0.0)}.
+[INFO 09-06 05:22:34] ax.service.ax_client: Completed trial 7 with data: {'mean_accuracy': (0.51, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4634)</span> 2020-09-06 05:22:34,539	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4643)</span> 2020-09-06 05:22:36,004	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4692)</span> 2020-09-06 05:22:37,646	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4643)</span> 2020-09-06 05:22:51,829	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:22:51] ax.service.ax_client: Completed trial 8 with data: {'mean_accuracy': (0.2, 0.0)}.
+[INFO 09-06 05:22:53] ax.service.ax_client: Completed trial 9 with data: {'mean_accuracy': (0.94, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4692)</span> 2020-09-06 05:22:53,323	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4738)</span> 2020-09-06 05:22:54,783	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4756)</span> 2020-09-06 05:22:56,320	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4738)</span> 2020-09-06 05:23:10,550	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:23:10] ax.service.ax_client: Completed trial 10 with data: {'mean_accuracy': (0.95, 0.0)}.
+[INFO 09-06 05:23:12] ax.service.ax_client: Completed trial 11 with data: {'mean_accuracy': (0.11, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4756)</span> 2020-09-06 05:23:12,361	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4785)</span> 2020-09-06 05:23:13,511	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4804)</span> 2020-09-06 05:23:15,218	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4785)</span> 2020-09-06 05:23:29,063	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:23:29] ax.service.ax_client: Completed trial 12 with data: {'mean_accuracy': (0.1, 0.0)}.
+[INFO 09-06 05:23:31] ax.service.ax_client: Completed trial 13 with data: {'mean_accuracy': (0.11, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4804)</span> 2020-09-06 05:23:31,140	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4828)</span> 2020-09-06 05:23:32,011	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4846)</span> 2020-09-06 05:23:34,188	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4828)</span> 2020-09-06 05:23:47,737	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:23:47] ax.service.ax_client: Completed trial 14 with data: {'mean_accuracy': (0.9, 0.0)}.
+[INFO 09-06 05:23:50] ax.service.ax_client: Completed trial 15 with data: {'mean_accuracy': (0.94, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4846)</span> 2020-09-06 05:23:50,531	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4869)</span> 2020-09-06 05:23:50,692	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4888)</span> 2020-09-06 05:23:54,039	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4869)</span> 2020-09-06 05:24:06,714	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:24:06] ax.service.ax_client: Completed trial 16 with data: {'mean_accuracy': (0.1, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4891)</span> 2020-09-06 05:24:09,000	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+[INFO 09-06 05:24:10] ax.service.ax_client: Completed trial 17 with data: {'mean_accuracy': (0.76, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4888)</span> 2020-09-06 05:24:10,564	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4932)</span> 2020-09-06 05:24:13,662	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4891)</span> 2020-09-06 05:24:25,361	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:24:25] ax.service.ax_client: Completed trial 18 with data: {'mean_accuracy': (0.59, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4960)</span> 2020-09-06 05:24:28,639	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+[INFO 09-06 05:24:29] ax.service.ax_client: Completed trial 19 with data: {'mean_accuracy': (0.95, 0.0)}.
+<span class="ansi-cyan-fg">(pid=4932)</span> 2020-09-06 05:24:29,845	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=4981)</span> 2020-09-06 05:24:33,016	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4960)</span> 2020-09-06 05:24:44,225	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:24:44] ax.service.ax_client: Completed trial 20 with data: {'mean_accuracy': (0.1, 0.0)}.
+<span class="ansi-cyan-fg">(pid=5002)</span> 2020-09-06 05:24:47,532	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=4981)</span> 2020-09-06 05:24:49,196	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:24:49] ax.service.ax_client: Completed trial 21 with data: {'mean_accuracy': (0.46, 0.0)}.
+<span class="ansi-cyan-fg">(pid=5023)</span> 2020-09-06 05:24:52,296	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=5002)</span> 2020-09-06 05:25:03,165	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:25:03] ax.service.ax_client: Completed trial 22 with data: {'mean_accuracy': (0.31, 0.0)}.
+<span class="ansi-cyan-fg">(pid=5043)</span> 2020-09-06 05:25:06,580	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=5023)</span> 2020-09-06 05:25:08,187	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:25:08] ax.service.ax_client: Completed trial 23 with data: {'mean_accuracy': (0.96, 0.0)}.
+<span class="ansi-cyan-fg">(pid=5064)</span> 2020-09-06 05:25:11,423	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=5043)</span> 2020-09-06 05:25:22,432	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:25:22] ax.service.ax_client: Completed trial 24 with data: {'mean_accuracy': (0.1, 0.0)}.
+<span class="ansi-cyan-fg">(pid=5087)</span> 2020-09-06 05:25:25,860	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+[INFO 09-06 05:25:27] ax.service.ax_client: Completed trial 25 with data: {'mean_accuracy': (0.96, 0.0)}.
+<span class="ansi-cyan-fg">(pid=5064)</span> 2020-09-06 05:25:27,351	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+<span class="ansi-cyan-fg">(pid=5108)</span> 2020-09-06 05:25:30,432	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=5087)</span> 2020-09-06 05:25:42,011	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:25:42] ax.service.ax_client: Completed trial 26 with data: {'mean_accuracy': (0.18, 0.0)}.
+<span class="ansi-cyan-fg">(pid=5129)</span> 2020-09-06 05:25:45,328	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=5108)</span> 2020-09-06 05:25:46,911	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:25:46] ax.service.ax_client: Completed trial 27 with data: {'mean_accuracy': (0.23, 0.0)}.
+2020-09-06 05:25:47,390	WARNING worker.py:1134 -- The actor or task with ID ffffffffffffffff3f9dd4fd0100 is pending and cannot currently be scheduled. It requires {CPU: 1.000000} for execution and {CPU: 1.000000} for placement, but this node only has remaining {CPU: 1.000000}, {node:10.30.0.141: 1.000000}, {memory: 4.345703 GiB}, {object_store_memory: 1.464844 GiB}. In total there are 0 pending tasks and 1 pending actors on this node. This is likely due to all cluster resources being claimed by actors. To resolve the issue, consider creating fewer actors or increase the resources available to this Ray cluster. You can ignore this message if this Ray cluster is expected to auto-scale.
+<span class="ansi-cyan-fg">(pid=5129)</span> 2020-09-06 05:25:47,581	INFO (unknown file):0 -- gc.collect() freed 225 refs in 0.0932129380000788 seconds
+2020-09-06 05:25:47,758	INFO (unknown file):0 -- gc.collect() freed 150 refs in 0.27010561799988864 seconds
+<span class="ansi-cyan-fg">(pid=5155)</span> 2020-09-06 05:25:50,172	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+<span class="ansi-cyan-fg">(pid=5129)</span> 2020-09-06 05:26:01,524	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
+[INFO 09-06 05:26:01] ax.service.ax_client: Completed trial 28 with data: {'mean_accuracy': (0.94, 0.0)}.
+[INFO 09-06 05:26:04] ax.service.ax_client: Completed trial 29 with data: {'mean_accuracy': (0.91, 0.0)}.
+<span class="ansi-cyan-fg">(pid=5155)</span> 2020-09-06 05:26:04,339	WARNING __init__.py:20 -- tune.track.log is now deprecated. Use `tune.report` instead. This warning will throw an error in a future version of Ray.
 </pre>
 </div>
 </div>
 <div class="output_area">
 <div class="prompt output_prompt">Out[6]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;ray.tune.analysis.experiment_analysis.ExperimentAnalysis at 0x7f742154f240&gt;</pre>
+<pre>&lt;ray.tune.analysis.experiment_analysis.ExperimentAnalysis at 0x7f1f2a6d34e0&gt;</pre>
 </div>
 </div>
 </div>
@@ -890,7 +863,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt output_prompt">Out[7]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{'lr': 0.0005924428243610288, 'momentum': 0.6944145085290074}</pre>
+<pre>{'lr': 0.003227354470728072, 'momentum': 0.08669912442564964}</pre>
 </div>
 </div>
 </div>
@@ -912,7 +885,7 @@ var n,a=t("./lib/build-log"),i=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <div class="output_area">
 <div class="prompt output_prompt">Out[8]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{'mean_accuracy': 0.9645}</pre>
+<pre>{'mean_accuracy': 0.965}</pre>
 </div>
 </div>
 </div>
