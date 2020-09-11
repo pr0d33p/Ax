@@ -49,8 +49,15 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="Metric"><a class="viewcode-back" href="../../../core.html#ax.Metric">[docs]</a><span class="k">class</span> <span class="nc">Metric</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="sd">"""Base class for representing metrics.</span>
 
+<span class="sd">    The `fetch_trial_data` method is the essential method to override when</span>
+<span class="sd">    subclassing, which specifies how to retrieve a Metric, for a given trial.</span>
+
+<span class="sd">    A Metric must return a Data object, which requires (at minimum) the following:</span>
+<span class="sd">        https://ax.dev/api/_modules/ax/core/data.html#Data.required_columns</span>
+
 <span class="sd">    Attributes:</span>
 <span class="sd">        lower_is_better: Flag for metrics which should be minimized.</span>
+<span class="sd">        properties: Properties specific to a particular metric.</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>

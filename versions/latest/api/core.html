@@ -1950,10 +1950,21 @@ an experiment object. To force-populate all fields of the
 <em class="property">class </em><code class="sig-prename descclassname">ax.core.metric.</code><code class="sig-name descname">Metric</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">lower_is_better=None</em>, <em class="sig-param">properties=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ax/core/metric.html#Metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ax.core.metric.Metric" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="utils.html#ax.utils.common.equality.Base" title="ax.utils.common.equality.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">ax.utils.common.equality.Base</span></code></a></p>
 <p>Base class for representing metrics.</p>
+<p>The <cite>fetch_trial_data</cite> method is the essential method to override when
+subclassing, which specifies how to retrieve a Metric, for a given trial.</p>
+<dl class="simple">
+<dt>A Metric must return a Data object, which requires (at minimum) the following:</dt><dd><p><a class="reference external" href="https://ax.dev/api/_modules/ax/core/data.html#Data.required_columns">https://ax.dev/api/_modules/ax/core/data.html#Data.required_columns</a></p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="ax.core.metric.Metric.lower_is_better">
 <code class="sig-name descname">lower_is_better</code><a class="headerlink" href="#ax.core.metric.Metric.lower_is_better" title="Permalink to this definition">¶</a></dt>
 <dd><p>Flag for metrics which should be minimized.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="ax.core.metric.Metric.properties">
+<code class="sig-name descname">properties</code><a class="headerlink" href="#ax.core.metric.Metric.properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties specific to a particular metric.</p>
 </dd></dl>
 <dl class="method">
 <dt id="ax.core.metric.Metric.clone">

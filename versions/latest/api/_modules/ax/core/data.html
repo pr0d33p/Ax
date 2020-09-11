@@ -59,7 +59,10 @@ src="/js/documentation_options.js">
     <span class="s2">"random_split"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
     <span class="s2">"fidelities"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># Dictionary stored as json</span>
 <span class="p">}</span>
-<span class="n">REQUIRED_COLUMNS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"arm_name"</span><span class="p">,</span> <span class="s2">"metric_name"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">}</span>
+<span class="c1"># Note: Although the SEM (standard error of the mean) is a required column in data,</span>
+<span class="c1"># downstream models can infer missing SEMs. Simply specify NaN as the SEM value,</span>
+<span class="c1"># either in your Metric class or in Data explicitly.</span>
+<span class="n">REQUIRED_COLUMNS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"arm_name"</span><span class="p">,</span> <span class="s2">"metric_name"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"sem"</span><span class="p">}</span>
 
 
 <div class="viewcode-block" id="Data"><a class="viewcode-back" href="../../../core.html#ax.Data">[docs]</a><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
