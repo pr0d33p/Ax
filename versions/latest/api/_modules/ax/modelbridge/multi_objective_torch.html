@@ -199,45 +199,57 @@ src="/js/documentation_options.js">
         <span class="p">)</span>
 
         <span class="n">ref_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_point</span>
+        <span class="k">if</span> <span class="n">ref_point</span> <span class="ow">and</span> <span class="n">obs_data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_transformed_ref_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_ref_point</span><span class="p">(</span>
+                <span class="n">ref_point</span><span class="o">=</span><span class="n">ref_point</span><span class="p">,</span> <span class="n">padding_obs_data</span><span class="o">=</span><span class="n">obs_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">obs_feats</span><span class="p">,</span> <span class="n">obs_data</span><span class="p">,</span> <span class="n">search_space</span>
+
+    <span class="k">def</span> <span class="nf">_transform_ref_point</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">ref_point</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">padding_obs_data</span><span class="p">:</span> <span class="n">ObservationData</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">"""Transform ref_point using same transforms as those applied to data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ref_point: Reference point to transform.</span>
+<span class="sd">            padding_obs_data: Data used to add dummy outcomes that aren't part</span>
+<span class="sd">                of the reference point. This is necessary to apply transforms.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            A transformed reference point.</span>
+<span class="sd">        """</span>
         <span class="n">metric_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metric_names</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="n">objective_metric_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_objective_metric_names</span> <span class="ow">or</span> <span class="p">[])</span>
-        <span class="k">if</span> <span class="n">ref_point</span> <span class="ow">and</span> <span class="n">metric_names</span> <span class="ow">and</span> <span class="n">objective_metric_names</span><span class="p">:</span>
-            <span class="n">num_metrics</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">metric_names</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">obs_data</span><span class="p">:</span>
-                <span class="c1"># Create synthetic ObservationData representing the reference point.</span>
-                <span class="c1"># Pad with non-objective outcomes from existing data.</span>
-                <span class="c1"># Should always have existing data with BO.</span>
-                <span class="n">sample_obs_data</span> <span class="o">=</span> <span class="n">obs_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="n">padded_ref_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-                    <span class="nb">zip</span><span class="p">(</span><span class="n">sample_obs_data</span><span class="o">.</span><span class="n">metric_names</span><span class="p">,</span> <span class="n">sample_obs_data</span><span class="o">.</span><span class="n">means</span><span class="p">)</span>
-                <span class="p">)</span>
-                <span class="n">padded_ref_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ref_point</span><span class="p">)</span>
-                <span class="n">ref_obs_data</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="n">ObservationData</span><span class="p">(</span>
-                        <span class="n">metric_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">padded_ref_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
-                        <span class="n">means</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">padded_ref_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span>
-                        <span class="n">covariance</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_metrics</span><span class="p">,</span> <span class="n">num_metrics</span><span class="p">)),</span>
-                    <span class="p">)</span>
-                <span class="p">]</span>
-                <span class="n">ref_obs_feats</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_metrics</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">metric_names</span><span class="p">)</span>
+        <span class="c1"># Create synthetic ObservationData representing the reference point.</span>
+        <span class="c1"># Pad with non-objective outcomes from existing data.</span>
+        <span class="c1"># Should always have existing data with BO.</span>
+        <span class="n">padding_obs_data</span>
+        <span class="n">padded_ref_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span><span class="n">padding_obs_data</span><span class="o">.</span><span class="n">metric_names</span><span class="p">,</span> <span class="n">padding_obs_data</span><span class="o">.</span><span class="n">means</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">padded_ref_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ref_point</span><span class="p">)</span>
+        <span class="n">ref_obs_data</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ObservationData</span><span class="p">(</span>
+                <span class="n">metric_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">padded_ref_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+                <span class="n">means</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">padded_ref_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span>
+                <span class="n">covariance</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_metrics</span><span class="p">,</span> <span class="n">num_metrics</span><span class="p">)),</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">ref_obs_feats</span> <span class="o">=</span> <span class="p">[]</span>
 
-                <span class="c1"># Apply initialized transforms to reference point.</span>
-                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                    <span class="n">ref_obs_data</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">transform_observation_data</span><span class="p">(</span>
-                        <span class="n">ref_obs_data</span><span class="p">,</span> <span class="n">ref_obs_feats</span>
-                    <span class="p">)</span>
-                <span class="n">transformed_ref_obsd</span> <span class="o">=</span> <span class="n">ref_obs_data</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="n">transformed_ref_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-                    <span class="nb">zip</span><span class="p">(</span><span class="n">transformed_ref_obsd</span><span class="o">.</span><span class="n">metric_names</span><span class="p">,</span> <span class="n">transformed_ref_obsd</span><span class="o">.</span><span class="n">means</span><span class="p">)</span>
-                <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_transformed_ref_point</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="n">objective_metric_name</span><span class="p">:</span> <span class="n">transformed_ref_dict</span><span class="p">[</span><span class="n">objective_metric_name</span><span class="p">]</span>
-                    <span class="k">for</span> <span class="n">objective_metric_name</span> <span class="ow">in</span> <span class="n">objective_metric_names</span>
-                <span class="p">}</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># No previous data means transform can't have been fit.</span>
-                <span class="k">pass</span>
-        <span class="k">return</span> <span class="n">obs_feats</span><span class="p">,</span> <span class="n">obs_data</span><span class="p">,</span> <span class="n">search_space</span>
+        <span class="c1"># Apply initialized transforms to reference point.</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">ref_obs_data</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">transform_observation_data</span><span class="p">(</span><span class="n">ref_obs_data</span><span class="p">,</span> <span class="n">ref_obs_feats</span><span class="p">)</span>
+        <span class="n">transformed_ref_obsd</span> <span class="o">=</span> <span class="n">ref_obs_data</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">transformed_ref_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span><span class="n">transformed_ref_obsd</span><span class="o">.</span><span class="n">metric_names</span><span class="p">,</span> <span class="n">transformed_ref_obsd</span><span class="o">.</span><span class="n">means</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">transformed_ref_point</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">objective_metric_name</span><span class="p">:</span> <span class="n">transformed_ref_dict</span><span class="p">[</span><span class="n">objective_metric_name</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">objective_metric_name</span> <span class="ow">in</span> <span class="n">objective_metric_names</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">transformed_ref_point</span>
 
     <span class="c1"># pyre-fixme[56]: While applying decorator</span>
     <span class="c1">#  `ax.utils.common.docutils.copy_doc(...)`: Call expects argument `n`.</span>
