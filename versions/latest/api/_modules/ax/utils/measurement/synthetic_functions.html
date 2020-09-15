@@ -147,6 +147,7 @@ src="/js/documentation_options.js">
 <span class="sd">        where each element of the list is a tuple corresponding to the min</span>
 <span class="sd">        and max of the domain for that dimension.</span>
 <span class="sd">        """</span>
+        <span class="c1"># pyre-fixme[7]: Expected `List[typing.Tuple[float, ...]]` but got `None`.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_domain</span>
 
     <span class="nd">@property</span>
@@ -157,6 +158,7 @@ src="/js/documentation_options.js">
 <span class="sd">        Each element of the list is a d-tuple, where d is the dimensionality</span>
 <span class="sd">        of the inputs. There may be more than one global minimums.</span>
 <span class="sd">        """</span>
+        <span class="c1"># pyre-fixme[7]: Expected `List[typing.Tuple[float, ...]]` but got `None`.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minimums</span>
 
     <span class="nd">@property</span>
@@ -167,18 +169,21 @@ src="/js/documentation_options.js">
 <span class="sd">        Each element of the list is a d-tuple, where d is the dimensionality</span>
 <span class="sd">        of the inputs. There may be more than one global minimums.</span>
 <span class="sd">        """</span>
+        <span class="c1"># pyre-fixme[7]: Expected `List[typing.Tuple[float, ...]]` but got `None`.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maximums</span>
 
     <span class="nd">@property</span>
     <span class="nd">@informative_failure_on_none</span>
     <span class="k">def</span> <span class="nf">fmin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">"""Value at global minimum(s)."""</span>
+        <span class="c1"># pyre-fixme[7]: Expected `float` but got `None`.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fmin</span>
 
     <span class="nd">@property</span>
     <span class="nd">@informative_failure_on_none</span>
     <span class="k">def</span> <span class="nf">fmax</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">"""Value at global minimum(s)."""</span>
+        <span class="c1"># pyre-fixme[7]: Expected `float` but got `None`.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fmax</span>
 
     <span class="nd">@classmethod</span>
@@ -225,10 +230,16 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="Hartmann6"><a class="viewcode-back" href="../../../../utils.html#ax.utils.measurement.synthetic_functions.Hartmann6">[docs]</a><span class="k">class</span> <span class="nc">Hartmann6</span><span class="p">(</span><span class="n">SyntheticFunction</span><span class="p">):</span>
     <span class="sd">"""Hartmann6 function (6-dimensional with 1 global minimum)."""</span>
 
+    <span class="c1"># pyre-fixme[15]: `_required_dimensionality` overrides attribute defined in</span>
+    <span class="c1">#  `SyntheticFunction` inconsistently.</span>
     <span class="n">_required_dimensionality</span> <span class="o">=</span> <span class="mi">6</span>
     <span class="n">_domain</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)]</span>
+    <span class="c1"># pyre-fixme[15]: `_minimums` overrides attribute defined in `SyntheticFunction`</span>
+    <span class="c1">#  inconsistently.</span>
     <span class="n">_minimums</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.20169</span><span class="p">,</span> <span class="mf">0.150011</span><span class="p">,</span> <span class="mf">0.476874</span><span class="p">,</span> <span class="mf">0.275332</span><span class="p">,</span> <span class="mf">0.311652</span><span class="p">,</span> <span class="mf">0.6573</span><span class="p">)]</span>
     <span class="n">_fmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.32237</span>
+    <span class="c1"># pyre-fixme[15]: `_fmax` overrides attribute defined in `SyntheticFunction`</span>
+    <span class="c1">#  inconsistently.</span>
     <span class="n">_fmax</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">_alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">])</span>
     <span class="n">_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
@@ -294,10 +305,18 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="Branin"><a class="viewcode-back" href="../../../../utils.html#ax.utils.measurement.synthetic_functions.Branin">[docs]</a><span class="k">class</span> <span class="nc">Branin</span><span class="p">(</span><span class="n">SyntheticFunction</span><span class="p">):</span>
     <span class="sd">"""Branin function (2-dimensional with 3 global minima)."""</span>
 
+    <span class="c1"># pyre-fixme[15]: `_required_dimensionality` overrides attribute defined in</span>
+    <span class="c1">#  `SyntheticFunction` inconsistently.</span>
     <span class="n">_required_dimensionality</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="c1"># pyre-fixme[15]: `_domain` overrides attribute defined in `SyntheticFunction`</span>
+    <span class="c1">#  inconsistently.</span>
     <span class="n">_domain</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)]</span>
     <span class="n">_minimums</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">12.275</span><span class="p">),</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">2.275</span><span class="p">),</span> <span class="p">(</span><span class="mf">9.42478</span><span class="p">,</span> <span class="mf">2.475</span><span class="p">)]</span>
+    <span class="c1"># pyre-fixme[15]: `_fmin` overrides attribute defined in `SyntheticFunction`</span>
+    <span class="c1">#  inconsistently.</span>
     <span class="n">_fmin</span> <span class="o">=</span> <span class="mf">0.397887</span>
+    <span class="c1"># pyre-fixme[15]: `_fmax` overrides attribute defined in `SyntheticFunction`</span>
+    <span class="c1">#  inconsistently.</span>
     <span class="n">_fmax</span> <span class="o">=</span> <span class="mf">294.0</span>
 
     <span class="c1"># pyre-fixme[56]: While applying decorator</span>
@@ -317,10 +336,18 @@ src="/js/documentation_options.js">
 <div class="viewcode-block" id="Aug_Branin"><a class="viewcode-back" href="../../../../utils.html#ax.utils.measurement.synthetic_functions.Aug_Branin">[docs]</a><span class="k">class</span> <span class="nc">Aug_Branin</span><span class="p">(</span><span class="n">SyntheticFunction</span><span class="p">):</span>
     <span class="sd">"""Augmented Branin function (3-dimensional with infinitely many global minima)."""</span>
 
+    <span class="c1"># pyre-fixme[15]: `_required_dimensionality` overrides attribute defined in</span>
+    <span class="c1">#  `SyntheticFunction` inconsistently.</span>
     <span class="n">_required_dimensionality</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="c1"># pyre-fixme[15]: `_domain` overrides attribute defined in `SyntheticFunction`</span>
+    <span class="c1">#  inconsistently.</span>
     <span class="n">_domain</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
     <span class="n">_minimums</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">12.275</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">2.275</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">9.42478</span><span class="p">,</span> <span class="mf">2.475</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="c1"># pyre-fixme[15]: `_fmin` overrides attribute defined in `SyntheticFunction`</span>
+    <span class="c1">#  inconsistently.</span>
     <span class="n">_fmin</span> <span class="o">=</span> <span class="mf">0.397887</span>
+    <span class="c1"># pyre-fixme[15]: `_fmax` overrides attribute defined in `SyntheticFunction`</span>
+    <span class="c1">#  inconsistently.</span>
     <span class="n">_fmax</span> <span class="o">=</span> <span class="mf">294.0</span>
 
     <span class="c1"># pyre-fixme[56]: While applying decorator</span>

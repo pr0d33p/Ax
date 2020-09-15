@@ -779,6 +779,8 @@ src="/js/documentation_options.js">
         <span class="n">trial</span><span class="o">.</span><span class="n">_runner</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">runner_from_sqa</span><span class="p">(</span><span class="n">trial_sqa</span><span class="o">.</span><span class="n">runner</span><span class="p">)</span> <span class="k">if</span> <span class="n">trial_sqa</span><span class="o">.</span><span class="n">runner</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="p">)</span>
+        <span class="c1"># pyre-fixme[9]: _generation_step_index has type `None`; used as</span>
+        <span class="c1">#  `Optional[int]`.</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">_generation_step_index</span> <span class="o">=</span> <span class="n">trial_sqa</span><span class="o">.</span><span class="n">generation_step_index</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="n">trial_sqa</span><span class="o">.</span><span class="n">properties</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="k">return</span> <span class="n">trial</span></div>

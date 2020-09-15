@@ -116,12 +116,14 @@ src="/js/documentation_options.js">
     <span class="n">with_batch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">with_status_quo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">with_fidelity_parameter</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">search_space</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SearchSpace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>
+    <span class="n">search_space</span> <span class="o">=</span> <span class="n">search_space</span> <span class="ow">or</span> <span class="n">get_branin_search_space</span><span class="p">(</span>
+        <span class="n">with_fidelity_parameter</span><span class="o">=</span><span class="n">with_fidelity_parameter</span>
+    <span class="p">)</span>
     <span class="n">exp</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">"branin_test_experiment"</span><span class="p">,</span>
-        <span class="n">search_space</span><span class="o">=</span><span class="n">get_branin_search_space</span><span class="p">(</span>
-            <span class="n">with_fidelity_parameter</span><span class="o">=</span><span class="n">with_fidelity_parameter</span>
-        <span class="p">),</span>
+        <span class="n">search_space</span><span class="o">=</span><span class="n">search_space</span><span class="p">,</span>
         <span class="n">optimization_config</span><span class="o">=</span><span class="n">get_branin_optimization_config</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">has_optimization_config</span>
         <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
@@ -485,6 +487,7 @@ src="/js/documentation_options.js">
         <span class="n">batch</span><span class="o">.</span><span class="n">mark_arm_abandoned</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">"abandoned reason"</span><span class="p">)</span>
     <span class="n">batch</span><span class="o">.</span><span class="n">runner</span> <span class="o">=</span> <span class="n">SyntheticRunner</span><span class="p">()</span>
     <span class="n">batch</span><span class="o">.</span><span class="n">set_status_quo_with_weight</span><span class="p">(</span><span class="n">status_quo</span><span class="o">=</span><span class="n">arms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `None`; used as `int`.</span>
     <span class="n">batch</span><span class="o">.</span><span class="n">_generation_step_index</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="n">batch</span></div>
 
@@ -538,6 +541,7 @@ src="/js/documentation_options.js">
     <span class="n">arm</span> <span class="o">=</span> <span class="n">get_arms_from_dict</span><span class="p">(</span><span class="n">get_arm_weights1</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">trial</span><span class="o">.</span><span class="n">add_arm</span><span class="p">(</span><span class="n">arm</span><span class="p">)</span>
     <span class="n">trial</span><span class="o">.</span><span class="n">runner</span> <span class="o">=</span> <span class="n">SyntheticRunner</span><span class="p">()</span>
+    <span class="c1"># pyre-fixme[8]: Attribute has type `None`; used as `int`.</span>
     <span class="n">trial</span><span class="o">.</span><span class="n">_generation_step_index</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="n">trial</span></div>
 

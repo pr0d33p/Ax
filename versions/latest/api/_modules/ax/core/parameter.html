@@ -307,6 +307,8 @@ src="/js/documentation_options.js">
 
         <span class="c1"># This might have issues with ints &gt; 2^24</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameter_type</span> <span class="ow">is</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">INT</span><span class="p">:</span>
+            <span class="c1"># pyre-fixme[6]: Expected `Union[_SupportsIndex, bytearray, bytes, str,</span>
+            <span class="c1">#  typing.SupportsFloat]` for 1st param but got `Union[None, float, str]`.</span>
             <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">is_integer</span><span class="p">()</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 

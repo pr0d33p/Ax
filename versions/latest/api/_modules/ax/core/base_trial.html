@@ -426,6 +426,7 @@ src="/js/documentation_options.js">
                 <span class="s2">"Cannot add generator runs from different generation steps to a "</span>
                 <span class="s2">"single trial."</span>
             <span class="p">)</span>
+        <span class="c1"># pyre-fixme[8]: Attribute has type `None`; used as `Optional[int]`.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generation_step_index</span> <span class="o">=</span> <span class="n">generation_step_index</span>
 
     <span class="nd">@abstractproperty</span>
@@ -628,6 +629,7 @@ src="/js/documentation_options.js">
 <span class="sd">        that the trial statuses mapping on the experiment is updated always when</span>
 <span class="sd">        a trial status is updated.</span>
 <span class="sd">        """</span>
+        <span class="c1"># pyre-fixme[7]: Expected `TrialStatus` but got `None`.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__status</span>
 
     <span class="nd">@_status</span><span class="o">.</span><span class="n">setter</span>
@@ -639,6 +641,7 @@ src="/js/documentation_options.js">
             <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_experiment</span><span class="o">.</span><span class="n">_trial_indices_by_status</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_experiment</span><span class="o">.</span><span class="n">_trial_indices_by_status</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_experiment</span><span class="o">.</span><span class="n">_trial_indices_by_status</span><span class="p">[</span><span class="n">trial_status</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="c1"># pyre-fixme[8]: Attribute has type `None`; used as `TrialStatus`.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__status</span> <span class="o">=</span> <span class="n">trial_status</span></div>
 </pre></div>
 </div>

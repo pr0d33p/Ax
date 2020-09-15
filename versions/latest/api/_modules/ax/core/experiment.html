@@ -297,6 +297,7 @@ src="/js/documentation_options.js">
         <span class="k">for</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="n">optimization_config</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tracking_metrics</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">remove_tracking_metric</span><span class="p">(</span><span class="n">metric_name</span><span class="p">)</span>
+        <span class="c1"># pyre-fixme[8]: Attribute has type `None`; used as `OptimizationConfig`.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_optimization_config</span> <span class="o">=</span> <span class="n">optimization_config</span>
 
     <span class="nd">@property</span>
