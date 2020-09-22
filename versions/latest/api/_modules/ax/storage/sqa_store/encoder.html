@@ -78,7 +78,11 @@ src="/js/documentation_options.js">
 <span class="kn">from</span> <span class="nn">ax.storage.utils</span> <span class="kn">import</span> <span class="n">DomainType</span><span class="p">,</span> <span class="n">MetricIntent</span><span class="p">,</span> <span class="n">ParameterConstraintType</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.constants</span> <span class="kn">import</span> <span class="n">Keys</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.equality</span> <span class="kn">import</span> <span class="n">Base</span><span class="p">,</span> <span class="n">datetime_equals</span>
+<span class="kn">from</span> <span class="nn">ax.utils.common.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
 <span class="kn">from</span> <span class="nn">ax.utils.common.typeutils</span> <span class="kn">import</span> <span class="n">not_none</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Encoder"><a class="viewcode-back" href="../../../../storage.html#ax.storage.sqa_store.encoder.Encoder">[docs]</a><span class="k">class</span> <span class="nc">Encoder</span><span class="p">:</span>
@@ -704,7 +708,14 @@ src="/js/documentation_options.js">
                     <span class="bp">self</span><span class="o">.</span><span class="n">generator_run_to_sqa</span><span class="p">(</span><span class="n">generator_run</span><span class="o">=</span><span class="n">status_quo_generator_run</span><span class="p">)</span>
                 <span class="p">)</span>
                 <span class="n">status_quo_name</span> <span class="o">=</span> <span class="n">trial_status_quo</span><span class="o">.</span><span class="n">name</span>
-            <span class="n">optimize_for_power</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">optimize_for_power</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="s2">"optimize_for_power"</span><span class="p">):</span>
+                <span class="n">optimize_for_power</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">optimize_for_power</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">optimize_for_power</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"optimize_for_power not present in BatchTrial: </span><span class="si">{</span><span class="n">trial</span><span class="o">.</span><span class="vm">__dict__</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">Trial</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">generator_run</span><span class="p">:</span>
                 <span class="n">generator_runs</span> <span class="o">=</span> <span class="p">[</span>
